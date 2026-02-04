@@ -8,6 +8,10 @@
   <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset">
     <img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/>
   </a>
+  &nbsp;
+  <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E">
+    <img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/>
+  </a>
 </p>
 
 <p align="center">
