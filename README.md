@@ -1,4 +1,14 @@
-<h1 align="center">Bitmap Sunset City</h1>
+<h1 align="center">Bitmap Sunset</h1>
+
+<p align="center">
+  <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0">
+    <img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/>
+  </a>
+  &nbsp;
+  <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset">
+    <img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/>
+  </a>
+</p>
 
 <p align="center">
   <a href="nfts/pics/bitmap_599.png"><img src="nfts/pics/bitmap_599.png" width="380"/></a>
