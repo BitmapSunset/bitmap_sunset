@@ -1,24 +1,13 @@
-<h1 align="center">Bitmap Sunset</h1>
+<h1 align="center">🟧 Bitmap Sunset 🌇</h1>
 
 <p align="center">
-  <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0">
-    <img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/>
-  </a>
-  &nbsp;
-  <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset">
-    <img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/>
-  </a>
-  &nbsp;
-  <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E">
-    <img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/>
-  </a>
-</p>
-
-<p align="center">
-  <a href="nfts/pics/bitmap_599.png"><img src="nfts/pics/bitmap_599.png" width="48%"/></a>
+  <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
+  <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset"><img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/></a>
+  <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E"><img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/></a>
 </p>
 
 <div align="center">
+<a href="nfts/pics/bitmap_599.png"><img src="nfts/pics/bitmap_599.png" width="92%"/></a>
 <a href="nfts/pics/bitmap_598.png"><img src="nfts/thumbs/bitmap_598.png" width="15%"/></a>
 <a href="nfts/pics/bitmap_597.png"><img src="nfts/thumbs/bitmap_597.png" width="15%"/></a>
 <a href="nfts/pics/bitmap_596.png"><img src="nfts/thumbs/bitmap_596.png" width="15%"/></a>
