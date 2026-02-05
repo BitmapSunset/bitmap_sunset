@@ -17,7 +17,7 @@ for i in $(seq 0 599); do
   output="$OUTPUT_DIR/$filename"
   
   if [ -f "$input" ]; then
-    magick "$input" -resize ${THUMB_WIDTH}x "$output"
+    magick "$input" -resize 1024x768^ -gravity center -extent 1024x768 -resize ${THUMB_WIDTH}x "$output"
     echo "Generated: $output"
   else
     echo "Skipped (not found): $input"
