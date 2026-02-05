@@ -6,6 +6,7 @@
 INPUT_DIR="pics"
 OUTPUT_DIR="thumbs"
 THUMB_WIDTH=120
+THUMB_HEIGHT=90
 
 # Create output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
@@ -17,7 +18,7 @@ for i in $(seq 0 599); do
   output="$OUTPUT_DIR/$filename"
   
   if [ -f "$input" ]; then
-    magick "$input" -resize 1024x768^ -gravity center -extent 1024x768 -resize ${THUMB_WIDTH}x "$output"
+    magick "$input" -resize ${THUMB_WIDTH}x${THUMB_HEIGHT} -gravity center -background black -extent ${THUMB_WIDTH}x${THUMB_HEIGHT} "$output"
     echo "Generated: $output"
   else
     echo "Skipped (not found): $input"
