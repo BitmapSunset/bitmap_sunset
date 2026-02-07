@@ -280,13 +280,13 @@ Users are encouraged to verify the BitmapSunset inscription ID through the offic
 
 BitmapSunset's rendering engine uses a two-level mirror system that serves both as a visual seamlessness technique and as the structural foundation for a cross-chain multiverse.
 
-At the first level, each blockchain is rendered as a **9-cell patch**: one root cell containing the actual blockchain data, surrounded by 8 mirror cells. The mirror cells are symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — eliminating visible seams at every boundary. From the ground, the mirroring is imperceptible: a user flying across the landscape sees a continuous, infinite-looking world rather than a tiled grid with hard edges. The number of mirror cells rendered is configurable (0–7) as a performance setting.
+At the first level, each blockchain is rendered as a **root cell** containing the actual blockchain data, surrounded by concentric **rings of mirror cells**. Each ring adds a layer of symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — eliminating visible seams at every boundary. The first ring adds 8 mirror cells, the second ring adds 16, and so on. From the ground, the mirroring is imperceptible: a user flying across the landscape sees a continuous, infinite-looking world rather than a tiled grid with hard edges. The number of mirror rings rendered is configurable (0–7) as a performance setting, where 0 displays only the root cell.
 
 ### From Mirrors to Multiverse
 
-The same 1+8 spatial pattern repeats at a higher level to form the multiverse. Bitcoin's 9-cell patch (root + 8 mirrors) occupies the center position. Eight surrounding positions, each itself a 9-cell patch (root + 8 mirrors), are reserved for additional blockchain landscapes. The architecture is recursive: the same structure used to make a single blockchain seamless is reused to tile multiple blockchains into a unified navigable world.
+The concentric mirror pattern repeats at a higher level to form the multiverse. Bitcoin's root cell and its surrounding mirror rings occupy the center position. Eight surrounding positions, each itself a root cell with its own mirror rings, are reserved for additional blockchain landscapes. The architecture is recursive: the same structure used to make a single blockchain seamless is reused to tile multiple blockchains into a unified navigable world.
 
-In the current release, only the Bitcoin blockchain is displayed. The surrounding blockchain positions are not yet populated. The mirror cells function purely as seamless world extension, creating the visual impression of an infinite Bitcoin landscape. When cross-chain support is added, each surrounding position would render a different blockchain's map protocol (such as .dogemap or other .\*map equivalents), with its own root cell and its own 8 mirrors.
+In the current release, only the Bitcoin blockchain is displayed. The surrounding blockchain positions are not yet populated. The mirror rings function purely as seamless world extension, creating the visual impression of an infinite Bitcoin landscape. When cross-chain support is added, each surrounding position would render a different blockchain's map protocol (such as .dogemap or other .\*map equivalents), with its own root cell and its own mirror rings.
 
 ### Navigation and Spawn
 
@@ -361,7 +361,7 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 - **Physics engine** to enable interaction with the world: collision detection, gravity, and drivable vehicles including the puppet kart.
 - **Networking and multiplayer** so that users can see each other's avatars in real time, transforming BitmapSunset from a single-player exploration tool into a shared social space.
 - **Spatial indexing** for models, enabling efficient collision queries and proximity-based interactions at scale.
-- **Cross-chain multiverse rendering** with support for additional blockchain landscapes displayed in surrounding 9-cell patches alongside Bitcoin's central patch. Each blockchain rendered as its own root cell with 8 mirrors, navigable by flying across patch boundaries.
+- **Cross-chain multiverse rendering** with support for additional blockchain landscapes displayed in surrounding patches alongside Bitcoin's central patch. Each blockchain rendered as its own root cell with concentric mirror rings, navigable by flying across patch boundaries.
 - **Progressive open-sourcing** of the full codebase to enable community-driven development and scaling beyond a solo developer effort.
 - **Minecraft-style terrain and sandbox features** that were prototyped in early development and set aside for the onchain release, planned for reintroduction.
 - **Onchain builder rankings** to surface and reward the most active and creative builders in the world.

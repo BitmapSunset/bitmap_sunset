@@ -214,7 +214,7 @@ Click **settings** to access detailed options organized into categories:
 
 - **Multiverse** — switch between Block War (default) and Bitmap modes.
 
-- **Mirror** (0–7) — number of map reflections at the borders. Higher values look more expansive but cost performance.
+- **Mirror** (0–7) — number of concentric mirror rings rendered around the root cell. 0 displays only the central root cell, 1 adds the first ring of 8 mirrored copies, 2 adds a second ring of 16, and so on. Higher values look more expansive but cost performance.
 
 - **Lod Quality** (0–100) — level of detail. Lower values improve performance.
 
