@@ -157,7 +157,7 @@ BitmapSunset holders receive concrete in-application utility:
 
 - **Billboard control:** Each OG BitmapSunset (0–99) corresponds to a billboard structure positioned over a 100x100 bitmap patch in the 3D world. Holders can replace the default sunset image with any inscription of their choosing and rule over their patch, creating a persistent, high-visibility display space.
 
-- **Bootstrapping authority:** All sunset holders (0–599) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue.
+- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is planned for v0.0.12.
 
 - **Mosaic placement:** Sunset scripts can stamp images flat on the ground plane at specific coordinates, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude.
 
@@ -165,8 +165,8 @@ BitmapSunset holders receive concrete in-application utility:
 
 | Range | Trait | Description |
 |---|---|---|
-| **0–99** | OG | Original founder sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Future evolution into floating islands with parceling and building capabilities. |
-| **100–599** | Mirror | Extended collection. Billboard placement to be determined. Bootstrapping authority included. |
+| **0–99** | OG | Original founder sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into floating islands with parceling and building capabilities. |
+| **100–599** | Mirror | Extended collection. Billboard placement and bootstrapping authority planned for v0.0.12. |
 
 The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, with future sunsets potentially covering additional blockchain landscapes within the multiverse framework.
 
@@ -187,7 +187,7 @@ With over 900,000 bitmaps in existence, the application faces a fundamental disc
 
 Bootstrapping solves this through a hierarchical priority loading system:
 
-1. **Phase 1:** The application fetches BitmapSunset scripts (sunsets 0–599), ordered by sunset number. These scripts contain `bitmaps` commands that identify which bitmaps should be loaded.
+1. **Phase 1:** The application fetches OG BitmapSunset scripts (sunsets 0–99), ordered by sunset number. These scripts contain `bitmaps` commands that identify which bitmaps should be loaded.
 
 2. **Phase 2:** Border-land bitmaps (0–999) are fetched, as these occupy the visible edges of the initial viewport.
 
@@ -197,6 +197,8 @@ Critically, bootstrapped bitmaps can themselves reference additional bitmaps, cr
 
 Even without a sunset or a low-number bitmap, any user of the application can highlight a bitmap with the mouse cursor and force it to be loaded on demand, ensuring that no build is permanently hidden.
 
+> **Note:** Bootstrap support for sunsets 100–599 is planned for v0.0.12. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
+
 ### Local Caching and Continuous Synchronization
 
 As the world grows, re-downloading all bitmap data on every session becomes impractical. A planned local cache will store fetched scripts and world data on the user's device, allowing the application to launch almost instantly by rendering from cached state rather than streaming everything from scratch.
@@ -205,7 +207,7 @@ However, the world is not static. Builders continuously inscribe new scripts and
 
 ### Economic Implications
 
-Bootstrapping creates a natural value hierarchy. BitmapSunset holders and low-number bitmap owners have guaranteed early visibility. High-number bitmap owners can gain visibility through relationships with sunset holders, creating organic economic incentives around curation, promotion, and collaborative building. Sunset holders can monetize bootstrap slots by lending priority positions in their loading queue to other bitmap owners.
+Bootstrapping creates a natural value hierarchy. OG BitmapSunset holders and low-number bitmap owners have guaranteed early visibility. High-number bitmap owners can gain visibility through relationships with sunset holders, creating organic economic incentives around curation, promotion, and collaborative building. Sunset holders can monetize bootstrap slots by lending priority positions in their loading queue to other bitmap owners.
 
 </details>
 
@@ -311,8 +313,7 @@ This design preserves Bitcoin's primacy: the central cell loads first, contains 
 - **Bitmap directory and teleportation:** a pre-fetched gallery of all bitmaps that contain builds, allowing users to click and teleport directly to active builds.
 - **BMP import:** the ability to extract the original script text from a previously inscribed BMP file, enabling script recovery and inspection.
 - **Asset library window:** an in-editor browser for selecting inscription resources.
-- **Script error reporting** with line and column numbers for easier debugging.
-- **Console improvements:** interactive input, clickable error navigation, verbose logging, and configurable log limits.
+- **Enhanced script error reporting** with interactive input, clickable error navigation, verbose logging, and configurable log limits.
 - **Camera sensitivity controls:** rotation speed setting and smoother auto-rotation transitions.
 - **Mobile support:** touch controls, free camera for mobile, and performance configuration presets for mobile devices.
 
