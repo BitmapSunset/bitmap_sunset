@@ -62,7 +62,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **floating islands** — giant cubic 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
+- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
@@ -489,9 +489,9 @@ bind 0 billboard
 
 This changes sunset billboard #5 to display your custom image.
 
-> **Note:** Dedicated 2D billboard placement for sunsets 100–599 is planned for a future release. These billboards will be positioned on mirror cells of the map bordering neighboring blockchain landscapes (such as .dogemap and other .\*map protocols), complementary to but distinct from OG floating islands. Currently, only OG sunsets (0–99) have positioned billboards in the central map cell.
+> **Note:** Dedicated 2D billboard placement for sunsets 100–599 is planned for a future release. These billboards will be positioned on mirror cells of the map bordering neighboring blockchain landscapes (such as .dogemap and other .\*map protocols), complementary to but distinct from OG cubitmaps. Currently, only OG sunsets (0–99) have positioned billboards in the central map cell.
 
-> **Future evolution:** OG billboards (0–99) are planned to evolve into **floating islands** — giant cubic bitmaps where holders can display images on all sides and build on top. These floating islands will feature parceling, enabling subdivided building within a sunset holder's domain, and could each host their own lobby area.
+> **Future evolution:** OG billboards (0–99) are planned to evolve into **cubitmaps** — giant floating 3D structures where holders can display images on all sides and build on top. These cubitmaps will feature parceling, enabling subdivided building within a sunset holder's domain, and could each host their own lobby area.
 
 ### Mosaic
 
