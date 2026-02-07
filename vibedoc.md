@@ -38,7 +38,7 @@
 
 15. [Bootstrapping](#15-bootstrapping)
 
-16. [Inscribing a Bootstrapping Script to a BitmapSunset](#16-inscribing-a-bootstrapping-script-to-a-bitmapsunset)
+16. [Inscribing a Bootstrapping Script to an OG BitmapSunset](#16-inscribing-a-bootstrapping-script-to-an-og-bitmapsunset)
 
 17. [Updating Scripts](#17-updating-scripts)
 
