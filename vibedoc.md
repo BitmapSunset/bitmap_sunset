@@ -26,7 +26,7 @@
 
 9. [Billboard & Mosaic](#9-billboard--mosaic)
 
-10. [Bitmap Coloring](#10-bitmap-coloring)
+10. [Bitmap Painting](#10-bitmap-painting)
 
 11. [Block War](#11-block-war)
 
@@ -251,8 +251,8 @@ BSS 0 0 11
 editBitmap <bitmap_number>
 editSunset <sunset_number>
 <resource definitions>
-<bind commands>
-<color/bitmap/pixel commands>
+<control + object commands>
+<bitmaps/pixels commands>
 ```
 
 ### Header (required)
@@ -459,7 +459,7 @@ tx 700000 tz 0 solid cone tz 1000 wire cone
 tx 800000 tz 0 solid sphere tz 1000 wire sphere
 ```
 
-> **Known issue (v0.0.11):** The `color` command may also affect the bitmap color instead of only the shape. This is a bug being tracked for the next release.
+> **Known issue (v0.0.11):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that should only affect primitives and models — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being tracked for the next release.
 
 ---
 
@@ -507,12 +507,11 @@ This stamps the image onto the ground at coordinates (500, 300). Mosaics are vis
 
 ---
 
-## 10. Bitmap Coloring
+## 10. Bitmap Painting
 
-You can color specific bitmaps on the map and set individual pixel colors:
+The `bitmaps` and `pixels` commands are special painting and fetching commands that operate independently from the `color` control command. They let you color specific bitmaps on the map:
 
 ```
-color <hex_color>
 bitmaps <count> <bitmap_number_1> <bitmap_number_2> ...
 pixels <count> <hex_color_1> <hex_color_2> ...
 ```
@@ -520,7 +519,6 @@ pixels <count> <hex_color_1> <hex_color_2> ...
 **Example** — color bitmap 12345 orange:
 
 ```
-color 409ad9
 bitmaps 1 12345
 pixels 1 ff7f00
 ```
@@ -754,7 +752,6 @@ resource 1 <inscription_id_of_floor_image>
 scale 10000 10000 10000 translate 5000 10 5000 rotate 90 0 0 bind 1 solid quad
 resource 2 <inscription_id_of_avatar_model>
 scale 8000 8000 8000 translate 5000 6000 5000 rotate 0 0 0 bind 2 solid model
-color 409ad9
 bitmaps 1 12345
 pixels 1 ff7f00
 ```

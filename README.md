@@ -115,7 +115,7 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
 | **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. |
 | **Object Commands** | `model`, `quad`, `billboard`, `mosaic`, `script`, `sphere`, `cube`, `cone`, `circle`, `triangle`, `squpyr`, `tripyr` — Terminates a statement and triggers rendering. |
-| **Coloring** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Colors bitmap tiles on the map. |
+| **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. |
 
 ### Rendering Modes
 
