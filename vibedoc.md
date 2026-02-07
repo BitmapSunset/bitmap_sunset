@@ -62,7 +62,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
+- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original collection pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
@@ -153,7 +153,7 @@ The toolbar runs along the top edge of the app window. From left to right:
 | **fetch** | Toggles blockchain data fetching on/off. When active (green), the app downloads bitmap scripts from the blockchain. When off (red), no new data is loaded. You must click this to start seeing onchain builds. |
 | **flat** | Toggles between 3D terrain and a flat top-down map view. Flat mode is useful for getting an overview of colored bitmaps and mosaics. |
 | **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
-| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (only the bitmap owner's scripts are rendered on their tile). See Section 11. Note: "multiverse" is a working name for this dropdown. A future release will rename it and introduce a separate cross-chain dropdown for teleporting between blockchain landscapes. |
+| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (only the bitmap owner's scripts are rendered on their tile). See Section 11. Note: "multiverse" is a working name for this dropdown. A future release will rename it and introduce a separate cross-chain control for teleporting between blockchain landscapes. |
 | **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
 | **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
 | **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
@@ -272,7 +272,7 @@ These commands are convenience tools for the local editor. They are ignored by t
 | Command | Purpose |
 |---|---|
 | `editBitmap <number>` | Teleports the editor camera to the specified bitmap. Useful for previewing your build in context. |
-| `editSunset <number>` | Selects which sunset billboard you're editing (0–599). |
+| `editSunset <number>` | Selects which sunset billboard you're editing (0–99 have active billboards; 100–599 billboard placement is planned for a future release). |
 
 **Example:**
 
@@ -786,7 +786,7 @@ The app fetches data in this order:
 
 2. **Bitmap border lands** (bitmaps 0–999).
 
-3. **Sequentially** from bitmap 1000 up to 900,000.
+3. **Sequentially** from bitmap 1000 upward through the entire chain.
 
 If your bitmap number is high (e.g. 500000), it won't load until the app works through hundreds of thousands of others — unless it's been bootstrapped by an OG sunset holder.
 
@@ -824,6 +824,10 @@ If you don't own an OG BitmapSunset or a low-number bitmap, users can still view
 3. Hovering the mouse cursor over your bitmap.
 
 This manually triggers a download and display of your build. It's just not automatic at launch.
+
+### Caching (planned)
+
+Currently, the app re-fetches bitmap data from the blockchain each session. A planned local cache will store fetched scripts and world data on your device, allowing the app to launch almost instantly from cached state. The bootstrapping sequence will then serve double duty: beyond initial discovery, it will drive continuous synchronization — comparing timestamps against cached data, re-fetching only updated scripts, and keeping the local world converging on the live state of the blockchain.
 
 ---
 

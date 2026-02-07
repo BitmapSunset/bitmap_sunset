@@ -165,7 +165,7 @@ BitmapSunset holders receive concrete in-application utility:
 
 | Range | Trait | Description |
 |---|---|---|
-| **0–99** | OG | Original founder sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into cubitmaps (giant floating 3D structures) with parceling and building capabilities. |
+| **0–99** | OG | Original sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into cubitmaps (giant floating 3D structures) with parceling and building capabilities. |
 | **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.12. Billboard placement planned for a future release. |
 
 The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
@@ -220,7 +220,7 @@ Bootstrapping creates a natural value hierarchy. OG BitmapSunset holders and low
 
 ### Concept
 
-Block War is the default mode in BitmapSunset's toolbar **multiverse** dropdown, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only the scripts inscribed by its owner.
+Block War is the default mode in BitmapSunset's toolbar **multiverse** dropdown, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
 
 > **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes. It is distinct from the broader cross-chain multiverse architecture described in Section 10. A future release will rename this dropdown and introduce a separate control for teleporting between blockchain landscapes.
 
