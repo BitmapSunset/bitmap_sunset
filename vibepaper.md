@@ -166,7 +166,7 @@ BitmapSunset holders receive concrete in-application utility:
 | Range | Trait | Description |
 |---|---|---|
 | **0–99** | OG | Original founder sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into floating islands with parceling and building capabilities. |
-| **100–599** | Mirror | Extended collection. Bootstrapping authority targeted for v0.0.12. Billboard placement planned for a future release. |
+| **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.12. Billboard placement planned for a future release. |
 
 The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
 
@@ -296,7 +296,7 @@ Users spawn in the center of the Bitcoin root cell — the primary, non-mirrored
 
 ### Design Principles
 
-This design preserves Bitcoin's primacy: it occupies the center, loads first, and is the default experience. Other blockchains are accessible but peripheral, reflecting Bitcoin's position as the foundational layer. Mirror sunsets (100–599) are planned for billboard placement on the mirror cells that border neighboring blockchain patches, giving them visibility at the crossroads between chains while keeping the OG billboards in the most prominent central position.
+This design preserves Bitcoin's primacy: it occupies the center, loads first, and is the default experience. Other blockchains are accessible but peripheral, reflecting Bitcoin's position as the foundational layer. Sunsets 100–599 are planned for billboard placement on the mirror cells that border neighboring blockchain patches, giving them visibility at the crossroads between chains while keeping the OG billboards in the most prominent central position.
 
 </details>
 
@@ -310,7 +310,7 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 ### v0.0.12 — Next Release
 
 - **Rotating camera** mode for cinematic orbital viewing around bitmaps and builds.
-- **Bootstrap support for sunsets 100–599**, extending priority loading authority to the full Mirror collection.
+- **Bootstrap support for sunsets 100–599**, extending priority loading authority to the full collection.
 - **Rendering improvements** across all mirror maps and high-number bitmaps.
 
 ### BSS Language Evolution
@@ -336,7 +336,7 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 ### World and Gameplay
 
 - **Floating islands:** OG billboards (0–99) will be transformed into giant cubic bitmaps — 3D structures where holders can display images on all sides and build on top. These floating islands will feature parceling, enabling subdivided building within a sunset holder's domain. Each floating island could host its own lobby area.
-- **Billboard placement for Mirror sunsets** (100–599): dedicated 2D billboard positions on mirror cells bordering neighboring blockchain patches, complementary to but distinct from OG floating islands.
+- **Billboard placement for sunsets 100–599:** dedicated 2D billboard positions on mirror cells bordering neighboring blockchain patches, complementary to but distinct from OG floating islands.
 - **Parceling system:** individual bitmaps will be subdividable, allowing builders to work at finer spatial resolution within a single tile. Support for Bitmon parcels planned first, followed by inscribing additional parcel data onchain.
 - **Playable characters and avatars:** BRC-420 avatar integration at human scale, with skeletal animation (skinning) support for animated characters.
 - **Third-person camera:** a camera mode that follows avatars, enabling cinematic exploration of bitmap creations.
