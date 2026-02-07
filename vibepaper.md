@@ -1,4 +1,4 @@
-<h1 align="center">🟧 Bitmap Sunset 🌇 <br> Exploring the Bitcoin Multiverse<br></h1>
+<h1 align="center">🟧 BitmapSunset 🌇 <br> Exploring the Bitcoin Multiverse<br></h1>
 
 <p align="center">
   <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>

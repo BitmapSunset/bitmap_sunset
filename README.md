@@ -1,4 +1,4 @@
-<h1 align="center">🟧 Bitmap Sunset 🌇 <br> Exploring the Bitcoin Multiverse<br></h1>
+<h1 align="center">🟧 BitmapSunset 🌇 <br> Exploring the Bitcoin Multiverse<br></h1>
 
 <p align="center">
   <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
@@ -114,8 +114,8 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 |---|---|
 | **Version Header** | `BSS 0 0 11` — Required first line. Identifies the script version for backward compatibility. |
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
-| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. |
-| **Object Commands** | `model`, `quad`, `billboard`, `mosaic`, `script`, `sphere`, `cube`, `cone`, `circle`, `triangle`, `squpyr`, `tripyr` — Terminates a statement and triggers rendering. |
+| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. |
+| **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
 | **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. |
 
 ### Rendering Modes
@@ -157,7 +157,7 @@ BitmapSunset holders receive concrete in-application utility:
 
 - **Billboard control:** Each OG BitmapSunset (0–99) corresponds to a billboard structure positioned over a 100x100 bitmap patch in the 3D world. Holders can replace the default sunset image with any inscription of their choosing and rule over their patch, creating a persistent, high-visibility display space.
 
-- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is planned for v0.0.12.
+- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
 - **Mosaic placement:** Sunset scripts can stamp images flat on the ground plane at specific coordinates, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude.
 
@@ -166,7 +166,7 @@ BitmapSunset holders receive concrete in-application utility:
 | Range | Trait | Description |
 |---|---|---|
 | **0–99** | OG | Original founder sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into floating islands with parceling and building capabilities. |
-| **100–599** | Mirror | Extended collection. Billboard placement and bootstrapping authority planned for v0.0.12. |
+| **100–599** | Mirror | Extended collection. Bootstrapping authority targeted for v0.0.12. Billboard placement planned for a future release. |
 
 The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
 
@@ -197,7 +197,7 @@ Critically, bootstrapped bitmaps can themselves reference additional bitmaps, cr
 
 Even without a sunset or a low-number bitmap, any user of the application can highlight a bitmap with the mouse cursor and force it to be loaded on demand, ensuring that no build is permanently hidden.
 
-> **Note:** Bootstrap support for sunsets 100–599 is planned for v0.0.12. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
+> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.12. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
 
 ### Local Caching and Continuous Synchronization
 
@@ -379,7 +379,7 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 
 BitmapSunset represents a fundamentally different approach to digital world-building. It does not ask users to trust a company, depend on a server, or hope that a platform will continue to exist. Every component of the system, from the application itself to the land it renders to the structures built upon it, exists as a permanent Bitcoin inscription.
 
-The project demonstrates that a functional, interactive, visually rich 3D metaverse can operate entirely onchain, within the constraints of the ordinals sandbox, and without any centralized infrastructure. The BSS scripting language provides a purpose-built tool for spatial expression on Bitcoin. The bootstrapping system creates a decentralized curation mechanism. Block War introduces competitive social dynamics that emerge naturally from the permissionless nature of the protocol.
+The project demonstrates that a functional, interactive, visually rich 3D metaverse can operate entirely onchain, within the constraints of the ordinals sandbox, and without any proprietary infrastructure beyond the shared ordinals content servers that serve the entire ecosystem. The BSS scripting language provides a purpose-built tool for spatial expression on Bitcoin. The bootstrapping system creates a decentralized curation mechanism. Block War introduces competitive social dynamics that emerge naturally from the permissionless nature of the protocol.
 
 Bitcoin is the most secure, decentralized, and enduring digital infrastructure ever created. BitmapSunset builds a world on top of it. Every block that Bitcoin mines adds new land to the map. Every inscription adds new content to the world. The result is a metaverse that grows with Bitcoin itself, as permanent and uncensorable as the blockchain that sustains it.
 
