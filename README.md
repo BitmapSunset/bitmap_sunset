@@ -21,7 +21,7 @@
   
 BitmapSunset is a fully onchain 3D metaverse application built on Bitcoin Ordinals. It transforms the entire Bitcoin blockchain into a navigable three-dimensional landscape, where each of the over 900,000 mined Bitcoin blocks is represented as a discrete tile in a persistent, shared world. Bitmap owners can inscribe scripts onto their blocks to place 3D models, images, geometric primitives, and other visual content into this world, creating permanent, censorship-resistant builds that are visible to all users.
 
-The application runs entirely in the browser, reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints, and requires no wallet connection, no external servers, and no user accounts. Everything that exists in the BitmapSunset world is a Bitcoin inscription. The application itself is a Bitcoin inscription.
+The application runs entirely in the browser, reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints, and requires no wallet connection, no proprietary server infrastructure, and no user accounts. Everything that exists in the BitmapSunset world is a Bitcoin inscription. The application itself is a Bitcoin inscription. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data — the same decentralized infrastructure that serves all ordinals applications.
 
 This white paper describes the architecture, scripting system, tokenomics, bootstrapping mechanism, security model, and future direction of BitmapSunset.
 
@@ -69,7 +69,7 @@ The Ordinals protocol supports parent-child relationships between inscriptions. 
 
 ### Recursive Endpoints
 
-Ordinals recursive endpoints allow inscriptions to reference and load the content of other inscriptions by their ID. BitmapSunset uses recursive endpoints to fetch script data, 3D models, images, and other assets at runtime. This means the entire application, including all user-generated content, operates within the ordinals sandbox without requiring any external API calls or server infrastructure.
+Ordinals recursive endpoints allow inscriptions to reference and load the content of other inscriptions by their ID. BitmapSunset uses recursive endpoints to fetch script data, 3D models, images, and other assets at runtime. This means the entire application, including all user-generated content, operates within the ordinals sandbox without requiring any proprietary API calls or dedicated server infrastructure.
 
 </details>
 
