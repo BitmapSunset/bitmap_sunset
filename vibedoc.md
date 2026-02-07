@@ -62,7 +62,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. Holders can control billboard displays and prioritize which bitmaps load first via bootstrapping.
+- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. **Sunsets 100–599** are an extended set that will gain billboard placement and bootstrap support in future releases.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
@@ -76,7 +76,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone.
 
-**To get bootstrapped (priority loading):** You need a BitmapSunset (0–599) or a low-number bitmap (0–999). This lets your builds load first when anyone opens the app.
+**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99) or a low-number bitmap (0–999). This lets your builds load first when anyone opens the app. Bootstrap support for sunsets 100–599 is planned for v0.0.12.
 
 **Recommended browser:** Chrome or Brave with **hardware acceleration enabled** in your browser settings. Firefox works but performance may be lower.
 
@@ -459,7 +459,7 @@ tx 800000 tz 0 solid sphere tz 1000 wire sphere
 
 ### Billboard
 
-If you own a BitmapSunset (0–599), you can replace the default sunset image on your billboard with a custom inscription:
+If you own an OG BitmapSunset (0–99), you can replace the default sunset image on your billboard with a custom inscription:
 
 ```
 editSunset <your_sunset_number>
@@ -476,6 +476,8 @@ bind 0 billboard
 ```
 
 This changes sunset billboard #5 to display your custom image.
+
+> **Note:** Billboard placement for sunsets 100–599 is planned for a future release. These billboards will be positioned on other mirror cells of the map, overlooking other blockchain landscapes (such as .dogemap and other .\*map protocols). Currently, only OG sunsets (0–99) have positioned billboards in the central map cell.
 
 ### Mosaic
 
@@ -761,23 +763,25 @@ BitmapSunset displays over 900,000 bitmaps. When the app launches, it needs to d
 
 ### The Solution: Bootstrapping
 
-BitmapSunset holders (0–599) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user's browser.
+OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user's browser.
+
+> **Note:** Bootstrap support for sunsets 100–599 is planned for v0.0.12. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
 
 ### Loading Order
 
 The app fetches data in this order:
 
-1. **BitmapSunset scripts** (sunsets 0–599), ordered by sunset number.
+1. **OG BitmapSunset scripts** (sunsets 0–99), ordered by sunset number.
 
 2. **Bitmap border lands** (bitmaps 0–999).
 
 3. **Sequentially** from bitmap 1000 up to 900,000.
 
-If your bitmap number is high (e.g. 500000), it won't load until the app works through hundreds of thousands of others — unless it's been bootstrapped by a sunset holder.
+If your bitmap number is high (e.g. 500000), it won't load until the app works through hundreds of thousands of others — unless it's been bootstrapped by an OG sunset holder.
 
 ### How Bootstrapping Works
 
-When you inscribe a script on your BitmapSunset that references a bitmap number in the `bitmaps` command, that bitmap gets added to the **priority loading queue**.
+When you inscribe a script on your OG BitmapSunset that references a bitmap number in the `bitmaps` command, that bitmap gets added to the **priority loading queue**.
 
 **Example:** Your sunset script references bitmap 50000:
 
@@ -800,7 +804,7 @@ This way, a single sunset can bootstrap an entire network of builds.
 
 ### Without a Sunset
 
-If you don't own a BitmapSunset or a low-number bitmap, users can still view your build by:
+If you don't own an OG BitmapSunset or a low-number bitmap, users can still view your build by:
 
 1. Navigating to your bitmap location in the 3D world.
 
@@ -812,7 +816,9 @@ This manually triggers a download and display of your build. It's just not autom
 
 ---
 
-## 16. Inscribing a Bootstrapping Script to a BitmapSunset
+## 16. Inscribing a Bootstrapping Script to an OG BitmapSunset
+
+> **Note:** This section applies to OG BitmapSunset holders (0–99). Bootstrap support for sunsets 100–599 is coming in v0.0.12.
 
 ### Step 1: Write the bootstrapping script
 
@@ -844,11 +850,11 @@ Click the 💾 icon to save the `.bmp` file. Check the console for success messa
 
 ### Step 3: Inscribe as a child of your sunset
 
-1. Go to your preferred inscription service).
+1. Go to your preferred inscription service.
 
 2. Upload the `.bmp` file.
 
-3. Set the **parent** to the **inscription ID of your BitmapSunset** (the sunset's ordinal inscription ID, not a bitmap).
+3. Set the **parent** to the **inscription ID of your OG BitmapSunset** (the sunset's ordinal inscription ID, not a bitmap).
 
 4. Inscribe.
 
@@ -1089,6 +1095,6 @@ bind <slot> script                   ← execute referenced script (supports tra
 | What | Parent | File |
 |---|---|---|
 | Build on your bitmap | Inscription ID of your bitmap | Exported `.bmp` |
-| Bootstrap from your sunset | Inscription ID of your sunset | Exported `.bmp` |
+| Bootstrap from your OG sunset | Inscription ID of your OG sunset (0–99) | Exported `.bmp` |
 | Update an existing build | Same parent as before (bitmap or sunset) | New `.bmp` (newest child wins) |
 | Block War (build on any bitmap) | Inscription ID of target bitmap | Exported `.bmp` |
