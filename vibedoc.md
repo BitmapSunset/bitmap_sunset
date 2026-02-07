@@ -58,7 +58,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **Key concepts:**
 
-- A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
+- A **bitmap** is a Bitcoin block claimed as an ordinal, based on the bitmap protocol created by [@blockamoto](https://x.com/blockamoto). Each one corresponds to a tile in the 3D world.
 
 - A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. There are two tiers:
 

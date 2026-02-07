@@ -39,7 +39,7 @@ This vibe paper describes the architecture, scripting system, tokenomics, bootst
 
 The concept of a digital metaverse has been explored extensively, yet existing implementations share common limitations: centralized infrastructure, mutable state controlled by platform operators, dependency on external servers, and the impermanence of digital assets. When a centralized metaverse platform shuts down, the worlds built within it disappear. Users own nothing; they rent access to someone else's servers.
 
-The Bitcoin Ordinals protocol introduced a paradigm shift by enabling arbitrary data to be inscribed directly onto the Bitcoin blockchain. The Bitmap protocol extended this by assigning each Bitcoin block a unique digital identity, claimable as an ordinal inscription. Together, these innovations created the raw material for a new kind of metaverse: one where both the land and the structures built upon it exist as permanent, immutable Bitcoin inscriptions.
+The Bitcoin Ordinals protocol introduced a paradigm shift by enabling arbitrary data to be inscribed directly onto the Bitcoin blockchain. The Bitmap protocol, created by [@blockamoto](https://x.com/blockamoto), extended this by assigning each Bitcoin block a unique digital identity, claimable as an ordinal inscription. Together, these innovations created the raw material for a new kind of metaverse: one where both the land and the structures built upon it exist as permanent, immutable Bitcoin inscriptions.
 
 ### The Vision
 
@@ -62,7 +62,7 @@ Bitcoin Ordinals is a protocol that assigns a unique serial number to each indiv
 
 ### Bitmap
 
-Bitmap is a metaprotocol built on Ordinals that maps each Bitcoin block to a unique digital asset. A bitmap is claimed by inscribing a specific pattern that references a block number. Once claimed, a bitmap functions as a deed to a specific tile in the BitmapSunset world. There are as many bitmaps as there are mined Bitcoin blocks, currently exceeding 900,000.
+Bitmap is a metaprotocol built on Ordinals, created by [@blockamoto](https://x.com/blockamoto), that maps each Bitcoin block to a unique digital asset. A bitmap is claimed by inscribing a specific pattern that references a block number. Once claimed, a bitmap functions as a deed to a specific tile in the BitmapSunset world. There are as many bitmaps as there are mined Bitcoin blocks, currently exceeding 900,000.
 
 ### Parent-Child Inscriptions
 
@@ -400,6 +400,17 @@ BitmapSunset represents a fundamentally different approach to digital world-buil
 The project demonstrates that a functional, interactive, visually rich 3D metaverse can operate entirely onchain, within the constraints of the ordinals sandbox, and without any proprietary infrastructure beyond the shared ordinals content servers that serve the entire ecosystem. The BSS scripting language provides a purpose-built tool for spatial expression on Bitcoin. The bootstrapping system creates a decentralized curation mechanism. Block War introduces competitive social dynamics that emerge naturally from the permissionless nature of the protocol.
 
 Bitcoin is the most secure, decentralized, and enduring digital infrastructure ever created. BitmapSunset builds a world on top of it. Every block that Bitcoin mines adds new land to the map. Every inscription adds new content to the world. The result is a metaverse that grows with Bitcoin itself, as permanent and uncensorable as the blockchain that sustains it.
+
+</details>
+
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------->
+##
+<details>
+<summary><strong>Acknowledgments</strong></summary>
+
+BitmapSunset would not exist without the bitmap protocol. Many thanks to [@blockamoto](https://x.com/blockamoto) for inventing it — without his work, this project would never have been conceived.
 
 </details>
 
