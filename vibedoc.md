@@ -62,7 +62,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **floating islands** — giant cubic 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain billboard placement and bootstrap support in future releases. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
+- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **floating islands** — giant cubic 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain bootstrap support (targeted for v0.0.12) and billboard placement in a future release. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
@@ -76,7 +76,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone.
 
-**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99) or a low-number bitmap (0–999). This lets your builds load first when anyone opens the app. Bootstrap support for sunsets 100–599 is planned for v0.0.12.
+**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99) or a low-number bitmap (0–999). This lets your builds load first when anyone opens the app. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
 **Recommended browser:** Chrome or Brave with **hardware acceleration enabled** in your browser settings. Firefox works but performance may be lower.
 
@@ -776,7 +776,7 @@ BitmapSunset displays over 900,000 bitmaps. When the app launches, it needs to d
 
 OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user's browser.
 
-> **Note:** Bootstrap support for sunsets 100–599 is planned for v0.0.12. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
+> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.12. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
 
 ### Loading Order
 
@@ -829,7 +829,7 @@ This manually triggers a download and display of your build. It's just not autom
 
 ## 16. Inscribing a Bootstrapping Script to an OG BitmapSunset
 
-> **Note:** This section applies to OG BitmapSunset holders (0–99). Bootstrap support for sunsets 100–599 is coming in v0.0.12.
+> **Note:** This section applies to OG BitmapSunset holders (0–99). Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
 ### Step 1: Write the bootstrapping script
 
