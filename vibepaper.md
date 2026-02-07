@@ -145,7 +145,7 @@ The BSS compiler performs a multi-stage pipeline: source text is parsed and vali
 
 ### Overview
 
-The BitmapSunset collection consists of 600 unique ordinal inscriptions, numbered 0 through 599. Each BitmapSunset is a piece of generative art: a screenshot captured during the development process of the application, documenting the evolving visual state of the 3D world engine. These images were collected organically over the course of development, making each one a historical artifact of the project's progression.
+The BitmapSunset collection consists of 600 unique ordinal inscriptions, numbered 0 through 599. Each BitmapSunset is a development screenshot captured during the building process of the application, documenting the evolving visual state of the 3D world engine. These images were collected organically over the course of development, making each one a historical artifact of the project's progression.
 
 <div align="center">
 <a href="nfts/bitmap_sunset.png"><img src="nfts/bitmap_sunset.png" width="92%"/></a>
