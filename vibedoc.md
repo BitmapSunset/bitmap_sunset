@@ -52,7 +52,7 @@
 
 ## 1. What is BitmapSunset?
 
-BitmapSunset is a 3D metaverse application built on Bitcoin Ordinals. It visualizes the entire Bitcoin blockchain as a landscape of bitmap blocks — over 900,000 of them — laid out in a navigable 3D world.
+BitmapSunset is a 3D metaverse application built on Bitcoin Ordinals. The application itself is a Bitcoin inscription — the rendering engine, script compiler, virtual machine, and user interface are all inscribed on the Bitcoin blockchain. It visualizes the entire Bitcoin blockchain as a landscape of bitmap blocks — over 900,000 of them — laid out in a navigable 3D world.
 
 As a builder, you can inscribe scripts onto your bitmaps that place 3D models, images, shapes, and more into the world. Anyone running the app can fly around and see what you've built. Everything lives permanently onchain as Bitcoin inscriptions.
 
@@ -202,7 +202,7 @@ If there are errors, the console will show the line and column number where pars
 
 ### 3D Viewport
 
-The main area of the screen shows the bitmap landscape in 3D. Key things you'll see:
+The main area of the screen shows the bitmap landscape in 3D. The world layout follows the ordinalswallet bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. Key things you'll see:
 
 - **Bitmap blocks** — the grid of tiles representing Bitcoin blocks. Each block can have its own color and 3D content.
 
@@ -984,7 +984,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - To connect your wallet, sign messages, sign transactions, transfer funds or assets.
 
-- To navigate to external links or websites.
+- To navigate to external links or websites. The application does not load resources from outside the ordinals sandbox.
 
 - To download or execute any additional software or browser extensions.
 
