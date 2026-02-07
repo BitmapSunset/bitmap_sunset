@@ -114,7 +114,7 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 |---|---|
 | **Version Header** | `BSS 0 0 11` — Required first line. Identifies the script version for backward compatibility. |
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
-| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. |
+| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. |
 | **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
 | **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. |
 

@@ -463,7 +463,7 @@ tx 700000 tz 0 solid cone tz 1000 wire cone
 tx 800000 tz 0 solid sphere tz 1000 wire sphere
 ```
 
-> **Known issue (v0.0.11):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that should only affect primitives and models — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being tracked for the next release.
+> **Known issue (v0.0.11):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that currently only affects primitive shapes — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being tracked for the next release. Support for `color` on models is planned for a future version.
 
 ---
 
