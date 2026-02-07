@@ -121,7 +121,7 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 | **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. |
 | **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
 | **Cross-Referencing** | `bind <slot> script` — Loads and executes another script inscription with full transform support. `bitmap <number>` — Creates a live link to another bitmap’s most recent build (no transforms; auto-updates when the source bitmap is updated). |
-| **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. |
+| **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. Mosaic coordinates are map-space positions corresponding to bitmap numbers. |
 
 ### Rendering Modes
 
@@ -168,7 +168,7 @@ BitmapSunset holders receive concrete in-application utility:
 
 - **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
-- **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at specific coordinates, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
+- **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at map-space positions corresponding to bitmap numbers, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
 ### Collection Tiers
 
@@ -273,6 +273,10 @@ BitmapSunset was designed with the goal of reducing trust requirements wherever 
 - **No software installation:** No browser extensions, downloads, or additional software are required.
 
 - **No user accounts:** There is no identity system, login mechanism, or personal data collection.
+
+- **No identity verification:** The application never asks to verify your identity, account, or any personal information.
+
+- **No permissions:** The application never asks to enable any browser or system permissions.
 
 ### Verification
 

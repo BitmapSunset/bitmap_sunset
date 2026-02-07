@@ -80,7 +80,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone.
 
-**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99) or a low-number bitmap (0–999). This lets your builds load first when anyone opens the app. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
+**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99). This lets you control which bitmaps load first when anyone opens the app. Low-number bitmaps (0–999) also benefit from early loading priority as part of Phase 2, but do not have bootstrapping authority. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
 **Recommended browser:** Chrome or Brave with **hardware acceleration enabled** in your browser settings. Firefox works but performance may be lower.
 
@@ -279,7 +279,7 @@ The very first line must always be the version header. It must match the app ver
 BSS 0 0 11
 ```
 
-This reads as: *BitmapSunsetScript version 0.0.11*. The app uses this header for backward compatibility when the script language evolves.
+This reads as: *BitmapSunset Script version 0.0.11*. The app uses this header for backward compatibility when the script language evolves.
 
 ### Editor Commands (optional, local only)
 
@@ -479,7 +479,7 @@ tx 700000 tz 0 solid cone tz 1000 wire cone
 tx 800000 tz 0 solid sphere tz 1000 wire sphere
 ```
 
-> **Known issue (v0.0.11):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that currently only affects primitive shapes — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being tracked for the next release. Support for `color` on models is planned for a future version.
+> **Known issue (v0.0.11):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that currently only affects primitive shapes — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being investigated. Support for `color` on models is planned for a future version.
 
 ---
 
@@ -511,7 +511,7 @@ This changes sunset billboard #5 to display your custom image.
 
 ### Mosaic
 
-A mosaic draws an image flat on the ground at specific map coordinates:
+A mosaic draws an image flat on the ground at a specific map-space position, where coordinates correspond to bitmap numbers:
 
 ```
 resource 0 <inscription_id_of_image>
@@ -525,7 +525,7 @@ resource 0 <inscription_id_of_image>
 bind 0 translate 500 0 300 mosaic
 ```
 
-This stamps the image onto the ground at coordinates (500, 300). Mosaics are visible when looking down from altitude and serve as ground-level art or territorial markers. They're especially impactful in **flat** view mode (click the **flat** button in the toolbar to see them as a 2D map).
+This stamps the image onto the ground at bitmap position (500, 300) on the map. Mosaics are visible when looking down from altitude and serve as ground-level art or territorial markers. They're especially impactful in **flat** view mode (click the **flat** button in the toolbar to see them as a 2D map).
 
 > **Note:** The `mosaic` command is currently available to all bitmap owners and BitmapSunset holders. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
@@ -840,7 +840,7 @@ pixels 1 ff7f00
 
 - `bind 0 billboard` — displays the resource image on your sunset billboard in the 3D world.
 
-- `bind 0 translate 700 0 600 mosaic` — also draws the image flat on the ground at coordinates (700, 600).
+- `bind 0 translate 700 0 600 mosaic` — also draws the image flat on the ground at bitmap position (700, 600) on the map.
 
 - `bitmaps 1 <number>` — **this is the bootstrapping line.** It tells the app to load the specified bitmap when this sunset is fetched.
 
@@ -994,7 +994,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - Use a secure browser profile, a virtual machine, or private mode without wallet extensions.
 
-- There is no wallet connection from within the app. Inscription and transactions happen through external services like unisat.
+- There is no wallet connection from within the app. Inscription and transactions happen through external inscription services.
 
 - If something feels suspicious, double-check via official channels.
 
@@ -1068,7 +1068,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - Using `editBitmap` teleports you to the A mirror where models are visible.
 
-- Fix planned for the next release.
+- Fix is being investigated.
 
 ### Block War scripts not appearing
 
@@ -1092,6 +1092,8 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 ---
 
+> **For the full development roadmap, technical architecture, and tokenomics, see the [BitmapSunset Vibe Paper](vibepaper.md).**
+
 ## 20. Quick Reference Card
 
 ```
@@ -1102,7 +1104,7 @@ resource <slot> <inscription_id>     ← register inscription to a slot
 bind <slot> scale X Y Z model        ← display 3D model
 bind <slot> scale X Y Z quad         ← display flat image
 bind <slot> billboard                ← display on sunset billboard
-bind <slot> translate X Y Z mosaic   ← draw on ground
+bind <slot> translate X Y Z mosaic   ← draw on ground (X/Z = bitmap numbers on map)
 bind <slot> scale X Y Z translate X Y Z rotate Rx Ry Rz solid model
                                      ← full example (control commands can be in any order before the object command)
 bind <slot> ... wire model           ← wireframe rendering mode
