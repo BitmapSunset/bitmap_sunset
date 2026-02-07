@@ -117,8 +117,9 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 | Component | Description |
 |---|---|
 | **Version Header** | `BSS 0 0 11` — Required first line. Identifies the script version for backward compatibility. |
+| **Editor Commands** | `editBitmap <number>` — Teleports the editor camera to the specified bitmap. `editSunset <number>` — Selects which sunset billboard to edit. These are local-only convenience commands ignored by the virtual machine when scripts are fetched onchain. |
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
-| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. |
+| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. **Known issue (v0.0.11):** `color` may unintentionally affect the bitmap tile color in addition to the shape — this bug is being investigated. |
 | **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
 | **Cross-Referencing** | `bind <slot> script` — Loads and executes another script inscription with full transform support. `bitmap <number>` — Creates a live link to another bitmap’s most recent build (no transforms; auto-updates when the source bitmap is updated). |
 | **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. Mosaic coordinates are map-space positions corresponding to bitmap numbers. |
@@ -204,13 +205,15 @@ Bootstrapping solves this through a hierarchical priority loading system:
 
 Critically, bootstrapped bitmaps can themselves reference additional bitmaps, creating a chaining effect. A single sunset can bootstrap a network of builds through transitive references. This gives sunset holders significant curatorial power over the world's initial presentation without requiring any centralized coordination.
 
+The bootstrapping sequence begins when the user clicks the **fetch** button in the toolbar to activate blockchain data fetching. Until fetch is activated, no bitmap data is downloaded regardless of bootstrap priority.
+
 Even without a sunset or a low-number bitmap, any user of the application can highlight a bitmap with the mouse cursor and force it to be loaded on demand, ensuring that no build is permanently hidden.
 
 > **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.12. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
 
 ### Local Caching and Continuous Synchronization
 
-As the world grows, re-downloading all bitmap data on every session becomes impractical. A planned local cache will store fetched scripts and world data on the user's device, allowing the application to launch almost instantly by rendering from cached state rather than streaming everything from scratch.
+Currently, the application re-fetches all bitmap data from the blockchain each session. As the world grows, this becomes impractical. A planned local cache will store fetched scripts and world data on the user's device, allowing the application to launch almost instantly by rendering from cached state rather than streaming everything from scratch.
 
 However, the world is not static. Builders continuously inscribe new scripts and update existing ones. The bootstrapping mechanism serves a dual purpose here: beyond initial discovery, it provides the backbone for continuous synchronization. On each session, the application will walk the bootstrap sequence and compare timestamps against cached data, detecting which bitmaps have been updated since the last visit. Only changed scripts are re-fetched, while the rest of the world loads from local storage. This means that even once all 900,000+ bitmaps have been cached, a lightweight polling process will keep running in the background to ensure the world stays current — new builds appear, updated scripts replace old ones, and the local cache gradually converges on the live state of the blockchain.
 
@@ -379,7 +382,7 @@ The following roadmap reflects the current development trajectory. Items are gro
 - **Networking and multiplayer** so that users can see each other's avatars in real time, transforming BitmapSunset from a single-player exploration tool into a shared social space.
 - **Spatial indexing** for models, enabling efficient collision queries and proximity-based interactions at scale.
 - **Cross-chain multiverse rendering** with support for additional blockchain landscapes displayed in surrounding patches alongside Bitcoin's central patch. Each blockchain rendered as its own root cell with concentric mirror rings, navigable by flying across patch boundaries.
-- **Progressive open-sourcing** of the full codebase to enable community-driven development and scaling beyond a solo developer effort.
+- **Progressive open-sourcing** of the full codebase — the project repository is hosted at github.com/BitmapSunset/bitmap_sunset, with source availability expanding over time to enable community-driven development and scaling beyond a solo developer effort.
 - **Minecraft-style terrain and sandbox features** that were prototyped in early development and set aside for the onchain release, planned for reintroduction.
 - **Onchain builder rankings** to surface and reward the most active and creative builders in the world.
 
@@ -1007,7 +1010,7 @@ Bitcoin is the most secure, decentralized, and enduring digital infrastructure e
 <a href="nfts/pics/bitmap_000.png"><img src="nfts/thumbs/bitmap_000.png" width="15%"/></a>
 </div>
 
-<div align="center">
+---
 
 ## $\color{red}{\textsf{DISCLAIMER}}$
 
@@ -1028,5 +1031,3 @@ Bitcoin is the most secure, decentralized, and enduring digital infrastructure e
 - It is your responsibility to comply with any applicable laws and regulations in your jurisdiction.
 
 - By using BitmapSunset, you confirm that you understand and accept these terms.
-
-</div>

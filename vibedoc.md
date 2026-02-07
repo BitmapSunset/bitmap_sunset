@@ -988,6 +988,8 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - To enable any permissions.
 
+- To create a user account, log in, or provide any personal data. There is no identity system, login mechanism, or personal data collection.
+
 ### Best practices:
 
 - Always verify the BitmapSunset inscription ID using trusted sources (the official @BitmapSunset X account).
