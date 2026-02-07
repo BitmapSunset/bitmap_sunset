@@ -2,6 +2,7 @@
 
 <p align="center">
   <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
+  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.1-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
   <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset"><img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/></a>
   <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E"><img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/></a>
 </p>
