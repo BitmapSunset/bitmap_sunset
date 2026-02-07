@@ -414,7 +414,11 @@ This creates a red sphere the size of a bitmap block.
 
 ### Available primitives
 
-`sphere`, `cube`, `cone`, `circle`, `triangle`, `squpyr` (square pyramid), `tripyr` (triangular pyramid)
+**2D:** `triangle`, `quad`, `circle`
+
+**3D:** `tripyr` (triangular pyramid), `squpyr` (square pyramid), `cube`, `cone`, `sphere`
+
+`quad` is a flat rectangular plane. When used standalone with a `color` command, it renders as a colored surface. When bound to a resource slot containing an image inscription, it renders as a textured surface (see Section 6).
 
 ### Solid and wireframe
 
@@ -1076,13 +1080,14 @@ sx|sy|sz <value>                     ← per-axis scale shorthand
 tx|ty|tz <value>                     ← per-axis translate shorthand
 rx|ry|rz <value>                     ← per-axis rotate shorthand
 color <hex>                          ← set color for next primitive
-scale X Y Z sphere                   ← sphere primitive
-scale X Y Z cube                     ← cube primitive
-scale X Y Z cone                     ← cone primitive
-scale X Y Z circle                   ← flat circle primitive
-scale X Y Z triangle                 ← triangle primitive
-scale X Y Z squpyr                   ← square pyramid primitive
-scale X Y Z tripyr                   ← triangular pyramid primitive
+scale X Y Z triangle                 ← triangle primitive (2D)
+scale X Y Z quad                     ← flat quad primitive (2D, or textured with resource)
+scale X Y Z circle                   ← circle primitive (2D)
+scale X Y Z tripyr                   ← triangular pyramid primitive (3D)
+scale X Y Z squpyr                   ← square pyramid primitive (3D)
+scale X Y Z cube                     ← cube primitive (3D)
+scale X Y Z cone                     ← cone primitive (3D)
+scale X Y Z sphere                   ← sphere primitive (3D)
 bitmaps <count> <num1> <num2> ...    ← bootstrap / chain bitmaps
 pixels <count> <hex1> <hex2> ...     ← color bitmaps on the map
 bitmap <number>                      ← clone another bitmap's latest build (live link, no transforms)
