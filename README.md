@@ -24,7 +24,7 @@ BitmapSunset is a fully onchain 3D metaverse application built on Bitcoin Ordina
 
 The application runs entirely in the browser, reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints, and requires no wallet connection, no proprietary server infrastructure, and no user accounts. Everything that exists in the BitmapSunset world is a Bitcoin inscription. The application itself is a Bitcoin inscription. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data — the same decentralized infrastructure that serves all ordinals applications.
 
-This white paper describes the architecture, scripting system, tokenomics, bootstrapping mechanism, security model, and future direction of BitmapSunset.
+This vibe paper describes the architecture, scripting system, tokenomics, bootstrapping mechanism, security model, and future direction of BitmapSunset.
 
 </details>
 
