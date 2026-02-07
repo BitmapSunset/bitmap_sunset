@@ -167,7 +167,7 @@ BitmapSunset holders receive concrete in-application utility:
 | **0–99** | OG | Original founder sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into floating islands with parceling and building capabilities. |
 | **100–599** | Mirror | Extended collection. Billboard placement and bootstrapping authority planned for v0.0.12. |
 
-The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, with future sunsets potentially covering additional blockchain landscapes within the multiverse framework.
+The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
 
 </details>
 
@@ -339,7 +339,7 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 - **Third-person camera:** a camera mode that follows avatars, enabling cinematic exploration of bitmap creations.
 - **Interactive inscription display:** rendering other ordinal inscriptions as interactive screens on quads and billboards, allowing HTML inscriptions, videos, and other onchain applications to be displayed and interacted with inside the 3D world. This would enable portals between BitmapSunset and other ordinals applications.
 - **GLSL billboards:** shader-based dynamic billboards for more expressive visual content.
-- **Collection expansion** to 1,000 BitmapSunset items.
+- **Collection expansion** to 1,000 BitmapSunset items, growing at the pace of development as new screenshots are captured. Future sunsets may cover additional blockchain landscapes within the multiverse framework.
 
 ### Performance and Streaming
 

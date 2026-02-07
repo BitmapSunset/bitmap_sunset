@@ -62,7 +62,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **floating islands** — giant cubic 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain billboard placement and bootstrap support in future releases.
+- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original founder pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **floating islands** — giant cubic 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain billboard placement and bootstrap support in future releases. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
