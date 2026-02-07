@@ -80,7 +80,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **To build locally:** Nothing. You can write scripts and preview your creations without owning anything.
 
-**To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone.
+**To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone. Only the bitmap owner can inscribe children on their own bitmap — property rights are enforced at the protocol level by the Ordinals parent-child mechanism.
 
 **To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99). This lets you control which bitmaps load first when anyone opens the app. Low-number bitmaps (0–999) also benefit from early loading priority as part of Phase 2, but do not have bootstrapping authority. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
@@ -802,11 +802,11 @@ OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tell
 
 The app fetches data in this order:
 
-1. **OG BitmapSunset scripts** (sunsets 0–99), ordered by sunset number.
+1. **Phase 1:** OG BitmapSunset scripts (sunsets 0–99), ordered by sunset number.
 
-2. **Bitmap border lands** (bitmaps 0–999).
+2. **Phase 2:** Bitmap border lands (bitmaps 0–999), as these occupy the visible edges of the initial viewport.
 
-3. **Sequentially** from bitmap 1000 upward through the entire chain.
+3. **Phase 3:** Sequentially from bitmap 1000 upward through the entire chain.
 
 If your bitmap number is high (e.g. 500000), it won’t load until the app works through hundreds of thousands of others — unless it’s been bootstrapped by an OG sunset holder.
 
