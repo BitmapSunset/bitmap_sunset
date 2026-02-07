@@ -256,7 +256,7 @@ At the second level, the mirror pattern repeats to form the multiverse. Bitcoin�
 
 In the current release, only the Bitcoin blockchain is displayed. The surrounding positions are not yet populated.
 
-> **Note on naming:** The toolbar's **multiverse** dropdown (Block War / Bitmap mode) controls rendering scope only and is unrelated to this cross-chain architecture. "Multiverse" is a working name — a future release will rename the dropdown and introduce a separate control for cross-chain navigation.
+> **Note on naming:** The toolbar's **multiverse** dropdown (Block War / Bitmap mode) controls rendering scope only and is unrelated to this cross-chain architecture, which refers to the spatial tiling of multiple blockchain landscapes. "Multiverse" is a working name — a future release will rename the dropdown and introduce a separate control for teleporting between blockchain landscapes.
 
 ---
 
@@ -575,7 +575,7 @@ This paints large areas of the map in a single color — useful for faction terr
 
 Block War is the default mode in the toolbar's **multiverse** dropdown and transforms BitmapSunset into a shared, competitive canvas. In Block War mode, the app renders cross-bitmap commands from all loaded scripts — meaning builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
 
-> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes only. It is entirely distinct from the broader cross-chain multiverse architecture described in Section 4. A future release will rename this dropdown to eliminate the ambiguity and introduce a separate control for cross-chain navigation.
+> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes only. It is entirely distinct from the broader cross-chain multiverse architecture described in Section 4, which refers to the spatial tiling of multiple blockchain landscapes. A future release will rename this dropdown to eliminate the ambiguity and introduce a separate control for teleporting between blockchain landscapes.
 
 Think of it as a competitive layer on top of the standard world: players can enhance each other's builds, place "graffiti," or wage territorial pixel wars — all from their own bitmap's script.
 
