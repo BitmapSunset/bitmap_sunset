@@ -888,6 +888,25 @@ Inscribe a new `.bmp` child on the same bitmap. The app automatically loads the 
 
 Same process — inscribe a new `.bmp` child on the same sunset. The newest child takes precedence.
 
+### Reinscription (planned)
+
+Parent-child inscriptions are the current update mechanism, but each update requires a new child inscription. Reinscription offers a lower-cost alternative by reusing the same satoshi.
+
+**How it will work:**
+
+1. Inscribe a child script on your bitmap that contains a `sat` keyword pointing to a specific satoshi number:
+
+```
+BSS <future_version>
+sat <sat_number>
+```
+
+2. The app fetches your bitmap's latest child, finds the `sat` pointer, and then looks up the latest reinscription on that satoshi via the `/r/sat/<sat_number>` recursive endpoint.
+
+3. To update your build, reinscribe a new `.bmp` on that same satoshi. The app will automatically resolve the latest reinscription — no new parent-child inscription needed.
+
+The `sat` keyword acts as a redirect: the child inscription is a lightweight pointer, and the actual build content lives on reinscriptions of the referenced satoshi. This enables significantly cheaper updates since reinscription avoids the overhead of creating new parent-child relationships.
+
 ### Backward compatibility
 
 Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` keyword instead of `resource`/`bind`/`quad`). These still render when fetched. However, if you're writing new scripts, always use `BSS 0 0 11` syntax. A parent script in `0 0 10` can call a child script in `0 0 11`, but the main/parent script should ideally be updated to `0 0 11` for full compatibility.
@@ -1102,4 +1121,5 @@ bind <slot> script                   ← execute referenced script (supports tra
 | Build on your bitmap | Inscription ID of your bitmap | Exported `.bmp` |
 | Bootstrap from your OG sunset | Inscription ID of your OG sunset (0–99) | Exported `.bmp` |
 | Update an existing build | Same parent as before (bitmap or sunset) | New `.bmp` (newest child wins) |
+| Update via reinscription (planned) | N/A — reinscribe on the sat referenced by a `sat` pointer child | New `.bmp` (latest reinscription wins) |
 | Block War (affect other bitmaps) | Inscription ID of your own bitmap | Exported `.bmp` (use cross-bitmap commands like `pixels`, `mosaic`) |

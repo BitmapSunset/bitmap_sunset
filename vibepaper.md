@@ -307,7 +307,6 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 ### v0.0.12 — Next Release
 
 - **Rotating camera** mode for cinematic orbital viewing around bitmaps and builds.
-- **Reinscription support** as a lower-cost alternative to parent-child inscriptions for updating bitmap scripts, enabling sub-1-sat inscription fees.
 - **Bootstrap support for sunsets 100–599**, extending priority loading authority to the full Mirror collection.
 - **Rendering improvements** across all mirror maps and high-number bitmaps.
 
@@ -320,6 +319,7 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 - **Loop and control flow:** iteration and conditional logic, evolving BSS toward a full virtual machine with program counter and execution context.
 - **BSS language specification** published on GitHub, enabling AI-assisted vibe coding where language models can generate valid BitmapSunset scripts from natural language descriptions.
 - **Official bitmap color/image format** support for the emerging bitmap protocol standard.
+- **Reinscription support** as a lower-cost alternative to parent-child inscriptions for updating bitmap scripts. A new `sat` keyword will allow a child inscription to act as a lightweight pointer to a specific satoshi. The application will resolve the latest reinscription on that satoshi via the `/r/sat/<sat_number>` recursive endpoint, enabling cheap updates without new parent-child inscriptions.
 
 ### Editor and User Experience
 
