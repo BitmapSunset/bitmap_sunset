@@ -984,7 +984,15 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - You are solely responsible for securing your private keys, Bitcoin, and other digital assets.
 
-- We are not liable for any damages, losses, or security breaches resulting from the use of this application.
+- The creators are not liable for any damages, losses, or security breaches resulting from the use of this application.
+
+- BitmapSunset inscriptions are not investments and carry no expectation of financial return.
+
+- While inscriptions are permanently stored on the Bitcoin blockchain, access to them depends on ordinals content servers and infrastructure outside the creators' control.
+
+- All inscriptions are permanent and irreversible — once data is inscribed, it cannot be modified or deleted.
+
+- It is your responsibility to comply with any applicable laws and regulations in your jurisdiction.
 
 - By using BitmapSunset, you confirm that you understand and accept these terms.
 
