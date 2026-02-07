@@ -153,7 +153,7 @@ The toolbar runs along the top edge of the app window. From left to right:
 | **fetch** | Toggles blockchain data fetching on/off. When active (green), the app downloads bitmap scripts from the blockchain. When off (red), no new data is loaded. You must click this to start seeing onchain builds. |
 | **flat** | Toggles between 3D terrain and a flat top-down map view. Flat mode is useful for getting an overview of colored bitmaps and mosaics. |
 | **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
-| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (only the bitmap owner's scripts are rendered on their tile). See Section 11. |
+| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (only the bitmap owner's scripts are rendered on their tile). See Section 11. Note: "multiverse" is a working name for this dropdown. A future release will rename it and introduce a separate cross-chain dropdown for teleporting between blockchain landscapes. |
 | **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
 | **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
 | **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
@@ -212,7 +212,7 @@ Click **settings** to access detailed options organized into categories:
 
 **DMT (Digital Matter Theory):**
 
-- **Multiverse** — switch between Block War (default) and Bitmap modes.
+- **Multiverse** — same as the toolbar dropdown: switches between Block War (default) and Bitmap modes. See Section 11.
 
 - **Mirror** (0–7) — number of concentric mirror rings rendered around the root cell. 0 displays only the central root cell, 1 adds the first ring of 8 mirrored copies, 2 adds a second ring of 16, and so on. Higher values look more expansive but cost performance.
 
@@ -549,7 +549,7 @@ This paints large areas of the map in a single color — useful for faction terr
 
 ### What is Block War?
 
-Block War is the default multiverse mode and transforms BitmapSunset into a shared, competitive canvas. In Block War mode, the app renders cross-bitmap commands from all loaded scripts — meaning builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
+Block War is the default mode in the toolbar's **multiverse** dropdown and transforms BitmapSunset into a shared, competitive canvas. In Block War mode, the app renders cross-bitmap commands from all loaded scripts — meaning builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
 
 Think of it as a competitive layer on top of the standard world: players can enhance each other's builds, place "graffiti," or wage territorial pixel wars — all from their own bitmap's script.
 
@@ -1097,7 +1097,7 @@ bind <slot> script                   ← execute referenced script (supports tra
 | **fetch** | Start/stop downloading onchain data |
 | **flat** | Toggle top-down 2D map view |
 | **background** | Change viewport background color |
-| **multiverse** | Switch Block War (default) / Bitmap mode |
+| **multiverse** | Switch Block War (default) / Bitmap mode (working name — rename planned) |
 | **shade 0/1/2** | Toggle render layers |
 | **edit** | Open/close the script editor |
 | **settings** | Open camera, rendering, DMT options |

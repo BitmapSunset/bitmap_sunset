@@ -219,7 +219,9 @@ Bootstrapping creates a natural value hierarchy. OG BitmapSunset holders and low
 
 ### Concept
 
-Block War is the default multiverse mode in BitmapSunset, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only the scripts inscribed by its owner.
+Block War is the default mode in BitmapSunset's toolbar **multiverse** dropdown, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only the scripts inscribed by its owner.
+
+> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes. It is distinct from the broader cross-chain multiverse architecture described in Section 10. A future release will rename this dropdown and introduce a separate control for teleporting between blockchain landscapes.
 
 Think of it as a shared canvas layered on top of the standard world — players can enhance each other's builds, place graffiti, or wage territorial pixel wars.
 
