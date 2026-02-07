@@ -81,6 +81,10 @@ Ordinals recursive endpoints allow inscriptions to reference and load the conten
 <details>
 <summary><strong>4. System Architecture</strong></summary>
 
+### Design Philosophy: Digital Matter Theory (DMT)
+
+BitmapSunset is built around the concept of Digital Matter Theory (DMT) — a framework for treating Bitcoin block data as the raw material for digital worlds. Every architectural decision, from how the blockchain is laid out as terrain to how mirror cells extend the landscape, follows from the principle that Bitcoin’s data structures are the substrate on which spatial computing is built. DMT settings in the application control the rendering of this substrate: world topology, mirror depth, level of detail, and base/block level interpretation.
+
 ### Application Delivery
 
 BitmapSunset is itself an ordinal inscription. The application code, including the 3D rendering engine, script compiler, virtual machine, and user interface, is inscribed on the Bitcoin blockchain. Users access it by navigating to the inscription's content URL on any ordinals-compatible content server. This eliminates single points of failure in application delivery: as long as the Bitcoin network operates and ordinals content servers exist, BitmapSunset is accessible.
@@ -116,6 +120,7 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
 | **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. |
 | **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
+| **Cross-Referencing** | `bind <slot> script` — Loads and executes another script inscription with full transform support. `bitmap <number>` — Creates a live link to another bitmap’s most recent build (no transforms; auto-updates when the source bitmap is updated). |
 | **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. |
 
 ### Rendering Modes
@@ -133,6 +138,10 @@ BSS supports two powerful mechanisms for cross-referencing content across the wo
 ### Compilation and Encoding
 
 The BSS compiler performs a multi-stage pipeline: source text is parsed and validated, then emitted as a compact binary instruction stream. This binary is encoded into the pixel data of a BMP image file. The resulting BMP file is the artifact inscribed onto the blockchain. At runtime, the process reverses: the BMP is decoded, the binary is extracted, and the virtual machine executes the instructions. A full round-trip verification ensures encoding integrity before export.
+
+### Backward Compatibility
+
+The version header enables forward migration between BSS revisions. Scripts written for earlier versions (e.g., `BSS 0 0 10`) use older syntax such as the `image` keyword instead of the current `resource`/`bind`/`quad` pipeline, but remain renderable by the current virtual machine. New scripts should always target the latest version (`BSS 0 0 11`). A parent script in an older version can call a child script in a newer version, though updating the parent to the latest syntax is recommended for full compatibility.
 
 </details>
 
@@ -222,7 +231,7 @@ Bootstrapping creates a natural value hierarchy. OG BitmapSunset holders and low
 
 Block War is the default mode in BitmapSunset's toolbar **multiverse** dropdown, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
 
-> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes. It is distinct from the broader cross-chain multiverse architecture described in Section 10. A future release will rename this dropdown and introduce a separate control for teleporting between blockchain landscapes.
+> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes only. It is entirely distinct from the broader cross-chain multiverse architecture described in Section 10, which refers to the spatial tiling of multiple blockchain landscapes. A future release will rename this dropdown to eliminate the ambiguity and introduce a separate control for teleporting between blockchain landscapes.
 
 Think of it as a shared canvas layered on top of the standard world — players can enhance each other's builds, place graffiti, or wage territorial pixel wars.
 

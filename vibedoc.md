@@ -62,7 +62,13 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal. Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. **OG sunsets (0–99)** are the original collection pieces with billboard control and bootstrapping authority. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities. **Sunsets 100–599** are an extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release. The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
+- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. There are two tiers:
+
+  - **OG sunsets (0–99):** The original collection pieces with billboard control and bootstrapping authority. Each OG sunset corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities.
+
+  - **Sunsets 100–599:** An extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release.
+
+  The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
@@ -153,7 +159,7 @@ The toolbar runs along the top edge of the app window. From left to right:
 | **fetch** | Toggles blockchain data fetching on/off. When active (green), the app downloads bitmap scripts from the blockchain. When off (red), no new data is loaded. You must click this to start seeing onchain builds. |
 | **flat** | Toggles between 3D terrain and a flat top-down map view. Flat mode is useful for getting an overview of colored bitmaps and mosaics. |
 | **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
-| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (only the bitmap owner's scripts are rendered on their tile). See Section 11. Note: "multiverse" is a working name for this dropdown. A future release will rename it and introduce a separate cross-chain control for teleporting between blockchain landscapes. |
+| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (each bitmap displays only its owner's rendering commands on its own tile). See Section 11. Note: "multiverse" is a working name for this rendering mode dropdown and is unrelated to the broader cross-chain multiverse architecture (see the Mirror System section below). A future release will rename this dropdown and introduce a separate cross-chain control for teleporting between blockchain landscapes. |
 | **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
 | **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
 | **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
@@ -210,11 +216,11 @@ The main area of the screen shows the bitmap landscape in 3D. Key things you'll 
 
 Click **settings** to access detailed options organized into categories:
 
-**DMT (Digital Matter Theory):**
+**DMT (Digital Matter Theory):** DMT is a conceptual framework for treating Bitcoin block data as the raw material for digital worlds. The settings in this category control how the blockchain landscape is rendered and structured.
 
-- **Multiverse** — same as the toolbar dropdown: switches between Block War (default) and Bitmap modes. See Section 11.
+- **Multiverse** — same as the toolbar dropdown: switches between Block War (default) and Bitmap modes. See Section 11. This is a rendering mode control and is unrelated to the broader cross-chain multiverse architecture described below.
 
-- **Mirror** (0–7) — number of concentric mirror rings rendered around the root cell. 0 displays only the central root cell, 1 adds the first ring of 8 mirrored copies, 2 adds a second ring of 16, and so on. Higher values look more expansive but cost performance.
+- **Mirror** (0–7) — number of concentric mirror rings rendered around the root cell. The root cell contains the actual Bitcoin blockchain map. Each ring adds a layer of symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — creating a seamless, infinite-looking landscape with no visible seams at the boundaries. 0 displays only the central root cell, 1 adds the first ring of 8 mirrored copies, 2 adds a second ring of 16, and so on. Higher values look more expansive but cost performance.
 
 - **Lod Quality** (0–100) — level of detail. Lower values improve performance.
 
@@ -239,6 +245,16 @@ Click **settings** to access detailed options organized into categories:
 - **Sky / Atmosphere** — toggle physically-based sky rendering.
 
 - **Background Color** — custom background when sky is disabled.
+
+### Mirror System and Multiverse Architecture
+
+BitmapSunset’s rendering engine uses a two-level mirror system that serves both as a visual seamlessness technique and as the structural foundation for a future cross-chain multiverse.
+
+At the first level, the Bitcoin blockchain is rendered as a **root cell** surrounded by concentric **rings of mirror cells** (configurable via the Mirror setting above). Each ring adds symmetrically reflected copies of the root, eliminating visible seams at boundaries. From the ground, the mirroring is imperceptible: you see a continuous, infinite-looking world rather than a tiled grid with hard edges.
+
+At the second level, the mirror pattern repeats to form the multiverse. Bitcoin’s root cell and its surrounding mirror rings occupy the center position. Eight surrounding positions are reserved for additional blockchain landscapes (such as .dogemap and other .*map protocols), each with its own root cell and mirror rings. Users spawn in the center of the Bitcoin root cell, where OG BitmapSunset billboards (0–99) are positioned. Flying outward eventually crosses into mirror cells and then into neighboring blockchain territory.
+
+In the current release, only the Bitcoin blockchain is displayed. The surrounding positions are not yet populated. The toolbar’s **multiverse** dropdown (Block War / Bitmap mode) controls rendering scope and is unrelated to this cross-chain architecture — a future release will rename the dropdown and introduce a separate control for cross-chain navigation.
 
 ---
 
@@ -829,6 +845,10 @@ This manually triggers a download and display of your build. It's just not autom
 
 Currently, the app re-fetches bitmap data from the blockchain each session. A planned local cache will store fetched scripts and world data on your device, allowing the app to launch almost instantly from cached state. The bootstrapping sequence will then serve double duty: beyond initial discovery, it will drive continuous synchronization — comparing timestamps against cached data, re-fetching only updated scripts, and keeping the local world converging on the live state of the blockchain.
 
+### Future loading enhancements (planned)
+
+Beyond caching, the roadmap includes **rune-based priority ranking** — leveraging the `/r/utxo` recursive endpoint to weight bitmap loading order by rune holdings — and user-configurable **streaming controls** for fetch frequency and resource consumption visibility. These features are described in more detail in the vibe paper’s development roadmap.
+
 ---
 
 ## 16. Inscribing a Bootstrapping Script to an OG BitmapSunset
@@ -1091,6 +1111,8 @@ bind <slot> ... wire model           ← wireframe rendering mode
 sx|sy|sz <value>                     ← per-axis scale shorthand
 tx|ty|tz <value>                     ← per-axis translate shorthand
 rx|ry|rz <value>                     ← per-axis rotate shorthand
+solid                                ← enable solid (filled) rendering mode
+wire                                 ← enable wireframe rendering mode
 color <hex>                          ← set color for next primitive
 scale X Y Z triangle                 ← triangle primitive (2D)
 scale X Y Z quad                     ← flat quad primitive (2D, or textured with resource)
@@ -1114,7 +1136,7 @@ bind <slot> script                   ← execute referenced script (supports tra
 | **fetch** | Start/stop downloading onchain data |
 | **flat** | Toggle top-down 2D map view |
 | **background** | Change viewport background color |
-| **multiverse** | Switch Block War (default) / Bitmap mode (working name — rename planned) |
+| **multiverse** | Switch Block War (default) / Bitmap rendering mode (working name — rename planned; unrelated to cross-chain multiverse architecture) |
 | **shade 0/1/2** | Toggle render layers |
 | **edit** | Open/close the script editor |
 | **settings** | Open camera, rendering, DMT options |
