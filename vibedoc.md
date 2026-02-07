@@ -1,4 +1,4 @@
-# BitmapSunset - VibeDoc 0.0.1
+# BitmapSunset - VibeDoc 0.0.11
 
 **App version:** v0.0.11
 
@@ -38,17 +38,15 @@
 
 15. [Bootstrapping](#15-bootstrapping)
 
-16. [Inscribing a Bootstrapping Script to an OG BitmapSunset](#16-inscribing-a-bootstrapping-script-to-an-og-bitmapsunset)
+16. [Updating Scripts](#16-updating-scripts)
 
-17. [Updating Scripts](#17-updating-scripts)
+17. [Scale Reference](#17-scale-reference)
 
-18. [Scale Reference](#18-scale-reference)
+18. [Security & Safety](#18-security--safety)
 
-19. [Security & Safety](#19-security--safety)
+19. [Troubleshooting](#19-troubleshooting)
 
-20. [Troubleshooting](#20-troubleshooting)
-
-21. [Quick Reference Card](#21-quick-reference-card)
+20. [Quick Reference Card](#20-quick-reference-card)
 
 ---
 
@@ -159,7 +157,7 @@ The toolbar runs along the top edge of the app window. From left to right:
 | **fetch** | Toggles blockchain data fetching on/off. When active (green), the app downloads bitmap scripts from the blockchain. When off (red), no new data is loaded. You must click this to start seeing onchain builds. |
 | **flat** | Toggles between 3D terrain and a flat top-down map view. Flat mode is useful for getting an overview of colored bitmaps and mosaics. |
 | **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
-| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (each bitmap displays only its owner's rendering commands on its own tile). See Section 11. Note: "multiverse" is a working name for this rendering mode dropdown and is unrelated to the broader cross-chain multiverse architecture (see the Mirror System section below). A future release will rename this dropdown and introduce a separate cross-chain control for teleporting between blockchain landscapes. |
+| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (each bitmap displays only its owner's rendering commands on its own tile). See Section 11. |
 | **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
 | **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
 | **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
@@ -218,7 +216,7 @@ Click **settings** to access detailed options organized into categories:
 
 **DMT (Digital Matter Theory):** DMT is a conceptual framework for treating Bitcoin block data as the raw material for digital worlds. The settings in this category control how the blockchain landscape is rendered and structured.
 
-- **Multiverse** — same as the toolbar dropdown: switches between Block War (default) and Bitmap modes. See Section 11. This is a rendering mode control and is unrelated to the broader cross-chain multiverse architecture described below.
+- **Multiverse** — same as the toolbar dropdown: switches between Block War (default) and Bitmap modes. See Section 11.
 
 - **Mirror** (0–7) — number of concentric mirror rings rendered around the root cell. The root cell contains the actual Bitcoin blockchain map. Each ring adds a layer of symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — creating a seamless, infinite-looking landscape with no visible seams at the boundaries. 0 displays only the central root cell, 1 adds the first ring of 8 mirrored copies, 2 adds a second ring of 16, and so on. Higher values look more expansive but cost performance.
 
@@ -254,7 +252,9 @@ At the first level, the Bitcoin blockchain is rendered as a **root cell** surrou
 
 At the second level, the mirror pattern repeats to form the multiverse. Bitcoin’s root cell and its surrounding mirror rings occupy the center position. Eight surrounding positions are reserved for additional blockchain landscapes (such as .dogemap and other .*map protocols), each with its own root cell and mirror rings. Users spawn in the center of the Bitcoin root cell, where OG BitmapSunset billboards (0–99) are positioned. Flying outward eventually crosses into mirror cells and then into neighboring blockchain territory.
 
-In the current release, only the Bitcoin blockchain is displayed. The surrounding positions are not yet populated. The toolbar’s **multiverse** dropdown (Block War / Bitmap mode) controls rendering scope and is unrelated to this cross-chain architecture — a future release will rename the dropdown and introduce a separate control for cross-chain navigation.
+In the current release, only the Bitcoin blockchain is displayed. The surrounding positions are not yet populated.
+
+> **Note on naming:** The toolbar's **multiverse** dropdown (Block War / Bitmap mode) controls rendering scope only and is unrelated to this cross-chain architecture. "Multiverse" is a working name — a future release will rename the dropdown and introduce a separate control for cross-chain navigation.
 
 ---
 
@@ -301,7 +301,7 @@ This moves your editor camera to bitmap 12345 and targets sunset billboard #5.
 
 ### Resource Slots
 
-Before you can display anything, you must register inscription IDs into numbered slots. This lets you reference the same inscription multiple times without repeating the full 66-character ID.
+Before you can display anything, you must register inscription IDs into numbered slots. This lets you reference the same inscription multiple times without repeating the full ID.
 
 ```
 resource <slot_index> <inscription_id>
@@ -526,6 +526,8 @@ bind 0 translate 500 0 300 mosaic
 ```
 
 This stamps the image onto the ground at coordinates (500, 300). Mosaics are visible when looking down from altitude and serve as ground-level art or territorial markers. They're especially impactful in **flat** view mode (click the **flat** button in the toolbar to see them as a 2D map).
+
+> **Note:** The `mosaic` command is currently available to all bitmap owners and BitmapSunset holders. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
 ---
 
@@ -766,8 +768,6 @@ Once confirmed on the blockchain, your build is permanently onchain. Anyone runn
 
 ```
 BSS 0 0 11
-editBitmap 12345
-editSunset 5
 resource 0 <inscription_id_of_gltf_model>
 scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 bind 0 solid model
 resource 1 <inscription_id_of_floor_image>
@@ -778,7 +778,7 @@ bitmaps 1 12345
 pixels 1 ff7f00
 ```
 
-This script places a 3D model, lays an image on the ground, adds an avatar model, and colors bitmap 12345 orange on the map. It compiles to approximately 342 bytes as a BMP.
+This script places a 3D model, lays an image on the ground, adds an avatar model, and colors bitmap 12345 orange on the map.
 
 ---
 
@@ -790,7 +790,7 @@ BitmapSunset displays over 900,000 bitmaps. When the app launches, it needs to d
 
 ### The Solution: Bootstrapping
 
-OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user's browser.
+OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user’s browser.
 
 > **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.12. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
 
@@ -804,7 +804,7 @@ The app fetches data in this order:
 
 3. **Sequentially** from bitmap 1000 upward through the entire chain.
 
-If your bitmap number is high (e.g. 500000), it won't load until the app works through hundreds of thousands of others — unless it's been bootstrapped by an OG sunset holder.
+If your bitmap number is high (e.g. 500000), it won’t load until the app works through hundreds of thousands of others — unless it’s been bootstrapped by an OG sunset holder.
 
 ### How Bootstrapping Works
 
@@ -816,46 +816,13 @@ When you inscribe a script on your OG BitmapSunset that references a bitmap numb
 bitmaps 1 50000
 ```
 
-Now bitmap 50000 loads right at app startup, because it's referenced by a sunset that's fetched in phase 1.
+Now bitmap 50000 loads right at app startup, because it’s referenced by a sunset that’s fetched in phase 1.
 
-### Chaining Bitmaps
+### Inscribing a Bootstrapping Script
 
-You can chain multiple bitmaps together. In your sunset script, reference your main bitmap. In that bitmap's script, reference more bitmaps:
+Here’s how to write and inscribe a bootstrapping script for an OG BitmapSunset (0–99).
 
-```
-Sunset #5 → loads bitmap 50000
-Bitmap 50000 → loads bitmap 150000, bitmap 200000
-```
-
-This way, a single sunset can bootstrap an entire network of builds.
-
-### Without a Sunset
-
-If you don't own an OG BitmapSunset or a low-number bitmap, users can still view your build by:
-
-1. Navigating to your bitmap location in the 3D world.
-
-2. Clicking the **fetch** button in the toolbar.
-
-3. Hovering the mouse cursor over your bitmap.
-
-This manually triggers a download and display of your build. It's just not automatic at launch.
-
-### Caching (planned)
-
-Currently, the app re-fetches bitmap data from the blockchain each session. A planned local cache will store fetched scripts and world data on your device, allowing the app to launch almost instantly from cached state. The bootstrapping sequence will then serve double duty: beyond initial discovery, it will drive continuous synchronization — comparing timestamps against cached data, re-fetching only updated scripts, and keeping the local world converging on the live state of the blockchain.
-
-### Future loading enhancements (planned)
-
-Beyond caching, the roadmap includes **rune-based priority ranking** — leveraging the `/r/utxo` recursive endpoint to weight bitmap loading order by rune holdings — and user-configurable **streaming controls** for fetch frequency and resource consumption visibility. These features are described in more detail in the vibe paper’s development roadmap.
-
----
-
-## 16. Inscribing a Bootstrapping Script to an OG BitmapSunset
-
-> **Note:** This section applies to OG BitmapSunset holders (0–99). Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
-
-### Step 1: Write the bootstrapping script
+**Step 1: Write the script**
 
 ```
 BSS 0 0 11
@@ -879,17 +846,17 @@ pixels 1 ff7f00
 
 - `pixels 1 ff7f00` — colors the bootstrapped bitmap orange on the map.
 
-### Step 2: Export the BMP
+**Step 2: Export the BMP**
 
 Click the 💾 icon to save the `.bmp` file. Check the console for success messages.
 
-### Step 3: Inscribe as a child of your sunset
+**Step 3: Inscribe as a child of your sunset**
 
 1. Go to your preferred inscription service.
 
 2. Upload the `.bmp` file.
 
-3. Set the **parent** to the **inscription ID of your OG BitmapSunset** (the sunset's ordinal inscription ID, not a bitmap).
+3. Set the **parent** to the **inscription ID of your OG BitmapSunset** (the sunset’s ordinal inscription ID, not a bitmap).
 
 4. Inscribe.
 
@@ -904,11 +871,42 @@ bitmaps 3 50000 150000 200000
 pixels 3 ff7f00 00ff00 0000ff
 ```
 
-This loads three bitmaps at startup, each colored differently on the map. You can also lend bootstrap priority to other people's bitmaps — a potential monetization or collaboration path.
+This loads three bitmaps at startup, each colored differently on the map. You can also lend bootstrap priority to other people’s bitmaps — a potential monetization or collaboration path.
+
+### Chaining Bitmaps
+
+You can chain multiple bitmaps together. In your sunset script, reference your main bitmap. In that bitmap’s script, reference more bitmaps:
+
+```
+Sunset #5 → loads bitmap 50000
+Bitmap 50000 → loads bitmap 150000, bitmap 200000
+```
+
+This way, a single sunset can bootstrap an entire network of builds.
+
+### Without a Sunset
+
+If you don’t own an OG BitmapSunset or a low-number bitmap, users can still view your build by:
+
+1. Navigating to your bitmap location in the 3D world.
+
+2. Clicking the **fetch** button in the toolbar.
+
+3. Hovering the mouse cursor over your bitmap.
+
+This manually triggers a download and display of your build. It’s just not automatic at launch.
+
+### Caching (planned)
+
+Currently, the app re-fetches bitmap data from the blockchain each session. A planned local cache will store fetched scripts and world data on your device, allowing the app to launch almost instantly from cached state. The bootstrapping sequence will then serve double duty: beyond initial discovery, it will drive continuous synchronization — comparing timestamps against cached data, re-fetching only updated scripts, and keeping the local world converging on the live state of the blockchain. Even once all bitmaps have been cached, a lightweight polling process will continue in the background — new builds appear, updated scripts replace old ones, and the cached world stays current.
+
+### Future loading enhancements (planned)
+
+Beyond caching, the roadmap includes **rune-based priority ranking** — leveraging the `/r/utxo` recursive endpoint to weight bitmap loading order by rune holdings — and user-configurable **streaming controls** for fetch frequency and resource consumption visibility. These features are described in more detail in the vibe paper’s development roadmap.
 
 ---
 
-## 17. Updating Scripts
+## 16. Updating Scripts
 
 ### On a bitmap
 
@@ -949,7 +947,7 @@ Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` ke
 
 ---
 
-## 18. Scale Reference
+## 17. Scale Reference
 
 | Scale Value | Relative Size |
 |---|---|
@@ -972,7 +970,7 @@ Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` ke
 
 ---
 
-## 19. Security & Safety
+## 18. Security & Safety
 
 BitmapSunset is a fully onchain application. It runs entirely in your browser and reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data — the same decentralized infrastructure that serves all ordinals applications.
 
@@ -1022,7 +1020,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 ---
 
-## 20. Troubleshooting
+## 19. Troubleshooting
 
 ### "ERROR L0 C0 invalid magic / invalid token / invalid version"
 
@@ -1094,7 +1092,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 ---
 
-## 21. Quick Reference Card
+## 20. Quick Reference Card
 
 ```
 BSS 0 0 11                          ← version header (always first line)
@@ -1136,7 +1134,7 @@ bind <slot> script                   ← execute referenced script (supports tra
 | **fetch** | Start/stop downloading onchain data |
 | **flat** | Toggle top-down 2D map view |
 | **background** | Change viewport background color |
-| **multiverse** | Switch Block War (default) / Bitmap rendering mode (working name — rename planned; unrelated to cross-chain multiverse architecture) |
+| **multiverse** | Switch Block War (default) / Bitmap rendering mode |
 | **shade 0/1/2** | Toggle render layers |
 | **edit** | Open/close the script editor |
 | **settings** | Open camera, rendering, DMT options |

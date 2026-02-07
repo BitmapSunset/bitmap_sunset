@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
-  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.1-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
+  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.11-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
   <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset"><img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/></a>
   <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E"><img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/></a>
 </p>
@@ -164,17 +164,17 @@ The BitmapSunset collection consists of 600 unique ordinal inscriptions, numbere
 
 BitmapSunset holders receive concrete in-application utility:
 
-- **Billboard control:** Each OG BitmapSunset (0–99) corresponds to a billboard structure positioned over a 100x100 bitmap patch in the 3D world. Holders can replace the default sunset image with any inscription of their choosing and rule over their patch, creating a persistent, high-visibility display space.
+- **Billboard control:** Each OG BitmapSunset (0–99) corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. Holders can replace the default sunset image with any inscription of their choosing and rule over their patch, creating a persistent, high-visibility display space.
 
 - **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
 
-- **Mosaic placement:** Sunset scripts can stamp images flat on the ground plane at specific coordinates, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude.
+- **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at specific coordinates, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
 ### Collection Tiers
 
 | Range | Trait | Description |
 |---|---|---|
-| **0–99** | OG | Original sunsets. Billboards positioned over 100x100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into cubitmaps (giant floating 3D structures) with parceling and building capabilities. |
+| **0–99** | OG | Original sunsets. Billboards positioned over 100×100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into cubitmaps (giant floating 3D structures) with parceling and building capabilities. |
 | **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.12. Billboard placement planned for a future release. |
 
 The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
@@ -315,6 +315,8 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 ##
 <details>
 <summary><strong>11. Development Roadmap</strong></summary>
+
+The following roadmap reflects the current development trajectory. Items are grouped by domain and roughly ordered by priority within each group, but timelines are fluid — BitmapSunset is a solo development effort and features ship when they're ready.
 
 ### v0.0.12 — Next Release
 
@@ -1005,6 +1007,22 @@ Bitcoin is the most secure, decentralized, and enduring digital infrastructure e
 
 ## $\color{red}{\textsf{DISCLAIMER}}$
 
-BitmapSunset is provided "AS IS" and "AS AVAILABLE" without warranties, guarantees, or support of any kind. You acknowledge and accept all risks associated with using blockchain-based applications, including financial losses. You are solely responsible for securing your private keys, Bitcoin, and other digital assets. The creators are not liable for any damages, losses, or security breaches resulting from the use of this application. BitmapSunset inscriptions are not investments and carry no expectation of financial return. While inscriptions are permanently stored on the Bitcoin blockchain, access to them depends on ordinals content servers and infrastructure outside the creators' control. All inscriptions are permanent and irreversible — once data is inscribed, it cannot be modified or deleted. It is your responsibility to comply with any applicable laws and regulations in your jurisdiction. By using BitmapSunset, you confirm that you understand and accept these terms.
+- BitmapSunset is provided **"AS IS"** and **"AS AVAILABLE"** without warranties, guarantees, or support of any kind.
+
+- You acknowledge and accept all risks associated with using blockchain-based applications, including financial losses.
+
+- You are solely responsible for securing your private keys, Bitcoin, and other digital assets.
+
+- The creators are not liable for any damages, losses, or security breaches resulting from the use of this application.
+
+- BitmapSunset inscriptions are not investments and carry no expectation of financial return.
+
+- While inscriptions are permanently stored on the Bitcoin blockchain, access to them depends on ordinals content servers and infrastructure outside the creators' control.
+
+- All inscriptions are permanent and irreversible — once data is inscribed, it cannot be modified or deleted.
+
+- It is your responsibility to comply with any applicable laws and regulations in your jurisdiction.
+
+- By using BitmapSunset, you confirm that you understand and accept these terms.
 
 </div>
