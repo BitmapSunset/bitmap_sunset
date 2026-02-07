@@ -296,7 +296,7 @@ Users are encouraged to verify the BitmapSunset inscription ID through the offic
 
 ### Mirror System
 
-BitmapSunset's rendering engine uses a two-level mirror system that serves both as a visual seamlessness technique and as the structural foundation for a cross-chain multiverse.
+BitmapSunset's rendering engine uses a two-level mirror system that serves both as a visual seamlessness technique and as the structural foundation for a future cross-chain multiverse.
 
 At the first level, each blockchain is rendered as a **root cell** containing the actual blockchain data, surrounded by concentric **rings of mirror cells**. Each ring adds a layer of symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — eliminating visible seams at every boundary. The first ring adds 8 mirror cells, the second ring adds 16, and so on. From the ground, the mirroring is imperceptible: a user flying across the landscape sees a continuous, infinite-looking world rather than a tiled grid with hard edges. The number of mirror rings rendered is configurable (0–7) as a performance setting, where 0 displays only the root cell.
 

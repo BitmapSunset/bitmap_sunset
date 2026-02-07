@@ -66,6 +66,8 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
   - **Sunsets 100–599:** An extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release.
 
+- **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at map-space positions corresponding to bitmap numbers. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
+
   The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
@@ -573,6 +575,8 @@ This paints large areas of the map in a single color — useful for faction terr
 
 Block War is the default mode in the toolbar's **multiverse** dropdown and transforms BitmapSunset into a shared, competitive canvas. In Block War mode, the app renders cross-bitmap commands from all loaded scripts — meaning builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
 
+> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes only. It is entirely distinct from the broader cross-chain multiverse architecture described in Section 4. A future release will rename this dropdown to eliminate the ambiguity and introduce a separate control for cross-chain navigation.
+
 Think of it as a competitive layer on top of the standard world: players can enhance each other's builds, place "graffiti," or wage territorial pixel wars — all from their own bitmap's script.
 
 ### How to switch modes
@@ -1000,7 +1004,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - If something feels suspicious, double-check via official channels.
 
-### Disclaimer
+### $\color{red}{\textsf{DISCLAIMER}}$
 
 - BitmapSunset is provided **"AS IS"** and **"AS AVAILABLE"** without warranties, guarantees, or support of any kind.
 
