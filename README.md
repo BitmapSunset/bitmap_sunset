@@ -218,13 +218,13 @@ Bootstrapping creates a natural value hierarchy. BitmapSunset holders and low-nu
 
 ### Concept
 
-Block War is an alternate multiverse mode that transforms BitmapSunset from a property-rights-enforced world into a shared, competitive canvas. In the default Bitmap mode, each bitmap displays only the scripts inscribed by its owner. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own.
+Block War is the default multiverse mode in BitmapSunset, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only the scripts inscribed by its owner.
 
 Think of it as a shared canvas layered on top of the standard world — players can enhance each other's builds, place graffiti, or wage territorial pixel wars.
 
 ### Mechanics
 
-Block War leverages the `bitmaps`, `pixels`, and `mosaic` commands to enable cross-bitmap interaction. From your own bitmap's script, you can target any other bitmap on the map. In the default Bitmap mode, only the owner's rendering commands take effect on their tile. Switching to Block War mode reveals the full competitive layer: every loaded script's cross-bitmap commands become visible.
+Block War leverages the `bitmaps`, `pixels`, and `mosaic` commands to enable cross-bitmap interaction. From your own bitmap's script, you can target any other bitmap on the map. Switching to Bitmap mode restricts rendering so that only the owner's commands take effect on their tile. Block War mode reveals the full competitive layer: every loaded script's cross-bitmap commands become visible.
 
 The same script commands used for normal building apply in Block War. The difference is scope: a builder's `pixels` command can paint bitmaps they do not own, their `mosaic` command can stamp images on foreign ground, and their 3D structures can occupy contested territory.
 

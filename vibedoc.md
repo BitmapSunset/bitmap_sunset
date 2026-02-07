@@ -153,7 +153,7 @@ The toolbar runs along the top edge of the app window. From left to right:
 | **fetch** | Toggles blockchain data fetching on/off. When active (green), the app downloads bitmap scripts from the blockchain. When off (red), no new data is loaded. You must click this to start seeing onchain builds. |
 | **flat** | Toggles between 3D terrain and a flat top-down map view. Flat mode is useful for getting an overview of colored bitmaps and mosaics. |
 | **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
-| **multiverse** | A dropdown to switch between **Bitmap** (default — only the bitmap owner's scripts are rendered) and **Block War** (anyone's scripts are rendered on any bitmap). See Section 11. |
+| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (only the bitmap owner's scripts are rendered on their tile). See Section 11. |
 | **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
 | **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
 | **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
@@ -212,7 +212,7 @@ Click **settings** to access detailed options organized into categories:
 
 **DMT (Digital Matter Theory):**
 
-- **Multiverse** — switch between Bitmap and Block War modes.
+- **Multiverse** — switch between Block War (default) and Bitmap modes.
 
 - **Mirror** (0–7) — number of map reflections at the borders. Higher values look more expansive but cost performance.
 
@@ -541,23 +541,23 @@ This paints large areas of the map in a single color — useful for faction terr
 
 ### What is Block War?
 
-Block War is an alternate multiverse mode where **any bitmap owner can edit any bitmap**. In the default "Bitmap" mode, each bitmap displays only the scripts inscribed by its owner. In Block War mode, the app also renders scripts that other bitmap owners have inscribed as children of bitmaps they don't own.
+Block War is the default multiverse mode and transforms BitmapSunset into a shared, competitive canvas. In Block War mode, the app renders cross-bitmap commands from all loaded scripts — meaning builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
 
-Think of it as a shared canvas: anyone can build on anyone else's land. This creates a dynamic, competitive, and collaborative layer on top of the standard bitmap world — players can enhance each other's builds, place "graffiti," or wage territorial pixel wars.
+Think of it as a competitive layer on top of the standard world: players can enhance each other's builds, place "graffiti," or wage territorial pixel wars — all from their own bitmap's script.
 
 ### How to switch modes
 
-In the top toolbar, find the **multiverse** dropdown and change it from **Bitmap** to **Block War**.
+In the top toolbar, find the **multiverse** dropdown. The app opens in **Block War** mode by default. Switch to **Bitmap** to see only owner-inscribed content.
 
 ### How it works with scripts
 
-Block War uses the same script commands as normal building. The key difference is *where* you inscribe:
+Block War uses the same script commands as normal building. You still inscribe your script as a child of **your own** bitmap — the difference is in **scope**. The `bitmaps`, `pixels`, and `mosaic` commands can target any bitmap on the map, not just your own.
 
-- **Normal mode (Bitmap):** You inscribe a `.bmp` script as a child of **your own** bitmap. Only the bitmap owner's scripts are rendered.
+- **Block War mode (default):** Cross-bitmap commands from **all** loaded scripts become visible. Your `pixels` command can paint bitmaps you don't own, your `mosaic` command can stamp images on foreign ground, and your 3D structures can occupy contested territory.
 
-- **Block War mode:** You inscribe a `.bmp` script as a child of **someone else's** bitmap. In Block War mode, these "foreign" scripts are also rendered.
+- **Bitmap mode:** Only the bitmap owner's rendering commands take effect on their tile. Cross-bitmap commands from other scripts are ignored.
 
-The `mosaic`, `pixels`, and `bitmaps` commands become especially relevant in Block War because they let you paint the map itself:
+**Example** — color someone else's bitmap red from your own script:
 
 ```
 BSS 0 0 11
@@ -569,21 +569,21 @@ This colors the target bitmap red on the map — visible to everyone in Block Wa
 
 ### Block War strategies
 
-- **Color the map:** Use `pixels` to paint bitmaps in your faction's color across large swaths of the map.
+- **Color the map:** Use `pixels` to paint bitmaps in your faction's color across large swaths of the map, visible to all Block War participants.
 
-- **Stamp your mark:** Use `mosaic` to place logos or images on the ground of contested bitmaps.
+- **Stamp your mark:** Use `mosaic` to place logos, flags, or images on the ground plane of contested bitmaps.
 
-- **Build structures:** Place 3D models or primitives on contested bitmaps.
+- **Build structures:** Place 3D models or primitives to create visible landmarks and territorial markers.
 
-- **Stack scripts:** Multiple Block War scripts can accumulate on a single bitmap, creating layered builds from many contributors.
+- **Stack effects:** Multiple scripts from different builders can accumulate effects on a single bitmap, creating collaboratively or competitively layered scenes.
 
 ### Important notes
 
-- Block War scripts are only visible when a viewer has Block War mode enabled in the multiverse dropdown.
+- Block War is the default mode when opening the app. Cross-bitmap effects are visible immediately.
 
-- In the default Bitmap mode, only the bitmap owner's scripts are rendered.
+- Switching to Bitmap mode hides all cross-bitmap commands — only the bitmap owner's rendering commands are applied to their tile.
 
-- Scripts inscribed onchain are permanent — Block War graffiti stays on the blockchain forever, even if it's only visible in the corresponding mode.
+- All Block War inscriptions are permanent. They persist on the blockchain indefinitely, creating an immutable record of territorial contests and collaborative builds.
 
 ---
 
@@ -1012,9 +1012,9 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 ### Block War scripts not appearing
 
-- Make sure the **multiverse** dropdown in the toolbar is set to **Block War**, not **Bitmap**.
+- Check that the **multiverse** dropdown in the toolbar is still set to **Block War** (this is the default, but you may have switched to Bitmap mode).
 
-- Block War scripts are only rendered when this mode is active.
+- Block War scripts are only rendered when Block War mode is active.
 
 ### Console shows errors
 
@@ -1071,7 +1071,7 @@ bind <slot> script                   ← execute referenced script (supports tra
 | **fetch** | Start/stop downloading onchain data |
 | **flat** | Toggle top-down 2D map view |
 | **background** | Change viewport background color |
-| **multiverse** | Switch Bitmap / Block War mode |
+| **multiverse** | Switch Block War (default) / Bitmap mode |
 | **shade 0/1/2** | Toggle render layers |
 | **edit** | Open/close the script editor |
 | **settings** | Open camera, rendering, DMT options |
@@ -1097,4 +1097,4 @@ bind <slot> script                   ← execute referenced script (supports tra
 | Build on your bitmap | Inscription ID of your bitmap | Exported `.bmp` |
 | Bootstrap from your OG sunset | Inscription ID of your OG sunset (0–99) | Exported `.bmp` |
 | Update an existing build | Same parent as before (bitmap or sunset) | New `.bmp` (newest child wins) |
-| Block War (build on any bitmap) | Inscription ID of target bitmap | Exported `.bmp` |
+| Block War (affect other bitmaps) | Inscription ID of your own bitmap | Exported `.bmp` (use cross-bitmap commands like `pixels`, `mosaic`) |
