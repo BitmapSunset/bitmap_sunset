@@ -950,7 +950,7 @@ Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` ke
 
 ## 19. Security & Safety
 
-BitmapSunset is a fully onchain application. It runs entirely in your browser and reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints.
+BitmapSunset is a fully onchain application. It runs entirely in your browser and reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data — the same decentralized infrastructure that serves all ordinals applications.
 
 ### BitmapSunset will never ask for:
 
