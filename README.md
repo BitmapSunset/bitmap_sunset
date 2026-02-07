@@ -105,7 +105,7 @@ At runtime, the virtual machine decodes BMP inscriptions back into binary, then 
 <details>
 <summary><strong>5. The BitmapSunset Script Language</strong></summary>
 
-BSS is a declarative, line-oriented scripting language purpose-built for describing 3D scenes within the constraints of onchain storage. Every script begins with a version header for backward compatibility, followed by resource declarations, transform chains, and rendering commands.
+BSS is a declarative, line-oriented scripting language purpose-built for describing 3D scenes within the constraints of onchain storage. Every script begins with a version header for backward compatibility, followed by resource declarations, control commands, and object commands.
 
 ### Script Structure
 
@@ -113,14 +113,13 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 |---|---|
 | **Version Header** | `BSS 0 0 11` — Required first line. Identifies the script version for backward compatibility. |
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
-| **Bind Commands** | `bind <slot> [transforms] <type>` — Instantiates a resource as a 3D object. Types: model, quad, billboard, mosaic, script. |
-| **Transforms** | `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz` — Applied in sequence to position and orient objects. |
-| **Primitives** | `sphere`, `cube`, `cone`, `circle`, `triangle`, `squpyr`, `tripyr` — Built-in geometric shapes requiring no inscription. |
-| **Coloring** | `color <hex>`, `bitmaps <count> <ids>`, `pixels <count> <colors>` — Colors bitmap tiles on the map. |
+| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. |
+| **Object Commands** | `model`, `quad`, `billboard`, `mosaic`, `script`, `sphere`, `cube`, `cone`, `circle`, `triangle`, `squpyr`, `tripyr` — Terminates a statement and triggers rendering. |
+| **Coloring** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Colors bitmap tiles on the map. |
 
 ### Rendering Modes
 
-Objects can be rendered in solid mode (filled, opaque surfaces) or wire mode (wireframe outlines). Both modes can be applied simultaneously to the same object, which is useful for visualization during editing. The rendering mode is specified as a keyword in the bind command or after a primitive declaration.
+Objects can be rendered in solid mode (filled, opaque surfaces) or wire mode (wireframe outlines). Both modes can be applied simultaneously to the same object, which is useful for visualization during editing. `solid` and `wire` are control commands that can appear anywhere before the object command.
 
 ### Composability
 

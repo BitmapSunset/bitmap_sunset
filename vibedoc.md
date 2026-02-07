@@ -355,15 +355,23 @@ scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 bind 0 solid model
 
 - **`wire`** — enables wireframe rendering. Use this instead of `solid` to display models or shapes as wireframe outlines.
 
-### Transform chain order
+### Control commands and object commands
 
-A full transform chain looks like:
+A script line consists of **control commands** followed by an **object command**. Control commands — `bind`, `scale`, `translate`, `rotate`, `sx`/`sy`/`sz`, `tx`/`ty`/`tz`, `rx`/`ry`/`rz`, `solid`, `wire`, and `color` — can appear in **any order** before the object command. The object command (`model`, `quad`, `mosaic`, `billboard`, `script`, `sphere`, `cube`, etc.) terminates the statement.
+
+A full example:
 
 ```
 scale X Y Z translate X Y Z rotate Rx Ry Rz bind <slot> solid model
 ```
 
-The order of `scale`, `translate`, and `rotate` matters — they are applied in sequence.
+This is equivalent to:
+
+```
+bind <slot> solid rotate Rx Ry Rz translate X Y Z scale X Y Z model
+```
+
+Both produce the same result — the control commands are collected and the object command triggers rendering.
 
 ### Per-axis shorthand transforms
 
@@ -1044,7 +1052,7 @@ bind <slot> scale X Y Z quad         ← display flat image
 bind <slot> billboard                ← display on sunset billboard
 bind <slot> translate X Y Z mosaic   ← draw on ground
 bind <slot> scale X Y Z translate X Y Z rotate Rx Ry Rz solid model
-                                     ← full transform chain
+                                     ← full example (control commands can be in any order before the object command)
 bind <slot> ... wire model           ← wireframe rendering mode
 sx|sy|sz <value>                     ← per-axis scale shorthand
 tx|ty|tz <value>                     ← per-axis translate shorthand
