@@ -1,8 +1,8 @@
 <h1 align="center">🟧 BitmapSunset 🌇 <br> Exploring the Bitcoin Multiverse<br></h1>
 
 <p align="center">
-  <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.11-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
-  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.11-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
+  <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.12-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
+  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.12-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
   <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset"><img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/></a>
   <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E"><img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/></a>
 </p>
@@ -93,7 +93,7 @@ BitmapSunset is itself an ordinal inscription. The application code, including t
 
 The rendering engine is a custom-built WebGL-based 3D graphics pipeline written in TypeScript, without reliance on third-party frameworks. This architectural decision was made to achieve full control over the rendering stack, which is essential for displaying a massive world composed of over 900,000 discrete tiles, each potentially containing user-generated 3D content.
 
-The world layout follows the ordinalswallet bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. The engine renders this grid with configurable mirror reflections at the boundaries, creating the visual impression of an infinite, seamless landscape extending in all directions.
+The world layout follows the ordinalswallet bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. The engine renders this grid with configurable mirror reflections at the boundaries, creating the visual impression of an infinite, seamless landscape extending in all directions. The 3D viewport supports both fullscreen and movable/resizable windowed modes, and the camera system includes an orbit mode that rotates around the active bitmap when the editor is open.
 
 ### Script Compiler and Virtual Machine
 
@@ -116,10 +116,10 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 
 | Component | Description |
 |---|---|
-| **Version Header** | `BSS 0 0 11` — Required first line. Identifies the script version for backward compatibility. |
+| **Version Header** | `BSS 0 0 12` — Required first line. Identifies the script version for backward compatibility. |
 | **Editor Commands** | `editBitmap <number>` — Teleports the editor camera to the specified bitmap. `editSunset <number>` — Selects which sunset billboard to edit. These are local-only convenience commands ignored by the virtual machine when scripts are fetched onchain. |
 | **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
-| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. **Known issue (v0.0.11):** `color` may unintentionally affect the bitmap tile color in addition to the shape — this bug is being investigated. |
+| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. **Known issue (v0.0.12):** `color` may unintentionally affect the bitmap tile color in addition to the shape — this bug is being investigated. |
 | **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
 | **Cross-Referencing** | `bind <slot> script` — Loads and executes another script inscription with full transform support. `bitmap <number>` — Creates a live link to another bitmap’s most recent build (no transforms; auto-updates when the source bitmap is updated). |
 | **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. Mosaic coordinates are map-space positions corresponding to bitmap numbers. |
@@ -142,7 +142,7 @@ The BSS compiler performs a multi-stage pipeline: source text is parsed and vali
 
 ### Backward Compatibility
 
-The version header enables forward migration between BSS revisions. Scripts written for earlier versions (e.g., `BSS 0 0 10`) use older syntax such as the `image` keyword instead of the current `resource`/`bind`/`quad` pipeline, but remain renderable by the current virtual machine. New scripts should always target the latest version (`BSS 0 0 11`). A parent script in an older version can call a child script in a newer version, though updating the parent to the latest syntax is recommended for full compatibility.
+The version header enables forward migration between BSS revisions. Scripts written for earlier versions (e.g., `BSS 0 0 10`) use older syntax such as the `image` keyword instead of the current `resource`/`bind`/`quad` pipeline, but remain renderable by the current virtual machine. New scripts should always target the latest version (`BSS 0 0 12`). The transition from v0.0.11 to v0.0.12 is a passthrough — identical script syntax, with all changes at the app level (SVG support, orbit camera, ban list, teleport, canvas window). A parent script in an older version can call a child script in a newer version, though updating the parent to the latest syntax is recommended for full compatibility.
 
 </details>
 
@@ -167,7 +167,7 @@ BitmapSunset holders receive concrete in-application utility:
 
 - **Billboard control:** Each OG BitmapSunset (0–99) corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. Holders can replace the default sunset image with any inscription of their choosing and rule over their patch, creating a persistent, high-visibility display space.
 
-- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
+- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.13.
 
 - **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at map-space positions corresponding to bitmap numbers, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
@@ -176,7 +176,7 @@ BitmapSunset holders receive concrete in-application utility:
 | Range | Trait | Description |
 |---|---|---|
 | **0–99** | OG | Original sunsets. Billboards positioned over 100×100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into cubitmaps (giant floating 3D structures) with parceling and building capabilities. |
-| **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.12. Billboard placement planned for a future release. |
+| **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.13. Billboard placement planned for a future release. |
 
 The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
 
@@ -209,7 +209,7 @@ The bootstrapping sequence begins when the user clicks the **fetch** button in t
 
 Even without a sunset or a low-number bitmap, any user of the application can highlight a bitmap with the mouse cursor and force it to be loaded on demand, ensuring that no build is permanently hidden.
 
-> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.12. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
+> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.13. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
 
 ### Local Caching and Continuous Synchronization
 
@@ -281,6 +281,14 @@ BitmapSunset was designed with the goal of reducing trust requirements wherever 
 
 - **No permissions:** The application never asks to enable any browser or system permissions.
 
+### Content Sanitization
+
+SVG inscriptions are processed through a DOMParser-based allowlist sanitizer. Only known-safe HTML/SVG tags and attributes are permitted; all others are stripped. Dangerous URI protocols (`javascript:`, `data:text`) are blocked. Recursive SVG references (e.g., `<use>` and `<image>` elements referencing other inscriptions) are resolved with enforced limits: a maximum recursion depth of 3 levels, a cap of 50 total references, and a 2MB size limit per individual reference. GLTF models are limited to 64 chunks and 50MB total binary size. Individual inscription blobs are capped at 50MB.
+
+### User-Controlled Content Filtering
+
+The ban list system allows users to block specific Bitcoin block numbers and inscription hashes, preventing banned content from loading or rendering. Bans are persisted in the browser's localStorage and take effect immediately during the fetch process. This gives users direct control over what content appears in their view of the world, without requiring any centralized moderation.
+
 ### Verification
 
 Users are encouraged to verify the BitmapSunset inscription ID through the official @BitmapSunset X account before using the application. The application version is displayed in the settings panel for confirmation. Recommended security practices include using a dedicated browser profile, a virtual machine, or private browsing mode without wallet extensions installed.
@@ -325,10 +333,26 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 
 The following roadmap reflects the current development trajectory. Items are grouped by domain and roughly ordered by priority within each group, but timelines are fluid — BitmapSunset is a solo development effort and features ship when they're ready.
 
-### v0.0.12 — Next Release
+### v0.0.12 — Current Release
 
-- **Rotating camera** mode for cinematic orbital viewing around bitmaps and builds.
+- **SVG inscription support** — any `svg+xml` inscriptions now render on quads, billboards, and mosaics.
+- **SVG sanitization** — DOMParser-based allowlist, protocol blocking, recursive resolution with depth/size limits.
+- **Ban list system** — user-controlled filtering of blocks and inscriptions, persisted in localStorage.
+- **Movable/resizable render window** — 3D viewport as a draggable window with fullscreen/windowed toggle.
+- **Orbit camera** — rotating camera with mouse wheel radius control, synchronized AUTO transition.
+- **Look Speed setting** — camera rotation speed slider in settings.
+- **Camera normalization** — rotation normalized by viewport size with tuned angular constants.
+- **Teleport UI** — "go" button with bitmap number input in toolbar for direct navigation.
+- **Script editor clear button** — trash icon to reset script content.
+- **Sunset pics on loading window** — sunset inscription images displayed during loading.
+- **GLTF size limits** — max 64 chunks, 50MB total binary size cap.
+- **Inscription blob size cap** — 50MB per inscription.
+- **Background fade effects** — smoother loading transitions.
+
+### v0.0.13 — Next Release
+
 - **Bootstrap support for sunsets 100–599**, extending priority loading authority to the full collection.
+- **Official ordinal ord gallery/collection support.**
 - **Rendering improvements** across all mirror maps and high-number bitmaps.
 
 ### BSS Language Evolution
@@ -348,7 +372,6 @@ The following roadmap reflects the current development trajectory. Items are gro
 - **BMP import:** the ability to extract the original script text from a previously inscribed BMP file, enabling script recovery and inspection.
 - **Asset library window:** an in-editor browser for selecting inscription resources.
 - **Enhanced script error reporting** with interactive input, clickable error navigation, verbose logging, and configurable log limits.
-- **Camera sensitivity controls:** rotation speed setting and smoother auto-rotation transitions.
 - **Mobile support:** touch controls, free camera for mobile, and performance configuration presets for mobile devices.
 
 ### World and Gameplay

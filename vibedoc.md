@@ -1,8 +1,8 @@
-# BitmapSunset - VibeDoc 0.0.11
+# BitmapSunset - VibeDoc 0.0.12
 
-**App version:** v0.0.11
+**App version:** v0.0.12
 
-**Script version:** BSS 0 0 11
+**Script version:** BSS 0 0 12
 
 **Source:** github.com/BitmapSunset/bitmap_sunset
 
@@ -64,7 +64,7 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
   - **OG sunsets (0–99):** The original collection pieces with billboard control and bootstrapping authority. Each OG sunset corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities.
 
-  - **Sunsets 100–599:** An extended set that will gain bootstrap support (targeted for v0.0.12) and dedicated 2D billboard placement in a future release.
+  - **Sunsets 100–599:** An extended set that will gain bootstrap support (targeted for v0.0.13) and dedicated 2D billboard placement in a future release.
 
 - **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at map-space positions corresponding to bitmap numbers. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
@@ -82,11 +82,11 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone. Only the bitmap owner can inscribe children on their own bitmap — property rights are enforced at the protocol level by the Ordinals parent-child mechanism.
 
-**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99). This lets you control which bitmaps load first when anyone opens the app. Low-number bitmaps (0–999) also benefit from early loading priority as part of Phase 2, but do not have bootstrapping authority. Bootstrap support for sunsets 100–599 is targeted for v0.0.12.
+**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99). This lets you control which bitmaps load first when anyone opens the app. Low-number bitmaps (0–999) also benefit from early loading priority as part of Phase 2, but do not have bootstrapping authority. Bootstrap support for sunsets 100–599 is targeted for v0.0.13.
 
 **Recommended browser:** Chrome or Brave with **hardware acceleration enabled** in your browser settings. Firefox works but performance may be lower.
 
-**App link:** Use the most current link from the @BitmapSunset X (Twitter) bio. Once the app loads, verify the version reads `BitmapSunset 0011` in the app settings.
+**App link:** Use the most current link from the @BitmapSunset X (Twitter) bio. Once the app loads, verify the version reads `BitmapSunset 0012` in the app settings.
 
 ---
 
@@ -140,6 +140,14 @@ When the script editor is open, you have additional mouse interactions for paint
 
 The script updates dynamically as you paint. It can also be modified manually, and errors are displayed in the console.
 
+### Orbit camera
+
+When the script editor is open, the camera enters orbit mode, rotating around the bitmap you're editing. Use the **mouse wheel** to control the orbit radius (distance from the bitmap). The camera synchronizes with a smooth AUTO transition when entering or exiting orbit mode.
+
+### Teleport
+
+Type a bitmap number in the toolbar's **go** input field and press Enter to fly directly to that bitmap's location on the map. This is the fastest way to navigate to a specific bitmap without editing a script.
+
 ### Flat view
 
 Click **flat** in the toolbar to switch to a top-down 2D view. This is useful for seeing which bitmaps are colored (via `pixels` commands) and where mosaics are placed. Click **flat** again to return to the 3D perspective.
@@ -161,6 +169,8 @@ The toolbar runs along the top edge of the app window. From left to right:
 | **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
 | **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (each bitmap displays only its owner's rendering commands on its own tile). See Section 11. |
 | **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
+| **canvas** | Toggles the 3D viewport between fullscreen and a movable/resizable window (1024×768 windowed). |
+| **go [bitmap #]** | Teleport input — enter a bitmap number and press Enter to fly directly to it. |
 | **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
 | **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
 | **console** | Toggles the **Console Panel**, which shows script compilation and error messages. |
@@ -179,6 +189,7 @@ When you click **edit**, the Scripts Panel appears on the left side of the scree
 | **Pen icon** | Toggles direct text editing mode in the script area. |
 | **color** + swatch | Click the color swatch to pick a color. This sets the color for the `color` command and for primitives. |
 | **💾** (floppy disk) | **Export BMP** — compiles your script into a `.bmp` file and saves it to your computer. This is the file you inscribe onchain. |
+| **🗑** (trash) | Clears/resets the script content. |
 | **📋** (clipboard) | Copies/exports the script content. |
 | **❌** (close) | Closes the Scripts Panel. |
 
@@ -234,6 +245,10 @@ Click **settings** to access detailed options organized into categories:
 
 - **Target FPS** — frame rate cap (default 60). Lowering to 30 reduces camera sensitivity.
 
+- **Look Speed** (0–100) — controls camera rotation sensitivity. Lower values reduce how fast the camera turns when moving the mouse.
+
+- **Orbit Radius** — controls the orbit camera distance when in editor/orbit mode.
+
 - **FOV** — field of view angle.
 
 - **Far Plane** — draw distance.
@@ -245,6 +260,14 @@ Click **settings** to access detailed options organized into categories:
 - **Sky / Atmosphere** — toggle physically-based sky rendering.
 
 - **Background Color** — custom background when sky is disabled.
+
+### Ban List Panel
+
+The ban list panel lets you filter out unwanted content. You can ban specific block numbers and inscription hashes to prevent them from loading. Bans are persisted in your browser's localStorage and take effect immediately — banned content is skipped during fetch and will not render in the 3D world.
+
+- **Ban a block:** Enter a bitmap number to prevent that block's content from loading.
+- **Ban an inscription:** Enter an inscription hash to block a specific inscription from rendering.
+- **Remove a ban:** Delete the entry from the ban list to restore loading.
 
 ### Mirror System and Multiverse Architecture
 
@@ -265,7 +288,7 @@ In the current release, only the Bitcoin blockchain is displayed. The surroundin
 Every BitmapSunset script is a plain text file. Here's the general structure:
 
 ```
-BSS 0 0 11
+BSS 0 0 12
 editBitmap <bitmap_number>
 editSunset <sunset_number>
 <resource definitions>
@@ -278,10 +301,10 @@ editSunset <sunset_number>
 The very first line must always be the version header. It must match the app version you're targeting.
 
 ```
-BSS 0 0 11
+BSS 0 0 12
 ```
 
-This reads as: *BitmapSunset Script version 0.0.11*. The app uses this header for backward compatibility when the script language evolves.
+This reads as: *BitmapSunset Script version 0.0.12*. The app uses this header for backward compatibility when the script language evolves.
 
 ### Editor Commands (optional, local only)
 
@@ -323,6 +346,8 @@ Slot 0 and slot 1 now hold inscription references that you can use in `bind` com
 ## 6. Displaying Images (Quads)
 
 A **quad** is a flat rectangular surface used to display an image inscription in 3D space — think of it as a custom billboard or poster.
+
+> **SVG support (v0.0.12):** SVG inscriptions (`svg+xml` content type) are now supported. Any SVG inscription can be displayed on quads, billboards, and mosaics — including collections like FTW Collective and love_messages.
 
 ### Basic quad
 
@@ -468,7 +493,7 @@ This places a green cube, a blue sphere, and a magenta square pyramid at differe
 Here's a script that showcases every primitive side by side, each as both solid and wireframe:
 
 ```
-BSS 0 0 11
+BSS 0 0 12
 translate 0 0 0
 scale 100000 100000 100000
 tx 100000 tz 0 solid triangle tz 1000 wire triangle
@@ -481,7 +506,7 @@ tx 700000 tz 0 solid cone tz 1000 wire cone
 tx 800000 tz 0 solid sphere tz 1000 wire sphere
 ```
 
-> **Known issue (v0.0.11):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that currently only affects primitive shapes — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being investigated. Support for `color` on models is planned for a future version.
+> **Known issue (v0.0.12):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that currently only affects primitive shapes — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being investigated. Support for `color` on models is planned for a future version.
 
 ---
 
@@ -594,7 +619,7 @@ Block War uses the same script commands as normal building. You still inscribe y
 **Example** — color someone else's bitmap red from your own script:
 
 ```
-BSS 0 0 11
+BSS 0 0 12
 bitmaps 1 <target_bitmap_number>
 pixels 1 ff0000
 ```
@@ -681,14 +706,14 @@ bitmap 444
 
 ```
 # On bitmap 12345 (your main build):
-BSS 0 0 11
+BSS 0 0 12
 resource 0 <inscription_id_of_model>
 scale 5000 5000 5000 bind 0 solid model
 ```
 
 ```
 # On any other bitmap (clone):
-BSS 0 0 11
+BSS 0 0 12
 bitmap 12345
 ```
 
@@ -771,7 +796,7 @@ Once confirmed on the blockchain, your build is permanently onchain. Anyone runn
 ### Complete example — a world with a 3D model, floor image, and avatar
 
 ```
-BSS 0 0 11
+BSS 0 0 12
 resource 0 <inscription_id_of_gltf_model>
 scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 bind 0 solid model
 resource 1 <inscription_id_of_floor_image>
@@ -796,7 +821,7 @@ BitmapSunset displays over 900,000 bitmaps. When the app launches, it needs to d
 
 OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user’s browser.
 
-> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.12. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
+> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.13. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
 
 ### Loading Order
 
@@ -829,7 +854,7 @@ Here’s how to write and inscribe a bootstrapping script for an OG BitmapSunset
 **Step 1: Write the script**
 
 ```
-BSS 0 0 11
+BSS 0 0 12
 editSunset <your_sunset_number>
 resource 0 <inscription_id_for_billboard_image>
 bind 0 billboard
@@ -941,7 +966,14 @@ The `sat` keyword acts as a redirect: the child inscription is a lightweight poi
 
 ### Backward compatibility
 
-Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` keyword instead of `resource`/`bind`/`quad`). These still render when fetched. However, if you're writing new scripts, always use `BSS 0 0 11` syntax. A parent script in `0 0 10` can call a child script in `0 0 11`, but the main/parent script should ideally be updated to `0 0 11` for full compatibility.
+Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` keyword instead of `resource`/`bind`/`quad`). These still render when fetched. However, if you're writing new scripts, always use `BSS 0 0 12` syntax. A parent script in `0 0 10` can call a child script in `0 0 12`, but the main/parent script should ideally be updated to `0 0 12` for full compatibility.
+
+### Version compatibility
+
+| From | To | Changes |
+|---|---|---|
+| v0.0.10 | v0.0.11 | `image` keyword replaced with `resource`/`bind`/`quad` pipeline |
+| v0.0.11 | v0.0.12 | Identical syntax — passthrough (all changes are app-level: SVG support, orbit camera, ban list, teleport, canvas window) |
 
 ### v0.0.10 vs v0.0.11 syntax comparison
 
@@ -994,6 +1026,16 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - To create a user account, log in, or provide any personal data. There is no identity system, login mechanism, or personal data collection.
 
+### Content Filtering
+
+BitmapSunset includes multiple layers of content filtering to protect users from malicious or unwanted content:
+
+- **SVG sanitization:** All SVG inscriptions are processed through a DOMParser-based allowlist that permits only safe HTML/SVG tags and attributes. Dangerous protocols (`javascript:`, `data:text`) are blocked. Recursive SVG references are resolved with depth limits (max 3 levels), reference count limits (max 50), and size caps (2MB per reference).
+
+- **Ban list:** Users can ban specific block numbers and inscription hashes to prevent unwanted content from loading. Bans persist in browser localStorage and take effect immediately during fetch.
+
+- **Size caps:** Individual inscription blobs are capped at 50MB. GLTF models are limited to 64 chunks and 50MB total binary size.
+
 ### Best practices:
 
 - Always verify the BitmapSunset inscription ID using trusted sources (the official @BitmapSunset X account).
@@ -1030,9 +1072,9 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 ### "ERROR L0 C0 invalid magic / invalid token / invalid version"
 
-- The `BSS 0 0 11` header must be the **very first line** of the script. Nothing before it — no blank lines, no spaces.
+- The `BSS 0 0 12` header must be the **very first line** of the script. Nothing before it — no blank lines, no spaces.
 
-- Make sure you're running app version 0.0.11 (check in settings — it should read `BitmapSunset 0011`).
+- Make sure you're running app version 0.0.12 (check in settings — it should read `BitmapSunset 0012`).
 
 - If you copied the script from X/Twitter, check that no timestamp or extra text was accidentally pasted at the end.
 
@@ -1050,7 +1092,17 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - Try `scale 10000 10000 10000` to make it large enough to find.
 
+### SVG inscription not rendering
+
+- Verify the inscription has `svg+xml` content type. Other XML formats are not supported.
+
+- The SVG may contain blocked content (e.g., `javascript:` URLs or `data:text` URIs). These are stripped by the sanitizer for security.
+
+- Check if the SVG references external resources that exceed the 2MB per-reference size limit or the recursive resolution depth limit (3 levels, 50 references max).
+
 ### Camera too sensitive / spinning too fast
+
+- Adjust the **Look Speed** slider (0–100) in settings to reduce camera rotation sensitivity.
 
 - Reduce the **target FPS** to 30 in the app settings.
 
@@ -1070,7 +1122,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 ### Models not visible on mirror maps
 
-- Known bug in v0.0.11. Models appear on the primary (A) mirror but may not render on other mirrors.
+- Known bug in v0.0.12. Models appear on the primary (A) mirror but may not render on other mirrors.
 
 - Using `editBitmap` teleports you to the A mirror where models are visible.
 
@@ -1094,7 +1146,11 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 - Check the console panel for error messages. If the script failed to parse, the export will not produce a valid file.
 
-- Make sure the `BSS 0 0 11` header is present and correct.
+- Make sure the `BSS 0 0 12` header is present and correct.
+
+### Content not loading (banned)
+
+- Check the **ban list** panel — you may have previously banned the block number or inscription hash. Remove the ban entry to restore loading.
 
 ---
 
@@ -1103,7 +1159,7 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 ## 20. Quick Reference Card
 
 ```
-BSS 0 0 11                          ← version header (always first line)
+BSS 0 0 12                          ← version header (always first line)
 editBitmap <number>                  ← teleport editor to bitmap (local only)
 editSunset <number>                  ← select sunset billboard (local only)
 resource <slot> <inscription_id>     ← register inscription to a slot
@@ -1144,6 +1200,8 @@ bind <slot> script                   ← execute referenced script (supports tra
 | **background** | Change viewport background color |
 | **multiverse** | Switch Block War (default) / Bitmap rendering mode |
 | **shade 0/1/2** | Toggle render layers |
+| **canvas** | Toggle fullscreen / movable window |
+| **go [bitmap #]** | Teleport to a bitmap number |
 | **edit** | Open/close the script editor |
 | **settings** | Open camera, rendering, DMT options |
 | **console** | Show/hide compilation messages |
@@ -1157,6 +1215,7 @@ bind <slot> script                   ← execute referenced script (supports tra
 | **Gizmo tools** | Switch translate / rotate / scale mode |
 | **Pen** | Toggle text editing |
 | **color swatch** | Pick color for primitives |
+| **🗑** | Clear/reset script content |
 | **💾** | Export script as .bmp file |
 | **📋** | Copy/export script |
 | **❌** | Close editor |
