@@ -1,14 +1,14 @@
-<h1 align="center">🟧 BitmapSunset 🌇 <br> Exploring the Bitcoin Multiverse<br></h1>
+<h1 align="center">🟧 BitmapSunset 🌇 <br> Build and Explore the Bitcoin Multiverse<br></h1>
 
 <p align="center">
-  <a href="https://ordinals.com/content/42d68f827add0681426a541d861293e24db5f8928b042c4dd5a83704fc2aa8cfi0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.12-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
-  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.12-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
-  <a href="https://magiceden.io/ordinals/marketplace/bitmapsunset"><img src="https://img.shields.io/badge/🛒_Support_on-Magic_Eden-purple?style=for-the-badge" alt="Magic Eden Marketplace"/></a>
+  <a href="https://ordinals.com/content/d34d9f417e34f1e4ae531ec9ab99948fba22ec61e138706138aa69b9b4ce4b47i0"><img src="https://img.shields.io/badge/🚀_Launch_App-v0.0.13-orange?style=for-the-badge" alt="Launch BitmapSunset"/></a>
+  <a href="vibedoc.md"><img src="https://img.shields.io/badge/📄_VIBEDOC-v0.0.13-19d2a6?style=for-the-badge" alt="Vibedoc"/></a>
+  <a href="https://ord-dropz.xyz/secondary/collections/bitmapsunset"><img src="https://img.shields.io/badge/🛒_Support_on-OrdDropz-purple?style=for-the-badge" alt="OrdDropz Marketplace"/></a>
   <a href="https://x.com/i/chat/group_join/g1998381136075002019/OS4j4rmw6E"><img src="https://img.shields.io/badge/💬_Join_Chat-X-black?style=for-the-badge" alt="Join X Chat"/></a>
 </p>
 
 <div align="center">
-<a href="nfts/pics/bitmap_599.png"><img src="nfts/pics/bitmap_599.png" width="92%"/></a>
+<a href="nfts/pics/bitmap_651.png"><img src="nfts/pics/bitmap_651.png" width="92%"/></a>
 </div>
 
 <br>
@@ -20,11 +20,11 @@
 <details>
 <summary><strong>1. Abstract</strong></summary>
   
-BitmapSunset is a fully onchain 3D metaverse application built on Bitcoin Ordinals. It transforms the entire Bitcoin blockchain into a navigable three-dimensional landscape, where each of the over 900,000 mined Bitcoin blocks is represented as a discrete tile in a persistent, shared world. Bitmap owners can inscribe scripts onto their blocks to place 3D models, images, geometric primitives, and other visual content into this world, creating permanent, censorship-resistant builds that are visible to all users.
+BitmapSunset is a fully onchain 3D metaverse application built on Bitcoin Ordinals, running on both desktop and mobile browsers. It transforms the entire Bitcoin blockchain into a navigable three-dimensional landscape, where each mined Bitcoin block is represented as a discrete tile in a persistent, shared world that extends automatically as new blocks are added. Bitmap owners can inscribe scripts onto their blocks to place 3D models, images, geometric primitives, and other visual content into this world, creating permanent, censorship-resistant builds that are visible to all users.
 
-The application runs entirely in the browser, reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints, and requires no wallet connection, no proprietary server infrastructure, and no user accounts. Everything that exists in the BitmapSunset world is a Bitcoin inscription. The application itself is a Bitcoin inscription. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data — the same decentralized infrastructure that serves all ordinals applications.
+The application runs entirely in the browser, reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints, and requires no wallet connection, no proprietary server infrastructure, and no user accounts. Everything that exists in the BitmapSunset world is a Bitcoin inscription. The application itself is a Bitcoin inscription. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data, the same decentralized infrastructure that serves all ordinals applications.
 
-This vibe paper describes the architecture, scripting system, tokenomics, bootstrapping mechanism, security model, and future direction of BitmapSunset.
+This vibe paper describes the architecture, scripting system, collection mechanics, bootstrapping mechanism, security model, and future direction of BitmapSunset.
 
 </details>
 
@@ -39,7 +39,7 @@ This vibe paper describes the architecture, scripting system, tokenomics, bootst
 
 The concept of a digital metaverse has been explored extensively, yet existing implementations share common limitations: centralized infrastructure, mutable state controlled by platform operators, dependency on external servers, and the impermanence of digital assets. When a centralized metaverse platform shuts down, the worlds built within it disappear. Users own nothing; they rent access to someone else's servers.
 
-The Bitcoin Ordinals protocol introduced a paradigm shift by enabling arbitrary data to be inscribed directly onto the Bitcoin blockchain. The Bitmap protocol, created by [@blockamoto](https://x.com/blockamoto), extended this by assigning each Bitcoin block a unique digital identity, claimable as an ordinal inscription. Together, these innovations created the raw material for a new kind of metaverse: one where both the land and the structures built upon it exist as permanent, immutable Bitcoin inscriptions.
+The Bitcoin Ordinals protocol, created by [@rodarmor](https://x.com/rodarmor), introduced a paradigm shift by enabling arbitrary data to be inscribed directly onto the Bitcoin blockchain. The Bitmap protocol, created by [@blockamoto](https://x.com/blockamoto), extended this by assigning each Bitcoin block a unique digital identity, claimable as an ordinal inscription. Together, these innovations created the raw material for a new kind of metaverse: one where both the land and the structures built upon it exist as permanent, immutable Bitcoin inscriptions.
 
 ### The Vision
 
@@ -58,11 +58,11 @@ The project has been in continuous development for over two years, representing 
 
 ### Bitcoin Ordinals
 
-Bitcoin Ordinals is a protocol that assigns a unique serial number to each individual satoshi, allowing arbitrary data to be attached to it as an inscription. Inscriptions are stored in Bitcoin's witness data and are propagated, validated, and stored by every full node on the network. This makes inscriptions permanent, censorship-resistant, and verifiable without reliance on any external infrastructure.
+Bitcoin Ordinals is a protocol created by [@rodarmor](https://x.com/rodarmor) that assigns a unique serial number to each individual satoshi, allowing arbitrary data to be attached to it as an inscription. Inscriptions are stored in Bitcoin's witness data and are propagated, validated, and stored by every full node on the network. This makes inscriptions permanent, censorship-resistant, and verifiable without reliance on any external infrastructure.
 
 ### Bitmap
 
-Bitmap is a metaprotocol built on Ordinals, created by [@blockamoto](https://x.com/blockamoto), that maps each Bitcoin block to a unique digital asset. A bitmap is claimed by inscribing a specific pattern that references a block number. Once claimed, a bitmap functions as a deed to a specific tile in the BitmapSunset world. There are as many bitmaps as there are mined Bitcoin blocks, currently exceeding 900,000.
+Bitmap is a metaprotocol built on Ordinals, created by [@blockamoto](https://x.com/blockamoto), that maps each Bitcoin block to a unique digital asset. A bitmap is claimed by inscribing a specific pattern that references a block number. Once claimed, a bitmap functions as a deed to a specific tile in the BitmapSunset world. There are as many bitmaps as there are mined Bitcoin blocks, growing with every new block added to the chain.
 
 ### Parent-Child Inscriptions
 
@@ -83,7 +83,7 @@ Ordinals recursive endpoints allow inscriptions to reference and load the conten
 
 ### Design Philosophy: Digital Matter Theory (DMT)
 
-BitmapSunset is built around the concept of Digital Matter Theory (DMT) — a framework for treating Bitcoin block data as the raw material for digital worlds. Every architectural decision, from how the blockchain is laid out as terrain to how mirror cells extend the landscape, follows from the principle that Bitcoin’s data structures are the substrate on which spatial computing is built. DMT settings in the application control the rendering of this substrate: world topology, mirror depth, level of detail, and base/block level interpretation.
+BitmapSunset is built around the concept of Digital Matter Theory (DMT), a framework for treating Bitcoin block data as the raw material for digital worlds. Every architectural decision, from how the blockchain is laid out as terrain to how mirror cells extend the landscape, follows from the principle that Bitcoin’s data structures are the substrate on which spatial computing is built. DMT settings in the application control the rendering of this substrate: world topology, mirror depth, level of detail, and base/block level interpretation. In the default configuration, each block's visual height combines two layers: Bitcoin mining difficulty, which forms a stepped terrain that changes every 2016 blocks, and the total BTC value transacted in the block, which gives each tile its individual height.
 
 ### Application Delivery
 
@@ -91,15 +91,17 @@ BitmapSunset is itself an ordinal inscription. The application code, including t
 
 ### Rendering Engine
 
-The rendering engine is a custom-built WebGL-based 3D graphics pipeline written in TypeScript, without reliance on third-party frameworks. This architectural decision was made to achieve full control over the rendering stack, which is essential for displaying a massive world composed of over 900,000 discrete tiles, each potentially containing user-generated 3D content.
+The rendering engine is a custom-built WebGL-based 3D graphics pipeline written in TypeScript, without reliance on third-party frameworks. This architectural decision was made to achieve full control over the rendering stack, which is essential for displaying a massive world composed of one tile per mined Bitcoin block, each potentially containing user-generated 3D content.
 
-The world layout follows the ordinalswallet bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. The engine renders this grid with configurable mirror reflections at the boundaries, creating the visual impression of an infinite, seamless landscape extending in all directions. The 3D viewport supports both fullscreen and movable/resizable windowed modes, and the camera system includes an orbit mode that rotates around the active bitmap when the editor is open.
+The world layout follows the [@ordinalswallet](https://x.com/ordinalswallet) bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. The engine renders this grid with configurable mirror reflections at the boundaries, creating the visual impression of an infinite, seamless landscape extending in all directions. The 3D viewport supports both fullscreen and movable/resizable windowed modes.
+
+The camera system supports free-flight, orbit, and third-person modes with smooth transitions between them. The third-person mode follows a character model with gravity, collision, and skeletal animation.
 
 ### Script Compiler and Virtual Machine
 
 User-authored scripts are written in the BitmapSunset Script language (BSS), a domain-specific text format designed for compactness. The compiler parses BSS source text, validates syntax and semantics, and emits a compact binary representation. This binary is encoded into a BMP image file for inscription. The choice of the BMP format is no coincidence: scripts for bitmap, stored as bitmaps. Every inscribed script appears as a visible image on ordinals explorers, turning each new inscription into a recognizable visual signature that sparks curiosity and draws attention to the application.
 
-At runtime, the virtual machine decodes BMP inscriptions back into binary, then interprets the instruction stream to instantiate 3D objects, apply transforms, set colors, and execute referenced subscripts.
+At runtime, the virtual machine decodes BMP inscriptions back into binary, then interprets the instruction stream to instantiate 3D objects, apply transforms, set colors, and execute referenced subscripts. Malformed images and scripts fail closed and are auto-banned to their per-type ban list to prevent repeated decode attempts across sessions.
 
 </details>
 
@@ -116,33 +118,38 @@ BSS is a declarative, line-oriented scripting language purpose-built for describ
 
 | Component | Description |
 |---|---|
-| **Version Header** | `BSS 0 0 12` — Required first line. Identifies the script version for backward compatibility. |
-| **Editor Commands** | `editBitmap <number>` — Teleports the editor camera to the specified bitmap. `editSunset <number>` — Selects which sunset billboard to edit. These are local-only convenience commands ignored by the virtual machine when scripts are fetched onchain. |
-| **Resource Slots** | `resource <slot> <inscription_id>` — Registers an inscription (model, image, or script) into a numbered slot for reuse. |
-| **Control Commands** | `bind <slot>`, `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, per-axis shorthands (`sx`, `sy`, `sz`, `tx`, `ty`, `tz`, `rx`, `ry`, `rz`), `solid`, `wire`, `color <hex>` — Can appear in any order before an object command. `color` currently affects primitive shapes only; model support is planned. **Known issue (v0.0.12):** `color` may unintentionally affect the bitmap tile color in addition to the shape — this bug is being investigated. |
-| **Object Commands** | `model`, `billboard`, `mosaic`, `script`, and primitives — **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `quad` doubles as a textured surface when bound to an image resource. |
-| **Cross-Referencing** | `bind <slot> script` — Loads and executes another script inscription with full transform support. `bitmap <number>` — Creates a live link to another bitmap’s most recent build (no transforms; auto-updates when the source bitmap is updated). |
-| **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <colors>` — Special painting and fetching commands that color bitmap tiles on the map. Independent from the `color` control command. Mosaic coordinates are map-space positions corresponding to bitmap numbers. |
+| **Version Header** | `BSS 0 0 13`: Required first line. Compiles into a 9-byte binary header containing a magic signature, version, and filesize. The filesize field enables strict end-of-file validation against BMP padding overflow. |
+| **Target Commands** | `block <number>` targets a bitmap for the build; `sunset <number>` targets a sunset for billboard / mosaic. Both are serialized into the binary. `block` carries `color` (tile tint) via a COLOR opcode preceding BLOCK. `sunset` accepts `color`, `translate`, and mosaic / billboard binds in the text syntax; `color` fills the sunset billboard with a solid color (via a COLOR opcode preceding the BILLBOARD opcode in the binary), while the parser consumes `translate` and binds to create separate billboard and mosaic objects. The SUNSET opcode itself carries only the sunset number. When the script runs onchain, the parent inscription determines the target bitmap or sunset; the author's `block` / `sunset` values are only used in the editor, where no parent inscription exists. |
+| **Named Inscriptions** | `inscription <name> <inscription_id>`: Registers an inscription (model, image, SVG, HTML, or subscript) under a short name. Names are 1–16 alphanumeric characters (first character must be a letter; reserved keywords are rejected) and survive the binary round-trip, so onchain scripts carry meaningful identifiers instead of opaque indices. |
+| **Control Commands** | `scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, `color 0xRRGGBB`: Can appear in any order before an object command. Shapes additionally accept `wire` and `alpha 0xBB`. Object commands take the inscription name as a direct argument (`model <name>`, `quad <name>`, `script <name>`). **Note:** A `color` preceding the `block` command also sets the bitmap tile tint; this is independent from the `bitmaps`/`pixels` painting commands. |
+| **Object Commands** | `model`, `script`, and primitives. **2D:** `triangle`, `quad`, `circle`; **3D:** `tripyr`, `squpyr`, `cube`, `cone`, `sphere`. Terminates a statement and triggers rendering. `billboard <name>` and `mosaic <name>` are inscription-binding modifiers consumed by the `sunset` command rather than standalone terminals. `quad` doubles as a textured surface (image / SVG) when bound to a named inscription. |
+| **Comments** | `#` line and inline comments are tokenized as dedicated `COMMENT` / `COMMENT_INLINE` opcodes and round-trip through the binary; the comment bytes ride along with the on-chain inscription and are visible to any re-decoder. |
+| **Hex literals** | `0xRRGGBB` (6 hex digits) or `0xRRGGBBAA` (8 hex digits, combined color + alpha) for `color`; `0xRRGGBB` for `pixels`. The tokenizer emits the `0x` prefix form for writes and accepts both prefixed and bare forms for backward compatibility with older scripts. |
+| **Cross-Referencing** | `script <name>`: Loads and executes another script inscription. The parser rejects all modifiers on `script`, so the referenced script runs at its authored transforms. `bitmap <number>`: Creates a live link to another bitmap's most recent build; auto-updates when the source bitmap is re-inscribed. |
+| **Map Painting** | `bitmaps <count> <ids>`, `pixels <count> <hex_values>`: Paint commands that color bitmap tiles on the map and queue them for fetch. Independent from the `color` control command. Mosaic coordinates are map-space positions corresponding to bitmap numbers. |
 
 ### Rendering Modes
 
-Objects can be rendered in solid mode (filled, opaque surfaces) or wire mode (wireframe outlines). Both modes can be applied simultaneously to the same object, which is useful for visualization during editing. `solid` and `wire` are control commands that can appear anywhere before the object command.
+Shapes render filled by default. The `wire` control command renders the next shape as wireframe outlines instead. Filled rendering is the default for every shape, so no explicit keyword is needed; simply omit `wire`. Wire applies only to primitive shapes, not models.
 
 ### Composability
 
 BSS supports two powerful mechanisms for cross-referencing content across the world:
 
-- **Script referencing:** A script can load and execute another script inscription using `bind <slot> script`. The referenced script runs with full transform support, enabling code reuse, collaborative building, and modular scene composition.
-
+- **Script referencing:** A script can load and execute another script inscription using `script <name>`. The referenced script runs at its authored transforms (the `script` statement accepts no modifiers), enabling code reuse, collaborative building, and modular scene composition.
 - **Bitmap cloning:** The `bitmap <number>` command creates a live link to another bitmap's most recent build. When the source bitmap is updated, all clones automatically reflect the change, enabling efficient multi-bitmap deployments from a single source.
+
+### Inscription Kind Validation
+
+Because `inscription` declarations carry only a name and an inscription ID (the underlying content type is discovered only after the fetch completes), the virtual machine validates the **kind** at apply time. The `mosaic` and shape commands (including `quad`) accept only image or SVG inscriptions; binding an HTML-only (iframed) inscription surfaces an editor console error rather than silently rendering an empty tile. Only `billboard` accepts the full set (image, SVG, HTML-via-iframe). Cross-script reference chains (`script <name>` and `bitmap <N>`) are additionally capped at 8 levels deep to block runaway recursion and fetch bombs.
 
 ### Compilation and Encoding
 
-The BSS compiler performs a multi-stage pipeline: source text is parsed and validated, then emitted as a compact binary instruction stream. This binary is encoded into the pixel data of a BMP image file. The resulting BMP file is the artifact inscribed onto the blockchain. At runtime, the process reverses: the BMP is decoded, the binary is extracted, and the virtual machine executes the instructions. A full round-trip verification ensures encoding integrity before export.
+The BSS compiler runs a multi-stage pipeline: source text is tokenized and validated with line:column tracking, then emitted as a compact binary instruction stream. The stream is encoded into the pixel data of a BMP image file. The resulting BMP is the artifact inscribed onto the blockchain. At runtime, the process reverses: the BMP is decoded, the binary is extracted, the filesize is validated against the decoded length, and the virtual machine executes the instructions. A full round-trip verification (text → binary → BMP → binary → text) ensures encoding integrity before export, and the editor disables the export button on tabs that have compile errors.
 
 ### Backward Compatibility
 
-The version header enables forward migration between BSS revisions. Scripts written for earlier versions (e.g., `BSS 0 0 10`) use older syntax such as the `image` keyword instead of the current `resource`/`bind`/`quad` pipeline, but remain renderable by the current virtual machine. New scripts should always target the latest version (`BSS 0 0 12`). The transition from v0.0.11 to v0.0.12 is a passthrough — identical script syntax, with all changes at the app level (SVG support, orbit camera, ban list, teleport, canvas window). A parent script in an older version can call a child script in a newer version, though updating the parent to the latest syntax is recommended for full compatibility.
+The version header enables forward migration between BSS revisions. Older onchain scripts (`BSS 0 0 9` through `BSS 0 0 12`) remain renderable via dedicated reader paths. New scripts should always target the latest version (`BSS 0 0 13`). A parent script in an older version can call a child script in a newer version; updating the parent to `0 0 13` is recommended for full feature parity.
 
 </details>
 
@@ -155,7 +162,7 @@ The version header enables forward migration between BSS revisions. Scripts writ
 
 ### Overview
 
-The BitmapSunset collection consists of 600 unique ordinal inscriptions, numbered 0 through 599. Each BitmapSunset is a development screenshot captured during the building process of the application, documenting the evolving visual state of the 3D world engine. These images were collected organically over the course of development, making each one a historical artifact of the project's progression.
+The BitmapSunset collection currently consists of over 650 unique ordinal inscriptions, numbered from 0 upward. Each BitmapSunset is a development screenshot captured during the building process of the application, documenting the evolving visual state of the 3D world engine. These images were collected organically over the course of development, making each one a historical artifact of the project's progression. The original 600 items (0–599) form the core collection, with new items added as development continues.
 
 <div align="center">
 <a href="nfts/bitmap_sunset.png"><img src="nfts/bitmap_sunset.png" width="92%"/></a>
@@ -163,11 +170,11 @@ The BitmapSunset collection consists of 600 unique ordinal inscriptions, numbere
 
 ### Utility
 
-BitmapSunset holders receive concrete in-application utility:
+The application is free to use, without paywalls or gatekeepers: anyone can explore the world, write scripts, preview builds, and export inscription files. Owning a bitmap is only needed to inscribe a BitmapSunset script onchain as its child using regular inscription services, making your build permanently visible to everyone who launches the app. Bitmaps are claimed through the open bitmap protocol and are not sold by the developer. The BitmapSunset collection is a series of development screenshots released as artistic inscriptions; sales support ongoing development. Holders receive in-application perks as a thank-you for supporting the project:
 
 - **Billboard control:** Each OG BitmapSunset (0–99) corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. Holders can replace the default sunset image with any inscription of their choosing and rule over their patch, creating a persistent, high-visibility display space.
 
-- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and even lend or monetize bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.13.
+- **Bootstrapping authority:** OG sunset holders (0–99) can inscribe scripts on their sunsets that specify which bitmaps should be loaded first when any user opens the application. This priority loading mechanism gives sunset holders the ability to curate the initial user experience. Holders can promote multiple bitmaps and share bootstrap slots by including other bitmap owners in their loading queue. Bootstrap support for sunsets 100–599 is targeted for v0.0.14.
 
 - **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at map-space positions corresponding to bitmap numbers, enabling ground-level art, territorial markers, and large-scale visual compositions visible from altitude. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
@@ -176,9 +183,10 @@ BitmapSunset holders receive concrete in-application utility:
 | Range | Trait | Description |
 |---|---|---|
 | **0–99** | OG | Original sunsets. Billboards positioned over 100×100 bitmap patches in the central map cell. First to load, highest visibility. Bootstrapping authority active. Future evolution into cubitmaps (giant floating 3D structures) with parceling and building capabilities. |
-| **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.13. Billboard placement planned for a future release. |
+| **100–599** | Extended | Extended collection. Bootstrapping authority targeted for v0.0.14. Billboard placement planned for a future release. |
+| **600+** | Expansion | Ongoing expansion. New screenshots captured during active development. |
 
-The collection is available on Magic Eden for secondary trading. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development — the current 600 items were collected over approximately two years, so the remaining 400 are expected to take over a year of continued work.
+The collection is being transitioned to an immutable onchain gallery format using ord's native gallery inscriptions (CBOR-encoded metadata in tag 17), ensuring permanent, decentralized provenance independent of any marketplace. Expansion to 1,000 items is planned, though because each BitmapSunset is a screenshot captured during the development process, new items are added at the natural pace of ongoing development.
 
 </details>
 
@@ -191,35 +199,29 @@ The collection is available on Magic Eden for secondary trading. Expansion to 1,
 
 ### The Discovery Problem
 
-With over 900,000 bitmaps in existence, the application faces a fundamental discovery challenge: it cannot know which bitmaps contain builds without querying each one individually. Sequential scanning from block 0 to the chain tip is impractical for initial load times. A mechanism is needed to prioritize the most active and curated content.
+With every mined Bitcoin block represented as a bitmap, the application faces a fundamental discovery challenge: it cannot know which bitmaps contain builds without querying each one individually. Sequential scanning from block 0 to the chain tip is impractical for initial load times. A mechanism is needed to prioritize the most active and curated content.
 
 ### Solution Architecture
 
 Bootstrapping solves this through a hierarchical priority loading system:
 
-1. **Phase 1:** The application fetches OG BitmapSunset scripts (sunsets 0–99), ordered by sunset number. These scripts contain `bitmaps` commands that identify which bitmaps should be loaded.
+1. **Phase 1: Sunset scripts:** OG BitmapSunset scripts (sunsets 0–99) are fetched automatically at startup, ordered by sunset number. These scripts contain `bitmaps` commands that identify which bitmaps should be loaded.
 
-2. **Phase 2:** Border-land bitmaps (0–999) are fetched, as these occupy the visible edges of the initial viewport.
+2. **Phase 2: Seed bitmaps:** When the user clicks the **fetch** button in the toolbar, bitmap data fetching begins. A hardcoded seed list of bitmaps is fetched alongside sunset-discovered bitmaps. Both sources feed the same bootstrap queue; additional bitmaps chain transitively via `bitmaps` commands in scripts. Until fetch is activated, no bitmap data is downloaded regardless of bootstrap priority.
 
-3. **Phase 3:** Sequential fetching proceeds from bitmap 1000 upward through the entire chain.
+Bootstrapped bitmaps can themselves reference additional bitmaps, creating a chaining effect. A single sunset can bootstrap a network of builds through transitive references. This gives sunset holders significant curatorial power over the world's initial presentation without requiring any centralized coordination.
 
-Critically, bootstrapped bitmaps can themselves reference additional bitmaps, creating a chaining effect. A single sunset can bootstrap a network of builds through transitive references. This gives sunset holders significant curatorial power over the world's initial presentation without requiring any centralized coordination.
-
-The bootstrapping sequence begins when the user clicks the **fetch** button in the toolbar to activate blockchain data fetching. Until fetch is activated, no bitmap data is downloaded regardless of bootstrap priority.
-
-Even without a sunset or a low-number bitmap, any user of the application can highlight a bitmap with the mouse cursor and force it to be loaded on demand, ensuring that no build is permanently hidden.
-
-> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.13. Once enabled, Phase 1 will expand to include all 600 sunsets, extending priority loading authority to the full collection.
+Even without a sunset or a low-number bitmap, any user can double-click a bitmap to force it to be loaded on demand, ensuring that no build is permanently hidden. A seed list of pioneer scripts is maintained manually and embedded in the application. If you have a high bitmap number and want your build included in the next version, reach out to [@BitmapSunset](https://x.com/BitmapSunset).
 
 ### Local Caching and Continuous Synchronization
 
-Currently, the application re-fetches all bitmap data from the blockchain each session. As the world grows, this becomes impractical. A planned local cache will store fetched scripts and world data on the user's device, allowing the application to launch almost instantly by rendering from cached state rather than streaming everything from scratch.
+The application maintains an IndexedDB cache for inscription content: scripts, bitmap-page JSON, blockheight, glTF models, images, and resolved SVG references are stored locally after their first fetch. Subsequent sessions serve cached inscriptions instantly while still walking the bootstrap sequence to discover newly-inscribed builds. What isn't cached yet is the per-session world state; the bootstrap queue and per-bitmap discovery still re-run on launch, just much faster because most inscriptions are already local.
 
-However, the world is not static. Builders continuously inscribe new scripts and update existing ones. The bootstrapping mechanism serves a dual purpose here: beyond initial discovery, it provides the backbone for continuous synchronization. On each session, the application will walk the bootstrap sequence and compare timestamps against cached data, detecting which bitmaps have been updated since the last visit. Only changed scripts are re-fetched, while the rest of the world loads from local storage. This means that even once all 900,000+ bitmaps have been cached, a lightweight polling process will keep running in the background to ensure the world stays current — new builds appear, updated scripts replace old ones, and the local cache gradually converges on the live state of the blockchain.
+The next step is per-script timestamp resolution (via `/r/inscription/<id>` metadata) so the cache can detect updated scripts without re-fetching their bytes, and cached bootstrap state so the application can skip the discovery walk entirely and converge to the live blockchain state via a lightweight background poll. With those in place, even once every bitmap has been cached, a continuous polling process keeps the world current: new builds appear, updated scripts replace old ones, and the local cache converges on the live blockchain state.
 
-### Economic Implications
+### Visibility and Collaboration
 
-Bootstrapping creates a natural value hierarchy. OG BitmapSunset holders and low-number bitmap owners have guaranteed early visibility. High-number bitmap owners can gain visibility through relationships with sunset holders, creating organic economic incentives around curation, promotion, and collaborative building. Sunset holders can monetize bootstrap slots by lending priority positions in their loading queue to other bitmap owners.
+Bootstrapping creates a natural visibility hierarchy. OG BitmapSunset holders and low-number bitmap owners appear first. High-number bitmap owners can gain visibility through relationships with sunset holders, encouraging collaboration and community curation.
 
 </details>
 
@@ -230,31 +232,9 @@ Bootstrapping creates a natural value hierarchy. OG BitmapSunset holders and low
 <details>
 <summary><strong>8. Block War</strong></summary>
 
-### Concept
+Block War is a pixel-painting layer on top of the metaverse. Using the `bitmaps`, `pixels`, and `mosaic` commands, any builder can change the base color of bitmaps they do not own and stamp images on their ground plane. Every viewer sees these contributions layered over the map. Property rights at the inscription layer (only a bitmap's owner can inscribe a child script on it) are still enforced by the Ordinals protocol; Block War only affects tile colors and ground-level imagery, not 3D structures.
 
-Block War is the default mode in BitmapSunset's toolbar **multiverse** dropdown, transforming it into a shared, competitive canvas. In Block War mode, the application renders cross-bitmap commands from all loaded scripts, meaning that builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
-
-> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes only. It is entirely distinct from the broader cross-chain multiverse architecture described in Section 10, which refers to the spatial tiling of multiple blockchain landscapes. A future release will rename this dropdown to eliminate the ambiguity and introduce a separate control for teleporting between blockchain landscapes.
-
-Think of it as a shared canvas layered on top of the standard world — players can enhance each other's builds, place graffiti, or wage territorial pixel wars.
-
-### Mechanics
-
-Block War leverages the `bitmaps`, `pixels`, and `mosaic` commands to enable cross-bitmap interaction. From your own bitmap's script, you can target any other bitmap on the map. Switching to Bitmap mode restricts rendering so that only the owner's commands take effect on their tile. Block War mode reveals the full competitive layer: every loaded script's cross-bitmap commands become visible.
-
-The same script commands used for normal building apply in Block War. The difference is scope: a builder's `pixels` command can paint bitmaps they do not own, their `mosaic` command can stamp images on foreign ground, and their 3D structures can occupy contested territory.
-
-### Strategic Dimensions
-
-- **Territorial control:** Players use the `pixels` command to paint bitmaps in faction colors across large swaths of the map, visible to all Block War participants.
-
-- **Visual occupation:** The `mosaic` command allows players to stamp logos, flags, or images on the ground plane of contested bitmaps.
-
-- **Structural presence:** 3D models and primitive shapes can be placed to create visible landmarks and territorial markers.
-
-- **Script stacking:** Multiple Block War scripts can accumulate effects on a single bitmap, creating collaboratively or competitively layered scenes.
-
-All Block War inscriptions are permanent. They persist on the blockchain indefinitely, creating an immutable record of territorial contests and collaborative builds.
+Think of it as a persistent pixel war: factions paint territory in their colors, stamp logos on contested ground, and the results accumulate from every loaded script. All Block War inscriptions are permanent and immutable onchain.
 
 </details>
 
@@ -283,11 +263,19 @@ BitmapSunset was designed with the goal of reducing trust requirements wherever 
 
 ### Content Sanitization
 
-SVG inscriptions are processed through a DOMParser-based allowlist sanitizer. Only known-safe HTML/SVG tags and attributes are permitted; all others are stripped. Dangerous URI protocols (`javascript:`, `data:text`) are blocked. Recursive SVG references (e.g., `<use>` and `<image>` elements referencing other inscriptions) are resolved with enforced limits: a maximum recursion depth of 3 levels, a cap of 50 total references, and a 2MB size limit per individual reference. GLTF models are limited to 64 chunks and 50MB total binary size. Individual inscription blobs are capped at 50MB.
+All inscription content is sanitized, size-capped, and validated before use. Recursive references are depth-limited. Malformed or oversized content is automatically rejected. The application is hardened against injection vectors, and automated checks run before every release.
+
+### Iframe Isolation for HTML Billboards
+
+HTML inscriptions rendered on `billboard` surfaces are embedded in a hardened sandbox with strict Content Security Policy, no access to cookies or origin state, and a broad permissions lockdown. When a user enters interactive mode, every iframe receives a visible orange outline and an **"External inscription content"** badge to prevent UI spoofing by malicious inscriptions.
 
 ### User-Controlled Content Filtering
 
-The ban list system allows users to block specific Bitcoin block numbers and inscription hashes, preventing banned content from loading or rendering. Bans are persisted in the browser's localStorage and take effect immediately during the fetch process. This gives users direct control over what content appears in their view of the world, without requiring any centralized moderation.
+The ban list system provides a tabbed window with five categories (universal, image, script, model, and inscription), giving users fine-grained control over what content appears in their view of the world. Bans are persisted in the browser's localStorage and take effect immediately during the fetch process. Auto-bans from image and script decode failures appear in the corresponding tab, so users can inspect and clear them individually. This layered approach requires no centralized moderation while still letting users manage both manual bans and automatic rejections. A future release will add subscribable ban list inscriptions: users will be able to subscribe to lists maintained by anyone they trust, build and share their own, and opt out at any time. Curation is bottom-up: there is no central authority deciding what is visible; each user assembles their own filtering from the lists they choose.
+
+### Author Protections
+
+Because inscribing is permanent and irreversible, the editor enforces its own validation layer to prevent an author from committing a script that won't render. A full round-trip (text → binary → BMP → binary → text) is executed on every export, and the export button is disabled on tabs with compile errors.
 
 ### Verification
 
@@ -306,17 +294,27 @@ Users are encouraged to verify the BitmapSunset inscription ID through the offic
 
 BitmapSunset's rendering engine uses a two-level mirror system that serves both as a visual seamlessness technique and as the structural foundation for a future cross-chain multiverse.
 
-At the first level, each blockchain is rendered as a **root cell** containing the actual blockchain data, surrounded by concentric **rings of mirror cells**. Each ring adds a layer of symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — eliminating visible seams at every boundary. The first ring adds 8 mirror cells, the second ring adds 16, and so on. From the ground, the mirroring is imperceptible: a user flying across the landscape sees a continuous, infinite-looking world rather than a tiled grid with hard edges. The number of mirror rings rendered is configurable (0–7) as a performance setting, where 0 displays only the root cell.
+At the first level, each blockchain is rendered as a **root cell** containing the actual blockchain data, surrounded by concentric **rings of mirror cells**. Each ring adds a layer of symmetrically reflected copies of the root (mirrored on the X axis, the Z axis, or both), eliminating visible seams at every boundary. The first ring adds 8 mirror cells, the second ring adds 16, and so on. From the ground, the mirroring is imperceptible: a user flying across the landscape sees a continuous, infinite-looking world rather than a tiled grid with hard edges. The number of mirror rings rendered is configurable (1–6) as a performance setting; lowering the tier reduces the ring count, trading horizon seamlessness for frame time.
+
+### World Layers
+
+Before extending the multiverse to other blockchains, the same architecture enables multiple presentation layers of the Bitcoin map itself. Each layer renders the same blockchain data through a different visual lens, and users can switch between them or run them side by side. Planned layers include:
+
+- **City** (current default): the orange-block skyline visible today.
+- **RPG**: procedural terrain derived from block data using Perlin noise, turning the blockchain into an explorable landscape with elevation, biomes, and natural features.
+- **Content layers**: thematic filters such as SFW or NSFW, where each layer selectively shows or hides inscriptions based on subscribable ban lists.
+
+Layers are additive: a user could explore the RPG terrain while other layers run on the same blocks. Because layers share the same underlying block data and inscription set, builds inscribed once are visible across every layer that chooses to render them.
 
 ### From Mirrors to Multiverse
 
 The concentric mirror pattern repeats at a higher level to form the multiverse. Bitcoin's root cell and its surrounding mirror rings occupy the center position. Eight surrounding positions, each itself a root cell with its own mirror rings, are reserved for additional blockchain landscapes. The architecture is recursive: the same structure used to make a single blockchain seamless is reused to tile multiple blockchains into a unified navigable world.
 
-In the current release, only the Bitcoin blockchain is displayed. The surrounding blockchain positions are not yet populated. The mirror rings function purely as seamless world extension, creating the visual impression of an infinite Bitcoin landscape. When cross-chain support is added, each surrounding position would render a different blockchain's map protocol (such as .dogemap or other .\*map equivalents), with its own root cell and its own mirror rings.
+In the current release, only the Bitcoin blockchain is displayed with the City layer. The surrounding blockchain positions are not yet populated. The mirror rings function purely as seamless world extension, creating the visual impression of an infinite Bitcoin landscape. When cross-chain support is added, each surrounding position would render a different blockchain's map protocol (such as .dogemap or other .\*map equivalents), with its own root cell, its own mirror rings, and its own set of available layers.
 
 ### Navigation and Spawn
 
-Users spawn in the center of the Bitcoin root cell — the primary, non-mirrored representation of the blockchain. This is where the OG BitmapSunset billboards (0–99) are positioned, ensuring they are the first structures visible to every user. Flying outward, a user crosses into Bitcoin's mirror cells, then eventually into the territory of neighboring blockchain patches. Each blockchain's root cell contains its own unique content; its surrounding mirrors reflect that content seamlessly.
+Users spawn in the center of the Bitcoin root cell, the primary, non-mirrored representation of the blockchain. This is where the OG BitmapSunset billboards (0–99) are positioned, ensuring they are the first structures visible to every user. Flying outward, a user crosses into Bitcoin's mirror cells, then eventually into the territory of neighboring blockchain patches. Each blockchain's root cell contains its own unique content; its surrounding mirrors reflect that content seamlessly.
 
 ### Design Principles
 
@@ -331,83 +329,46 @@ This design preserves Bitcoin's primacy: it occupies the center, loads first, an
 <details>
 <summary><strong>11. Development Roadmap</strong></summary>
 
-The following roadmap reflects the current development trajectory. Items are grouped by domain and roughly ordered by priority within each group, but timelines are fluid — BitmapSunset is a solo development effort and features ship when they're ready.
+The following reflects the long-term vision for BitmapSunset. Timelines are fluid; this is a solo development effort and features ship when they're ready. Detailed changelogs for each release are published separately.
 
-### v0.0.12 — Current Release
+### Scripting Language
 
-- **SVG inscription support** — any `svg+xml` inscriptions now render on quads, billboards, and mosaics.
-- **SVG sanitization** — DOMParser-based allowlist, protocol blocking, recursive resolution with depth/size limits.
-- **Ban list system** — user-controlled filtering of blocks and inscriptions, persisted in localStorage.
-- **Movable/resizable render window** — 3D viewport as a draggable window with fullscreen/windowed toggle.
-- **Orbit camera** — rotating camera with mouse wheel radius control, synchronized AUTO transition.
-- **Look Speed setting** — camera rotation speed slider in settings.
-- **Camera normalization** — rotation normalized by viewport size with tuned angular constants.
-- **Teleport UI** — "go" button with bitmap number input in toolbar for direct navigation.
-- **Script editor clear button** — trash icon to reset script content.
-- **Sunset pics on loading window** — sunset inscription images displayed during loading.
-- **GLTF size limits** — max 64 chunks, 50MB total binary size cap.
-- **Inscription blob size cap** — 50MB per inscription.
-- **Background fade effects** — smoother loading transitions.
-
-### v0.0.13 — Next Release
-
-- **Bootstrap support for sunsets 100–599**, extending priority loading authority to the full collection.
-- **Official ordinal ord gallery/collection support.**
-- **Rendering improvements** across all mirror maps and high-number bitmaps.
-
-### BSS Language Evolution
-
-- **New shape primitives:** text, cylinder, and tube opcodes.
-- **Texture on shapes:** ability to apply inscription textures to primitive shapes, not just quads and models.
-- **Push/pop transform stack:** opcodes for hierarchical transforms, enabling grouped object positioning.
-- **Script comments:** support for inline comments, line information, and formatting.
-- **Loop and control flow:** iteration and conditional logic, evolving BSS toward a full virtual machine with program counter and execution context.
-- **BSS language specification** published on GitHub, enabling AI-assisted vibe coding where language models can generate valid BitmapSunset scripts from natural language descriptions.
-- **Official bitmap color/image format** support for the emerging bitmap protocol standard.
-- **Reinscription support** as a lower-cost alternative to parent-child inscriptions for updating bitmap scripts. A new `sat` keyword will allow a child inscription to act as a lightweight pointer to a specific satoshi. The application will resolve the latest reinscription on that satoshi via the `/r/sat/<sat_number>` recursive endpoint, enabling cheap updates without new parent-child inscriptions.
+- New shape primitives (text, cylinder, tube) and texture support on all primitives.
+- Hierarchical transforms via push/pop opcodes for grouped object positioning.
+- Loop and control flow, evolving BSS toward a full virtual machine.
 
 ### Editor and User Experience
 
-- **Bitmap directory and teleportation:** a pre-fetched gallery of all bitmaps that contain builds, allowing users to click and teleport directly to active builds.
-- **BMP import:** the ability to extract the original script text from a previously inscribed BMP file, enabling script recovery and inspection.
-- **Asset library window:** an in-editor browser for selecting inscription resources.
-- **Enhanced script error reporting** with interactive input, clickable error navigation, verbose logging, and configurable log limits.
-- **Mobile support:** touch controls, free camera for mobile, and performance configuration presets for mobile devices.
+- Bitmap directory with teleportation to active builds.
+- BMP import for script recovery from previously inscribed files.
+- Asset library for browsing inscription resources in-editor.
+- Touch-first gizmos and mobile-optimized editor layout.
 
 ### World and Gameplay
 
-- **Cubitmaps:** OG billboards (0–99) will be transformed into cubitmaps — giant floating 3D structures where holders can display images on all sides and build on top. These cubitmaps will feature parceling, enabling subdivided building within a sunset holder's domain. Each cubitmap could host its own lobby area.
-- **Billboard placement for sunsets 100–599:** dedicated 2D billboard positions on mirror cells bordering neighboring blockchain patches, complementary to but distinct from OG cubitmaps.
-- **Parceling system:** individual bitmaps will be subdividable, allowing builders to work at finer spatial resolution within a single tile. Support for Bitmon parcels planned first, followed by inscribing additional parcel data onchain.
-- **Playable characters and avatars:** BRC-420 avatar integration at human scale, with skeletal animation (skinning) support for animated characters.
-- **Third-person camera:** a camera mode that follows avatars, enabling cinematic exploration of bitmap creations.
-- **Interactive inscription display:** rendering other ordinal inscriptions as interactive screens on quads and billboards, allowing HTML inscriptions, videos, and other onchain applications to be displayed and interacted with inside the 3D world. This would enable portals between BitmapSunset and other ordinals applications.
-- **GLSL billboards:** shader-based dynamic billboards for more expressive visual content.
-- **Collection expansion** to 1,000 BitmapSunset items, growing at the pace of development as new screenshots are captured. Future sunsets may cover additional blockchain landscapes within the multiverse framework.
+- **Cubitmaps:** OG billboards (0–99) evolve into giant floating 3D structures with parceling and building on all sides.
+- **Billboard placement for sunsets 100–599:** dedicated positions on mirror cells bordering neighboring blockchain patches.
+- **Parceling:** support for official parceling with [@mononautical](https://x.com/mononautical) bitfeed layout.
+- **Playable characters and avatars:** customizable player inscription with animation control support.
+- **Interactive inscriptions:** other ordinal applications displayed as interactive screens inside the 3D world, enabling portals between projects.
+- **World layers:** multiple presentation modes (City, RPG terrain, content layers) over the same blockchain data.
+- Collection expansion to 1,000 BitmapSunset items.
 
-### Performance and Streaming
+### Rendering and Performance
 
-- **Reduce shape vertex count** for lighter inscriptions and better rendering performance.
-- **Default model scale normalization** so that imported GLTF models appear at a reasonable size without requiring manual scale adjustments.
-- **Streaming controls:** user-configurable fetch frequency and resource consumption visibility.
-- **Rune-based priority ranking** for bitmap loading, leveraging the `/r/utxo` recursive endpoint to weight loading order by rune holdings.
+- Water and terrain rendering.
+- Multiple light sources beyond the single directional sun.
+- Virtual texturing for large-scale rendering without VRAM limits.
+- Streaming controls and rune-based priority ranking for bitmap loading.
 
-### Rendering
+### Long-Term
 
-- **Order-independent transparency (OIT)** for correct alpha blending of overlapping transparent surfaces.
-- **Multiple light sources** and physically-based rendering (PBR) for more realistic scene illumination.
-- **Virtual texturing** and model instancing for large-scale world rendering.
-- **Depth buffer precision improvements** for reducing visual artifacts at distance.
-
-### Long-Term Vision
-
-- **Physics engine** to enable interaction with the world: collision detection, gravity, and drivable vehicles including the puppet kart.
-- **Networking and multiplayer** so that users can see each other's avatars in real time, transforming BitmapSunset from a single-player exploration tool into a shared social space.
-- **Spatial indexing** for models, enabling efficient collision queries and proximity-based interactions at scale.
-- **Cross-chain multiverse rendering** with support for additional blockchain landscapes displayed in surrounding patches alongside Bitcoin's central patch. Each blockchain rendered as its own root cell with concentric mirror rings, navigable by flying across patch boundaries.
-- **Progressive open-sourcing** of the full codebase — the project repository is hosted at github.com/BitmapSunset/bitmap_sunset, with source availability expanding over time to enable community-driven development and scaling beyond a solo developer effort.
-- **Minecraft-style terrain and sandbox features** that were prototyped in early development and set aside for the onchain release, planned for reintroduction.
-- **Onchain builder rankings** to surface and reward the most active and creative builders in the world.
+- Physics and drivable vehicles.
+- Networking and multiplayer.
+- Cross-chain multiverse rendering with additional blockchain landscapes in surrounding patches.
+- Progressive open-sourcing of the codebase at github.com/BitmapSunset/bitmap_sunset.
+- Minecraft-style terrain and sandbox features, prototyped early and planned for reintroduction.
+- Onchain builder rankings.
 
 </details>
 
@@ -433,7 +394,45 @@ Bitcoin is the most secure, decentralized, and enduring digital infrastructure e
 <details>
 <summary><strong>Acknowledgments</strong></summary>
 
-BitmapSunset would not exist without the bitmap protocol. Many thanks to [@blockamoto](https://x.com/blockamoto) for inventing it — without his work, this project would never have been conceived.
+BitmapSunset would not exist without the bitmap protocol. Many thanks to [@blockamoto](https://x.com/blockamoto) for inventing it; without his work, this project would never have been conceived. Thanks to [@rodarmor](https://x.com/rodarmor) for creating ord and the Ordinals protocol that made it all possible, to [@boppleton](https://x.com/boppleton) for maintaining the OCI (On-Chain Index) that maps bitmaps to their satoshi IDs, to [@mononautical](https://x.com/mononautical) for the bitfeed transaction layout, to [@ordinalswallet](https://x.com/ordinalswallet) where the bitmap community formed and minted the first 800k bitmaps to catch up to the current block in what became known as the blockout, and to [@TheBlockRunner](https://x.com/TheBlockRunner) whose podcast is where I first heard of bitmap.
+
+Special thanks to the 22 BitmapSunset holders for their support, their help testing the app, the time they took to engage on social media, and the scripts they inscribed onchain. Every build, every piece of feedback, and every shared screenshot pushed the project forward. This would be a lonely metaverse without you.
+
+And thanks to Satoshi Nakamoto for building the foundation all of this stands on.
+
+</details>
+
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------->
+##
+<details>
+<summary><strong>Glossary</strong></summary>
+
+| Term | Meaning |
+|---|---|
+| **bitmap** | A Bitcoin block claimed as an ordinal under the bitmap protocol. One bitmap = one tile in the 3D world. |
+| **sunset** | A BitmapSunset collection inscription (0–99 OG, 100–599 extended, 600+ expansion). |
+| **OG sunset** | BitmapSunset 0–99. Owns a billboard in the central map cell and carries bootstrapping authority. Future evolution: cubitmap. |
+| **billboard** | A vertical image surface positioned over a 100×100 bitmap patch. Placed for OG sunsets. |
+| **mosaic** | A flat image stamped on the ground plane at map-space coordinates (image or SVG; not HTML). |
+| **cubitmap** *(planned)* | Giant floating 3D structure that OG billboards will evolve into, with parceling and building on all sides. |
+| **BSS / script** | BitmapSunset Script, the text source you write, compiled into binary and inscribed as a BMP. |
+| **inscription (keyword)** | A BSS declaration `inscription <name> <hash>` that registers an ordinal inscription under a short name for later use via `quad <name>`, `model <name>`, `billboard <name>`, etc. |
+| **bind** | Binary opcode that links a named inscription to an object. In text, use the direct-argument form instead (`model <name>`, `quad <name>`, etc.). |
+| **inscription** | Arbitrary data attached to a single satoshi on the Bitcoin blockchain via the Ordinals protocol. |
+| **parent / child** | Ordinals parent-child relationship. A BitmapSunset build script is inscribed as a child of a bitmap or sunset inscription. |
+| **recursive endpoint** | `/r/...` URL on an ordinals content server that lets inscriptions load each other's content at runtime. |
+| **Bitmap Boot** | Execution path for a script inscribed as a child of a bitmap. Parent sets the target tile. |
+| **Sunrise Boot** | Execution path for a script inscribed as a child of a sunset. Parent sets the billboard and bootstrap queue. |
+| **flat mode** | Top-down 2D view of the map, useful for seeing `pixels` / `mosaic` placement. |
+| **Block War** | The default cross-bitmap rendering model: every builder's cross-bitmap commands are visible to every viewer. |
+| **bootstrapping** | OG-sunset-controlled priority loading. `bitmaps` commands inside a sunset script queue those bitmaps for Phase 1 loading. |
+| **multiverse architecture** | The cross-chain spatial tiling framework where Bitcoin's root cell is surrounded by eight reserved positions for additional blockchain landscapes. Architectural term only; no in-app toggle carries this name in v0.0.13. |
+| **round-trip** | The editor pipeline: source → binary → BMP → binary → source. Deterministic; a green console means the export is on-chain-safe. |
+| **OCI (On-Chain Index)** | On-chain index maintained by [@boppleton](https://x.com/boppleton), mapping bitmap numbers to satoshi IDs, covering ~942k bitmaps. |
+| **assert ID** | Unique tag on every reader rejection path, enforced for uniqueness at build time. |
+| **round-trip / fuzzer** | Editor-side and build-side validation layers that catch malformed inputs before they reach either the on-chain BMP or the live VM. |
 
 </details>
 
@@ -443,6 +442,58 @@ BitmapSunset would not exist without the bitmap protocol. Many thanks to [@block
 
 <br>
 <div>
+<a href="nfts/pics/bitmap_650.png"><img src="nfts/thumbs/bitmap_650.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_649.png"><img src="nfts/thumbs/bitmap_649.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_648.png"><img src="nfts/thumbs/bitmap_648.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_647.png"><img src="nfts/thumbs/bitmap_647.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_646.png"><img src="nfts/thumbs/bitmap_646.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_645.png"><img src="nfts/thumbs/bitmap_645.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_644.png"><img src="nfts/thumbs/bitmap_644.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_643.png"><img src="nfts/thumbs/bitmap_643.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_642.png"><img src="nfts/thumbs/bitmap_642.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_641.png"><img src="nfts/thumbs/bitmap_641.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_640.png"><img src="nfts/thumbs/bitmap_640.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_639.png"><img src="nfts/thumbs/bitmap_639.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_638.png"><img src="nfts/thumbs/bitmap_638.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_637.png"><img src="nfts/thumbs/bitmap_637.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_636.png"><img src="nfts/thumbs/bitmap_636.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_635.png"><img src="nfts/thumbs/bitmap_635.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_634.png"><img src="nfts/thumbs/bitmap_634.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_633.png"><img src="nfts/thumbs/bitmap_633.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_632.png"><img src="nfts/thumbs/bitmap_632.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_631.png"><img src="nfts/thumbs/bitmap_631.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_630.png"><img src="nfts/thumbs/bitmap_630.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_629.png"><img src="nfts/thumbs/bitmap_629.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_628.png"><img src="nfts/thumbs/bitmap_628.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_627.png"><img src="nfts/thumbs/bitmap_627.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_626.png"><img src="nfts/thumbs/bitmap_626.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_625.png"><img src="nfts/thumbs/bitmap_625.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_624.png"><img src="nfts/thumbs/bitmap_624.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_623.png"><img src="nfts/thumbs/bitmap_623.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_622.png"><img src="nfts/thumbs/bitmap_622.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_621.png"><img src="nfts/thumbs/bitmap_621.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_620.png"><img src="nfts/thumbs/bitmap_620.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_619.png"><img src="nfts/thumbs/bitmap_619.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_618.png"><img src="nfts/thumbs/bitmap_618.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_617.png"><img src="nfts/thumbs/bitmap_617.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_616.png"><img src="nfts/thumbs/bitmap_616.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_615.png"><img src="nfts/thumbs/bitmap_615.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_614.png"><img src="nfts/thumbs/bitmap_614.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_613.png"><img src="nfts/thumbs/bitmap_613.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_612.png"><img src="nfts/thumbs/bitmap_612.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_611.png"><img src="nfts/thumbs/bitmap_611.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_610.png"><img src="nfts/thumbs/bitmap_610.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_609.png"><img src="nfts/thumbs/bitmap_609.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_608.png"><img src="nfts/thumbs/bitmap_608.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_607.png"><img src="nfts/thumbs/bitmap_607.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_606.png"><img src="nfts/thumbs/bitmap_606.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_605.png"><img src="nfts/thumbs/bitmap_605.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_604.png"><img src="nfts/thumbs/bitmap_604.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_603.png"><img src="nfts/thumbs/bitmap_603.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_602.png"><img src="nfts/thumbs/bitmap_602.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_601.png"><img src="nfts/thumbs/bitmap_601.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_600.png"><img src="nfts/thumbs/bitmap_600.png" width="15%"/></a>
+<a href="nfts/pics/bitmap_599.png"><img src="nfts/thumbs/bitmap_599.png" width="15%"/></a>
 <a href="nfts/pics/bitmap_598.png"><img src="nfts/thumbs/bitmap_598.png" width="15%"/></a>
 <a href="nfts/pics/bitmap_597.png"><img src="nfts/thumbs/bitmap_597.png" width="15%"/></a>
 <a href="nfts/pics/bitmap_596.png"><img src="nfts/thumbs/bitmap_596.png" width="15%"/></a>
@@ -1060,7 +1111,7 @@ BitmapSunset would not exist without the bitmap protocol. Many thanks to [@block
 
 - While inscriptions are permanently stored on the Bitcoin blockchain, access to them depends on ordinals content servers and infrastructure outside the creators' control.
 
-- All inscriptions are permanent and irreversible — once data is inscribed, it cannot be modified or deleted.
+- All inscriptions are permanent and irreversible; once data is inscribed, it cannot be modified or deleted.
 
 - It is your responsibility to comply with any applicable laws and regulations in your jurisdiction.
 

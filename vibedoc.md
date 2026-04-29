@@ -1,8 +1,8 @@
-# BitmapSunset - VibeDoc 0.0.12
+# BitmapSunset - VibeDoc 0.0.13
 
-**App version:** v0.0.12
+**App version:** v0.0.13
 
-**Script version:** BSS 0 0 12
+**Script version:** BSS 0 0 13
 
 **Source:** github.com/BitmapSunset/bitmap_sunset
 
@@ -16,43 +16,43 @@
 
 4. [The Interface](#4-the-interface)
 
-5. [Script Language Basics](#5-script-language-basics)
+5. [Using the Visual Editor](#5-using-the-visual-editor)
 
-6. [Displaying Images (Quads)](#6-displaying-images-quads)
+6. [Script Language Basics](#6-script-language-basics)
 
-7. [Displaying 3D Models](#7-displaying-3d-models)
+7. [Displaying Images (Quads)](#7-displaying-images-quads)
 
-8. [Primitive Shapes](#8-primitive-shapes)
+8. [Displaying 3D Models](#8-displaying-3d-models)
 
-9. [Billboard & Mosaic](#9-billboard--mosaic)
+9. [Primitive Shapes](#9-primitive-shapes)
 
-10. [Bitmap Painting](#10-bitmap-painting)
+10. [Billboard & Mosaic](#10-billboard--mosaic)
 
-11. [Block War](#11-block-war)
+11. [Bitmap Painting](#11-bitmap-painting)
 
 12. [Referencing Other Scripts & Bitmaps](#12-referencing-other-scripts--bitmaps)
 
-13. [Using the Visual Editor](#13-using-the-visual-editor)
+13. [Exporting & Inscribing to a Bitmap](#13-exporting--inscribing-to-a-bitmap)
 
-14. [Exporting & Inscribing to a Bitmap](#14-exporting--inscribing-to-a-bitmap)
+14. [Bootstrapping](#14-bootstrapping)
 
-15. [Bootstrapping](#15-bootstrapping)
+15. [Updating Scripts](#15-updating-scripts)
 
-16. [Updating Scripts](#16-updating-scripts)
+16. [Scale Reference](#16-scale-reference)
 
-17. [Scale Reference](#17-scale-reference)
+17. [Security & Safety](#17-security--safety)
 
-18. [Security & Safety](#18-security--safety)
+18. [Troubleshooting](#18-troubleshooting)
 
-19. [Troubleshooting](#19-troubleshooting)
+19. [Quick Reference Card](#19-quick-reference-card)
 
-20. [Quick Reference Card](#20-quick-reference-card)
+20. [Glossary](#20-glossary)
 
 ---
 
 ## 1. What is BitmapSunset?
 
-BitmapSunset is a 3D metaverse application built on Bitcoin Ordinals. The application itself is a Bitcoin inscription — the rendering engine, script compiler, virtual machine, and user interface are all inscribed on the Bitcoin blockchain. It visualizes the entire Bitcoin blockchain as a landscape of bitmap blocks — over 900,000 of them — laid out in a navigable 3D world.
+BitmapSunset is a 3D metaverse application built on Bitcoin Ordinals, the protocol created by [@rodarmor](https://x.com/rodarmor). The application itself is a Bitcoin inscription: the rendering engine, script compiler, virtual machine, and user interface are all inscribed on the Bitcoin blockchain. It visualizes the entire Bitcoin blockchain as a landscape of bitmap blocks (one per mined block, extending automatically as new blocks are added) laid out in a navigable 3D world.
 
 As a builder, you can inscribe scripts onto your bitmaps that place 3D models, images, shapes, and more into the world. Anyone running the app can fly around and see what you've built. Everything lives permanently onchain as Bitcoin inscriptions.
 
@@ -60,15 +60,15 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 - A **bitmap** is a Bitcoin block claimed as an ordinal, based on the bitmap protocol created by [@blockamoto](https://x.com/blockamoto). Each one corresponds to a tile in the 3D world.
 
-- A **BitmapSunset** (numbered 0–599) is a special ordinal from the BitmapSunset collection. There are two tiers:
+- A **BitmapSunset** (numbered 0 and up, currently 650+) is a special ordinal from the BitmapSunset collection. Each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development. There are three tiers:
 
-  - **OG sunsets (0–99):** The original collection pieces with billboard control and bootstrapping authority. Each OG sunset corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. In a future release, OG billboards will evolve into **cubitmaps** — giant floating 3D structures with parceling and building capabilities.
+  - **OG sunsets (0–99):** The original collection pieces with billboard control and bootstrapping authority. Each OG sunset corresponds to a billboard structure positioned over a 100×100 bitmap patch in the 3D world. In a future release, OG billboards will evolve into **cubitmaps**: giant floating 3D structures with parceling and building capabilities.
 
-  - **Sunsets 100–599:** An extended set that will gain bootstrap support (targeted for v0.0.13) and dedicated 2D billboard placement in a future release.
+  - **Extended sunsets (100–599):** An extended set that will gain bootstrap support (targeted for v0.0.14) and dedicated 2D billboard placement in a future release.
+
+  - **Expansion sunsets (600+):** Ongoing expansion. New screenshots captured during active development. The collection is planned to expand to 1,000 items over time.
 
 - **Mosaic placement:** The `mosaic` command stamps images flat on the ground plane at map-space positions corresponding to bitmap numbers. Currently available to all bitmap owners and BitmapSunset holders alike. In a future release, mosaic will become a BitmapSunset-exclusive feature.
-
-  The collection is planned to expand to 1,000 items over time — each BitmapSunset is a development screenshot captured during the building process, so new items are added at the pace of ongoing development.
 
 - A **script** is a plain text file (compiled to a `.bmp` image) that tells the app what to display on your bitmap.
 
@@ -80,73 +80,96 @@ As a builder, you can inscribe scripts onto your bitmaps that place 3D models, i
 
 **To build locally:** Nothing. You can write scripts and preview your creations without owning anything.
 
-**To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone. Only the bitmap owner can inscribe children on their own bitmap — property rights are enforced at the protocol level by the Ordinals parent-child mechanism.
+**To build onchain (inscribe your world):** You need to own a bitmap. Any bitmap lets you inscribe a script as a child inscription, making your build permanent and visible to everyone. Only the bitmap owner can inscribe children on their own bitmap; property rights are enforced at the protocol level by the Ordinals parent-child mechanism.
 
-**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99). This lets you control which bitmaps load first when anyone opens the app. Low-number bitmaps (0–999) also benefit from early loading priority as part of Phase 2, but do not have bootstrapping authority. Bootstrap support for sunsets 100–599 is targeted for v0.0.13.
+**To get bootstrapped (priority loading):** You need an OG BitmapSunset (0–99). This lets you control which bitmaps load first when anyone opens the app. A hardcoded seed list of bitmaps also loads alongside sunset-discovered bitmaps. Bootstrap support for sunsets 100–599 is targeted for v0.0.14.
 
-**Recommended browser:** Chrome or Brave with **hardware acceleration enabled** in your browser settings. Firefox works but performance may be lower.
+**Recommended browser:** Brave, Chrome, Firefox, or Safari with **hardware acceleration enabled** in your browser settings. Edge works but performance may be lower.
 
-**App link:** Use the most current link from the @BitmapSunset X (Twitter) bio. Once the app loads, verify the version reads `BitmapSunset 0012` in the app settings.
+**App link:** Use the most current link from the @BitmapSunset X (Twitter) bio. Once the app loads, verify the version: the browser tab title reads `BitmapSunset 0 0 13` and the script editor's console header reads `Bitmap Sunset 0 0 13`.
 
 ---
 
 ## 3. Navigation & Controls
 
-### Camera movement
+BitmapSunset offers multiple camera modes. The default **free-flight camera** lets you navigate at any altitude, from ground level to a bird's-eye view of the entire blockchain landscape. A **third-person (TPS) camera** mode lets you walk on bitmaps as a character with physics-based movement.
 
-BitmapSunset uses a free-flight camera. You can navigate the world at any altitude, from ground level to a bird's-eye view of the entire blockchain landscape.
+### Desktop controls
 
-- **WASD** or **Arrow keys** — move the camera forward, backward, left, and right.
+**Movement and camera:**
 
-- **Mouse** — look around by clicking and dragging.
+| Input | Action |
+|---|---|
+| **WASD / Arrow keys** | Move the camera (or character in TPS) |
+| **Left-click + drag** | Look around / orbit |
+| **Space** | Thrust upward (TPS jetpack) |
+| **Scroll wheel** | Movement speed (free camera) / player size (TPS) |
+| **Shift + scroll wheel** | Camera distance (TPS only) |
 
-- **Scroll wheel** — adjust movement speed.
+**Keyboard shortcuts:**
+
+| Key | Action |
+|---|---|
+| **E** | Toggle Free / TPS camera |
+| **C** | Toggle orbit mode |
+| **G** | Open or close the script editor |
+| **T** | Open the Teleport window |
+| **R** | Open settings |
+| **H** | Open help |
+| **B** | Open debug window (shows debug controls including a No VSync toggle; lives as an extra icon in the settings window header) |
+| **F** | Toggle fullscreen |
+| **Escape** | Cancel active gizmo drag (reverts transforms) / blur focused input |
+
+**Edit-mode bitmap interactions** (active only when the script editor is open):
+
+- **Shift + left-click and drag**: paint blocks with the selected color.
+- **Ctrl + left-click and drag**: erase blocks.
+- **Double-click a bitmap**: fetch its onchain script and open it in a new editor tab.
+
+The script updates dynamically as you paint. You can also edit the text manually; errors surface in the console.
+
+### Mobile controls
+
+Mobile is a first-class surface. Secondary windows (settings, scripts, help) auto-maximize on first open, and a conservative quality tier (**Rare**) is applied by default on touch devices.
+
+- **On-screen joystick** (drag on the left half of the viewport): equivalent to WASD.
+- **One-finger drag** (right half): look around.
+- **Two consecutive two-finger taps** (second two-finger touch within 500 ms of the first): toggle orbit mode (same as **C** on desktop).
+- **Double-tap** (within 300 ms, less than 30 px of motion): toggle Free / TPS camera (same as **E** on desktop).
+- **Pinch**: adjust zoom / movement speed.
+
+To fetch and open an onchain script on mobile, use the Teleport window or type a bitmap number into the `#` input next to the **+** button on the tab bar (see §4 "Scripts Panel"). The mouse-only double-click-to-fetch gesture has no touch equivalent in v0.0.13.
+
+Script editing is available but relies on the on-screen keyboard. Bitmap painting (Shift/Ctrl modifiers) is desktop-only in v0.0.13; mobile authoring is geared toward exploration, script loading, and tab editing.
 
 ### Speed behavior
 
-Camera speed changes depending on what you're doing:
+Opening the script editor switches the camera to free-flight mode, which has a lower default speed than TPS. Closing the editor restores the previous camera mode. Both speeds are independently adjustable (scroll wheel in free-flight, settings slider in TPS).
 
-- **Editor open** — camera speed is slow, tuned for precision placement.
+### Third-person camera (TPS)
 
-- **Editor closed** — camera speed is fast, tuned for exploring the map.
+Press **E** to toggle between free-flight and TPS mode. In TPS, a 3D character model spawns at the current camera position, snaps to the ground height of the bitmap below, and the camera follows it from behind with mouse yaw/pitch and adjustable distance.
 
-Toggle the **edit** button off and on to switch between fast exploration and slow editing.
+TPS mode includes basic physics:
 
-### Finding a specific bitmap
+- **Gravity** pulls the character downward toward the bitmap surface.
+- **Collision** against bitmap blocks. The character slides along walls rather than stopping and automatically steps up small elevation changes.
+- **Thrust** (Space) adds vertical acceleration, allowing the character to fly above the terrain temporarily.
+- **Animation** transitions automatically between idle, walk, fall, and thrust states with smooth crossfading between skeletal animations.
 
-If you know a bitmap number but can't find it visually:
-
-1. Click **edit** to open the script panel.
-
-2. Type `editBitmap <number>` in the script (e.g., `editBitmap 50000`).
-
-3. The camera will teleport directly to that bitmap's location on the map.
-
-You can also change the `editBitmap` number directly in the script text at any time to jump to a different location — it updates live.
-
-### Fetch mode
-
-When you first open the app, bitmap data isn't loaded yet. Click the **fetch** button in the toolbar to start downloading onchain scripts. As data loads, builds will appear across the map. Hover your mouse cursor over bitmaps to trigger individual downloads.
-
-### Edit mode interactions
-
-When the script editor is open, you have additional mouse interactions for painting bitmaps:
-
-- **Shift + left-click and drag** — paint blocks with the selected color.
-
-- **Ctrl + left-click and drag** — erase (clear blocks of their color).
-
-- **Ctrl + Shift + left-click** — fetch and execute the script attached to a block.
-
-The script updates dynamically as you paint. It can also be modified manually, and errors are displayed in the console.
+Movement speed scales with camera distance; zooming closer increases acceleration and max velocity for precise ground-level navigation.
 
 ### Orbit camera
 
-When the script editor is open, the camera enters orbit mode, rotating around the bitmap you're editing. Use the **mouse wheel** to control the orbit radius (distance from the bitmap). The camera synchronizes with a smooth AUTO transition when entering or exiting orbit mode.
+Press **C** or open the script editor to rotate the camera around the bitmap you're editing. Use the **mouse wheel** (or pinch on mobile) to control the orbit radius. A smooth AUTO transition synchronizes the camera when entering or exiting orbit mode.
 
 ### Teleport
 
-Type a bitmap number in the toolbar's **go** input field and press Enter to fly directly to that bitmap's location on the map. This is the fastest way to navigate to a specific bitmap without editing a script.
+Press **T** to open the Teleport window, type a bitmap number, and press Enter (or tap **go**) to fly directly to that bitmap. You can also change the `block <number>` value in the script editor; it updates live as you type.
+
+### Fetch mode
+
+When you first open the app, bitmap data isn't loaded yet. Click the **fetch** button in the toolbar to start downloading onchain scripts. As data loads, builds appear across the map. On desktop, double-click a bitmap to trigger an individual download; on mobile, the active fetch queue handles loading in the background while you navigate.
 
 ### Flat view
 
@@ -164,110 +187,166 @@ The toolbar runs along the top edge of the app window. From left to right:
 
 | Button | What it does |
 |---|---|
-| **fetch** | Toggles blockchain data fetching on/off. When active (green), the app downloads bitmap scripts from the blockchain. When off (red), no new data is loaded. You must click this to start seeing onchain builds. |
-| **flat** | Toggles between 3D terrain and a flat top-down map view. Flat mode is useful for getting an overview of colored bitmaps and mosaics. |
-| **background** | Opens a color picker to change the viewport background color. The colored swatch next to it shows the current background. |
-| **multiverse** | A dropdown to switch between **Block War** (default — cross-bitmap commands from all scripts are rendered) and **Bitmap** (each bitmap displays only its owner's rendering commands on its own tile). See Section 11. |
-| **shade 2 / shade 1 / shade 0** | Shader/render pass toggles. These control which rendering layers are visible. Useful for debugging visual issues. |
-| **canvas** | Toggles the 3D viewport between fullscreen and a movable/resizable window (1024×768 windowed). |
-| **go [bitmap #]** | Teleport input — enter a bitmap number and press Enter to fly directly to it. |
-| **edit** | Toggles the **Scripts Panel** open or closed. This is where you write and edit your build scripts. |
-| **settings** | Opens the **Settings Panel** with camera, rendering, and DMT options. |
-| **console** | Toggles the **Console Panel**, which shows script compilation and error messages. |
-| **help** | Opens the help/info overlay. |
+| **fetch** | Toggles blockchain data fetching on/off. When active (green online icon), the app downloads bitmap scripts from the blockchain. When off (red offline icon), no new data is loaded. You must click this to start seeing onchain builds. |
+| **flat** | Toggles between 3D terrain and a flat top-down map view. Useful for getting an overview of colored bitmaps and mosaics. |
+| **script** | Toggles the **Scripts Panel** open or closed (shortcut: **G**). |
+| **teleport** | Opens the Teleport window to fly directly to a bitmap number (shortcut: **T**). |
+| **ban** | Opens the **Ban List** window to block specific bitmap numbers or inscription hashes. |
+| **canvas** | Icon-only button that toggles the 3D viewport between fullscreen and a movable/resizable window. Windowed geometry is persisted. |
+| **help** | Opens the help overlay (shortcut: **H**). |
+| **settings** | Icon-only button that opens the **Settings Panel** with Performance / Camera / Atmosphere / DMT / Network sliders (shortcut: **R**). The settings window's header carries a bug icon that opens the **Debug** window. |
+| **pin** (thumbtack) | Pins the toolbar so it stays visible. When unpinned, the toolbar slides out of view (1.5 s after the app launches) and reappears when the mouse touches the top edge of the viewport. |
 
 ### Scripts Panel
 
-When you click **edit**, the Scripts Panel appears on the left side of the screen. This is your main workspace for building.
+Click **script** (or press **G**) and the Scripts Panel appears on the left side of the screen. This is your main workspace for building. The panel is organized into several components from top to bottom: a toolbar, a tab bar, the code editor, and an embedded console.
 
-**Title bar:** Shows "scripts" on the left. On the right side of the title bar you'll find the script toolbar icons:
+**Script toolbar:** The top row of the panel contains these icons:
 
 | Icon | What it does |
 |---|---|
+| **trash** | Hides the current tab after a confirmation prompt. The tab is removed from the tab bar but remains in the overflow dropdown, so you can restore it by selecting it there. Known issue: trash should permanently delete the tab but currently only hides it, same as the tab's **X** button. |
+| **recycle** | Resets the current tab to the default starter template. |
+| **wrap** | Toggles word-wrap on or off for the editor textarea and syntax overlay. State is persisted. |
+| **settings** (gear, small) | Opens the 15-swatch **syntax highlighting palette** popup to recolor the editor (keywords, numbers, hex, inscription hash, inscription name, bitmap, console, errors, and so on). |
 | **+** (plus) | Duplicates the currently selected object in the scene. |
-| **Gizmo tools** (three icons) | Switch between **Translate** (move), **Rotate**, and **Scale** gizmo modes. Click one, then click an object in the 3D view to manipulate it with the mouse. |
-| **Pen icon** | Toggles direct text editing mode in the script area. |
-| **color** + swatch | Click the color swatch to pick a color. This sets the color for the `color` command and for primitives. |
-| **💾** (floppy disk) | **Export BMP** — compiles your script into a `.bmp` file and saves it to your computer. This is the file you inscribe onchain. |
-| **🗑** (trash) | Clears/resets the script content. |
-| **📋** (clipboard) | Copies/exports the script content. |
-| **❌** (close) | Closes the Scripts Panel. |
+| **delete** (minus) | Removes the currently selected object from the script. |
+| **pen** (color picker) | Click the swatch to pick a color for the `color` command and painted primitives. |
+| **export** | Compiles the current tab, runs the round-trip, and downloads a `.bmp` **inscription artifact** (`bitmap_<N>.bmp`). This is the file you inscribe onchain. Disabled when the tab has compile errors. |
+| **save** | Downloads the current tab as a `.bss` **source file** (`bitmap_<N>.bss`). Use this for local backup or to share editable scripts. |
 
-**Script text area:** The large dark area below the toolbar is where your script text appears in green monospace font. You can type directly into it. Changes are reflected in the 3D viewport in real time.
+**Tab bar:** Below the toolbar, a tab bar supports multiple scripts simultaneously. Each tab keeps its own text, compile state, tokenization cache, and error list.
 
-### Console Panel
+| Action | What it does |
+|---|---|
+| **Click tab** | Switch to that script. The editor and 3D view update immediately. |
+| **Double-click tab label** | Rename the tab inline. |
+| **Drag tab** | Reorder tabs. A drop indicator shows where the tab will land. |
+| **X button on tab** | Close the tab (hides it; still accessible via the overflow dropdown, no confirmation). |
+| **+ button** | When the `#` field next to it is empty, create a new tab pre-populated with the BSS 0 0 13 starter (header + `block <N>` + `sunset 1` + `inscription runestone <hash>` + a `scale ... model runestone` example). |
+| **`#` bitmap input** | Text field immediately right of **+**. Type a bitmap number (with or without a leading `#`) and press Enter (or click **+**) to create a tab pre-populated with that bitmap's edit target, teleport the camera to it, and auto-fetch its onchain script. This is the mobile-friendly replacement for the desktop double-click-to-fetch gesture. |
+| **Overflow dropdown** | An expand button on the right side of the tab bar opens a dropdown listing every tab (visible and hidden) alphabetically, with a check mark next to tabs currently visible in the tab bar. Clicking a row switches to that tab; if it was closed (hidden), selecting it from the dropdown re-opens it in the tab bar. Closed tabs persist here for the session; there is no way to remove them permanently. |
+| **Double-click a bitmap** (in the 3D view) | Fetch the script attached to that bitmap and open it in a new tab. |
 
-When you click **console**, a panel appears at the bottom of the screen. It shows compilation feedback in green text:
+**Code editor:** The main text area features:
 
-- `Script text parsed successfully` — your script syntax is correct.
+- **Line number gutter**: line numbers displayed along the left edge, updating in real time as you type.
 
-- `Script binary written successfully` — the script was compiled to binary.
+- **Syntax highlighting**: keywords, numbers, inscription IDs, and other tokens are color-coded via an overlay that scrolls in sync with the text. Each tab caches its own tokenization.
 
-- `Script bitmap written successfully` — the binary was encoded into a BMP image.
+- **Status bar**: a bar at the bottom of the editor showing the number of compile errors and the current caret position (`Ln N, Col M`).
 
-- `Script bitmap read successfully` — the BMP was decoded back and verified.
+Changes to the script text are reflected in the 3D viewport in real time.
 
-- `Binary read successfully` — full round-trip verification passed.
+### Embedded Console
 
-If there are errors, the console will show the line and column number where parsing failed (e.g., `ERROR L3 C5 invalid token`). This is your primary debugging tool.
+The console is embedded directly below the code editor inside the Scripts Panel, separated by a **draggable splitter**. Drag the splitter up or down to resize the editor and console panes.
+
+The console shows a single success line after compilation, e.g.:
+
+```
+compiled successfully in 12 ms, .bmp size: 3 ko
+```
+
+This confirms the full round-trip passed: text → binary → BMP → binary → text.
+
+If there are errors, the console displays them with line and column numbers (e.g., `line 3, col 5: invalid token`). **Clickable errors:** hover over an error message to highlight it, then click to jump the cursor directly to the error's line and column in the editor. This is your primary debugging tool.
 
 ### 3D Viewport
 
-The main area of the screen shows the bitmap landscape in 3D. The world layout follows the ordinalswallet bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. Key things you'll see:
+The main area of the screen shows the bitmap landscape in 3D. The world layout follows the [@ordinalswallet](https://x.com/ordinalswallet) bitmap map convention, arranging all Bitcoin blocks in a 1000-column grid. Key things you'll see:
 
-- **Bitmap blocks** — the grid of tiles representing Bitcoin blocks. Each block can have its own color and 3D content.
+- **Bitmap blocks**: the grid of tiles representing Bitcoin blocks. Each block can have its own color and 3D content.
 
-- **Floating green numbers** — bitmap numbers that appear when you're close enough to read them. They help you identify which bitmap you're looking at.
+- **Floating green numbers**: bitmap numbers that appear when you're close enough to read them. They help you identify which bitmap you're looking at.
 
-- **Billboards** — tall structures along the edges where BitmapSunset holders display images.
+- **Billboards**: tall structures along the edges where BitmapSunset holders display images.
 
-- **Your objects** — any models, quads, primitives, or mosaics placed by scripts. Selected objects show an **orange wireframe outline** in the editor.
+- **Your objects**: any models, quads, primitives, or mosaics placed by scripts. Selected objects show a **cyan highlight overlay** in the editor. Hovered objects render in front of the scene (X-ray).
 
 ### Settings Panel
 
-Click **settings** to access detailed options organized into categories:
+Click **settings** (or press **R**) to access detailed options organized into categories. All settings are automatically saved to your browser's localStorage and restored on the next visit. Desktop defaults run at the **Legendary** tier for rendering sliders (Atmosphere, IBL, SSAO, Render, Precision, LOD, Mirrors, Texture) and 4096 for Models; the **IFrame** tier defaults to **Junk** (0 fetches per tick) to avoid bandwidth on first launch; raise it manually after clicking **fetch**. Touch devices start at **Rare** (Precision included).
 
-**DMT (Digital Matter Theory):** DMT is a conceptual framework for treating Bitcoin block data as the raw material for digital worlds. The settings in this category control how the blockchain landscape is rendered and structured.
+Almost every quality slider uses a 1–6 tier scale that maps to named presets:
 
-- **Multiverse** — same as the toolbar dropdown: switches between Block War (default) and Bitmap modes. See Section 11.
+| Tier | Name |
+|---|---|
+| 1 | Junk |
+| 2 | Common |
+| 3 | Uncommon |
+| 4 | Rare |
+| 5 | Epic |
+| 6 | Legendary |
 
-- **Mirror** (0–7) — number of concentric mirror rings rendered around the root cell. The root cell contains the actual Bitcoin blockchain map. Each ring adds a layer of symmetrically reflected copies of the root — mirrored on the X axis, the Z axis, or both — creating a seamless, infinite-looking landscape with no visible seams at the boundaries. 0 displays only the central root cell, 1 adds the first ring of 8 mirrored copies, 2 adds a second ring of 16, and so on. Higher values look more expansive but cost performance.
+A seventh label, **Custom**, is shown on the composite **Quality** readout when you manually mix the underlying sliders so they no longer match a single preset.
 
-- **Lod Quality** (0–100) — level of detail. Lower values improve performance.
+**Performance:**
 
-- **Lod On Altitude** — automatically reduces detail at high altitude.
-
-- **Base Level** — ground plane style: Zero, Difficulty, or Custom.
-
-- **Block Level** — individual block style: Zero or TxOutput.
+- **Frame**: read-only current frame timing.
+- **Max FPS**: 30 / 60 / 120 / 240 / MAX. The default is MAX on first launch; saved settings persist across sessions.
+- **Quality** (1–6): composite preset for downstream sliders.
+- **Texture** (1–6): global mip-level cap for model and flag textures.
+- **Atmosphere** (1–6): sky + aerial raymarch resolution. At tier 6 (Legendary), Atmosphere also enables per-pixel aerial perspective for accurate sky blending on distant geometry.
+- **IBL** (1–6): cubemap / prefilter resolution for image-based lighting.
+- **SSAO** (1–6): screen-space ambient occlusion resolution and sample count (bilateral blur, R8 storage).
+- **Render** (1–6): overall render-target resolution scale.
+- **Precision** (1–6): depth-buffer precision tier. Tier ≥ 4 enables per-pixel log-depth for accurate horizon blending at altitude; lower tiers use cheaper per-vertex depth that can show z-fighting on distant cells.
+- **LOD** (1–6): geometry level of detail. Lower tiers drop far cells to fewer faces.
+- **Mirrors** (1–6): concentric mirror rings around the root Bitcoin cell. The root cell holds the actual blockchain map; each ring adds symmetrically reflected copies (X, Z, or both) so the horizon has no visible seam. Higher tiers look more expansive but cost more frames.
+- **Models** (0–4096): max number of simultaneously rendered glTF models. Slider uses a quadratic curve so low-end values are easier to dial in.
+- **IFrame** (1–6): caps the number of HTML-inscription iframe fetches per tick (Junk = 0 / Common = 5 / Uncommon = 10 / Rare = 25 / Epic = 50 / Legendary = 100). Raising this makes HTML-billboard content fill in faster at the cost of bandwidth and per-iframe memory.
 
 **Camera:**
 
-- **Target FPS** — frame rate cap (default 60). Lowering to 30 reduces camera sensitivity.
+- **Position**: read-only current camera position.
+- **TPS Speed** (0–100): camera orbit / follow speed while in third-person mode.
+- **Free Speed** (0–100): free-flight camera speed. Also used when the script editor is open, since the editor switches the camera to free-flight mode.
+- **Look Speed** (0–100): rotation sensitivity when dragging the mouse.
+- **FOV** (1–89°): field of view in degrees.
+- **Player Size** (0.5–20): TPS character size. Also sets the orbit radius in orbit mode.
+- **Player Speed** (0–100): ground-plane movement speed of the TPS character across the bitmap surface.
+- **Player Distance** (1–80): follow distance for the TPS camera.
 
-- **Look Speed** (0–100) — controls camera rotation sensitivity. Lower values reduce how fast the camera turns when moving the mouse.
+**Atmosphere:**
 
-- **Orbit Radius** — controls the orbit camera distance when in editor/orbit mode.
+- **Sun Time** (5–18.5): wall-clock sun position, rendered as HH:MM next to the slider. Two-way synced with Sun Altitude.
+- **Sun Altitude** (0–1): normalized sun elevation.
+- **Sun Azimuth** (0–1): horizontal sun direction.
 
-- **FOV** — field of view angle.
+**DMT (Digital Matter Theory):** DMT treats Bitcoin block data as the raw material for digital worlds. These settings control how the blockchain landscape is rendered and structured. Items are listed in UI order:
 
-- **Far Plane** — draw distance.
+- **Background**: viewport background color when the sky is disabled.
+- **Base Level**: ground-plane style: `Zero` (flat) or `Difficulty` (terrain heights derived from Bitcoin difficulty).
+- **Block Level**: individual block style: `Zero` (flat blocks) or `TxOutput` (height per block derived from the total BTC value transacted in the block).
+- **Block Number**: toggle the floating bitmap numbers on each tile.
+- **Sunset Flags**: toggle the OG-sunset flag billboards. Each flag is placed at the center of its 100×100 bitmap patch.
+- **Sunset Numbers**: toggle the floating OG-sunset index labels above each flag.
+- **Border Lands**: toggle rendering of the border lands (bitmaps 0–999).
+- **Edited Bitmaps**: overlay marker highlighting bitmaps that have a locally-edited script tab open in the editor.
+- **Hover Highlight**: pink tile tint + floating triangle + bitmap-number label on the block under the cursor.
 
-**Rendering:**
+**Network:**
 
-- **SSAO** — screen-space ambient occlusion (realistic shadows, costs performance).
+- **Network**: read-only fetch stats.
+- **Main Rate**: 10 / 25 / 50 / 100 requests/sec for bitmap data fetches.
+- **Script Rate**: 1 / 3 / 5 / 10 requests/sec for script-child inscription fetches.
 
-- **Sky / Atmosphere** — toggle physically-based sky rendering.
+### Ban List Window
 
-- **Background Color** — custom background when sky is disabled.
+Open the **ban** button in the toolbar. The window has a text input, a row of five tabs, and a scrollable list of active bans.
 
-### Ban List Panel
+| Tab | Contents |
+|---|---|
+| **universal** | Block numbers and inscription hashes. Input is interpreted as a block number or hash depending on format. |
+| **image** | Inscription hashes banned as images (auto-populated when an image fails to decode). |
+| **script** | Inscription hashes banned as scripts (auto-populated when a script fails to decode). |
+| **model** | Inscription hashes banned as models (manual only). |
+| **inscription** | Inscription hashes banned as inscriptions (manual only). |
 
-The ban list panel lets you filter out unwanted content. You can ban specific block numbers and inscription hashes to prevent them from loading. Bans are persisted in your browser's localStorage and take effect immediately — banned content is skipped during fetch and will not render in the 3D world.
+Input is sanitized to alphanumeric characters on the way in. On the **universal** tab, the list is grouped under **blocks** and **hashes** headers; the other tabs show only inscription hashes. Each tab has its own **clear** action. Bans are persisted in your browser's localStorage and take effect immediately; banned content is skipped during fetch and will not render in the 3D world.
 
-- **Ban a block:** Enter a bitmap number to prevent that block's content from loading.
-- **Ban an inscription:** Enter an inscription hash to block a specific inscription from rendering.
-- **Remove a ban:** Delete the entry from the ban list to restore loading.
+Images and scripts that fail to decode or parse are auto-added to their **per-type** ban list (a broken image goes to the **image** tab, a broken script to the **script** tab) so malformed content doesn't retry on every session. The **model** and **inscription** tabs are for manual bans only. Image inscriptions that return a 404 are added to the **universal** ban list as a negative cache.
 
 ### Mirror System and Multiverse Architecture
 
@@ -279,110 +358,182 @@ At the second level, the mirror pattern repeats to form the multiverse. Bitcoin�
 
 In the current release, only the Bitcoin blockchain is displayed. The surrounding positions are not yet populated.
 
-> **Note on naming:** The toolbar's **multiverse** dropdown (Block War / Bitmap mode) controls rendering scope only and is unrelated to this cross-chain architecture, which refers to the spatial tiling of multiple blockchain landscapes. "Multiverse" is a working name — a future release will rename the dropdown and introduce a separate control for teleporting between blockchain landscapes.
+---
+
+## 5. Using the Visual Editor
+
+The visual editor lets you manipulate objects with mouse-based gizmos instead of editing raw script text.
+
+1. Click the **script** button (or press **G**) to open the Scripts Panel.
+
+2. The first tab is pre-populated with a v0.0.13 starter (`BSS 0 0 13` header + a runestone inscription + a `model runestone` example); modify it, reset it with the **recycle** icon, or clear it entirely. Use the **+** button in the tab bar to create additional tabs for working on multiple scripts simultaneously.
+
+3. Navigate to a bitmap by editing the `block <number>` value in the script, press **T** to open the Teleport window, or **double-click** a bitmap in the 3D view to fetch its onchain script into a new tab. Drag tabs to reorder them.
+
+4. Click an object in the 3D view to select it. A **unified gizmo** appears at the object's center with three types of handles:
+
+   - **Axis arrows**: drag to translate the object along X, Y, or Z. Plane handles between axes translate along two axes simultaneously.
+
+   - **Quarter-arc rings**: drag to rotate around X, Y, or Z.
+
+   - **Diagonal strips**: drag to scale along one axis, a pair, or uniformly (central triangle).
+
+   Use the **+** toolbar icon to duplicate the selected object, or **delete** to remove it.
+
+5. When you manipulate objects with the gizmo, the **script text updates automatically** to reflect your changes. Selected objects display a **cyan highlight overlay** in the 3D view. Hovered objects render in front of the scene (X-ray). Press **Escape** to cancel a gizmo drag and revert to the pre-drag transforms.
+
+6. You can also edit the script text directly; syntax highlighting and line numbers help you read and navigate the code. Changes are reflected in real time in the 3D view.
+
+7. Check the **embedded console** below the editor for compilation status. Green messages mean success; click on error messages to jump directly to the error location in the script.
+
+### Painting mode
+
+While the editor is open, you can paint individual bitmaps directly on the map without writing `bitmaps`/`pixels` lines by hand:
+
+- **Shift + left-click and drag**: paint each bitmap you hover with the current pen color.
+- **Ctrl + left-click and drag**: erase the paint from each bitmap you hover.
+
+The pen color is set via the **pen** icon in the script toolbar (a color picker). Each paint or erase action edits the active script's `bitmaps` / `pixels` lines automatically — the script text and the 3D view stay in sync. Painting is a desktop-only interaction in v0.0.13 (no mobile equivalent).
+
+**Tips:**
+
+- Use **Teleport** (T) or edit the `block <number>` in the script to move the camera to a specific bitmap.
+- The script editor switches the camera to free-flight mode, which has its own speed setting (adjustable via scroll wheel or the Free Speed slider in settings).
+- The **status bar** at the bottom of the editor shows the error count and your caret position (Ln N, Col M) at a glance.
+- **Double-click** a tab label to rename it. **Drag** a tab to reorder.
+- Toggle **word-wrap** (in the script toolbar) if your pixel lists or long inscription IDs make the editor scroll horizontally. The syntax overlay and line numbers stay in sync either way.
+- Click the palette button to open the **syntax-highlighting palette** and retune the editor colors (comments, keywords, numbers, hex, type, default, inscription hash, inscription name, bitmap, console, error background, error foreground, background, opacity, debug). Palette state is persisted.
 
 ---
 
-## 5. Script Language Basics
+## 6. Script Language Basics
 
 Every BitmapSunset script is a plain text file. Here's the general structure:
 
 ```
-BSS 0 0 12
-editBitmap <bitmap_number>
-editSunset <sunset_number>
-<resource definitions>
+BSS 0 0 13
+<inscription declarations>
+block <bitmap_number>
+sunset <sunset_number>
 <control + object commands>
 <bitmaps/pixels commands>
 ```
+
+All `inscription` declarations must come **before** any other command (after the header). Once a non-inscription token is parsed, any later `inscription` line is rejected. The order of `block`, `sunset`, control + object commands, and `bitmaps`/`pixels` among themselves is flexible, but the writer always emits them in the canonical order shown above.
 
 ### Header (required)
 
 The very first line must always be the version header. It must match the app version you're targeting.
 
 ```
-BSS 0 0 12
+BSS 0 0 13
 ```
 
-This reads as: *BitmapSunset Script version 0.0.12*. The app uses this header for backward compatibility when the script language evolves.
+This reads as: *BitmapSunset Script version 0.0.13*.
 
-### Editor Commands (optional, local only)
+### Target commands (`block` and `sunset`)
 
-These commands are convenience tools for the local editor. They are ignored by the virtual machine when a script is fetched onchain.
+`block <number>` and `sunset <number>` tell the virtual machine which bitmap and which sunset billboard your script is building on.
 
 | Command | Purpose |
 |---|---|
-| `editBitmap <number>` | Teleports the editor camera to the specified bitmap. Useful for previewing your build in context. |
-| `editSunset <number>` | Selects which sunset billboard you're editing (0–99 have active billboards; 100–599 billboard placement is planned for a future release). |
+| `block <number>` | The bitmap this script targets. When the script runs onchain, the parent bitmap inscription determines the target; the author's `block` value is used in the editor, where no parent inscription exists. In practice the editor always emits a `block` line so you can preview placement locally. |
+| `sunset <number>` | The sunset this script targets, for billboard and mosaic commands. Same precedence as `block`: onchain, the parent sunset inscription determines the target; the author's value is used in the editor. Valid range in v0.0.13: 0–99. Values outside this range are rejected by the parser. Support for 100–599 is targeted for v0.0.14. |
+
+`block` accepts `color` as a modifier (tile tint). `sunset` accepts `color`, `translate`, `billboard`, and `mosaic` as modifiers.
 
 **Example:**
 
 ```
-editBitmap 12345
-editSunset 5
+inscription flag <inscription_id_of_image>
+inscription tile <inscription_id_of_image>
+color 0xFF8800 block 12345
+color 0xFF0000 billboard flag translate 500 0 300 mosaic tile sunset 5
 ```
 
-This moves your editor camera to bitmap 12345 and targets sunset billboard #5.
+This sets the build target to bitmap 12345 (tinted orange), and sunset billboard #5 (filled red, with `flag` as the billboard image and `tile` stamped on the ground at map position 500, 300).
 
-### Resource Slots
+### Named inscriptions
 
-Before you can display anything, you must register inscription IDs into numbered slots. This lets you reference the same inscription multiple times without repeating the full ID.
+Before you can display anything, register inscription IDs under short **names** with the `inscription` command. Named inscriptions let you reference the same inscription from multiple statements, and the names survive the binary round-trip so readers of your onchain script see meaningful identifiers.
 
 ```
-resource <slot_index> <inscription_id>
+inscription <name> <inscription_id>
 ```
+
+Names are 1–16 characters: first character must be a letter; remaining characters may be alphanumeric. All BSS keywords are reserved and rejected as names: `inscription`, `color`, `bitmaps`, `pixels`, `model`, `scale`, `rotate`, `translate`, `block`, `sunset`, `cube`, `sphere`, `script`, `bitmap`, `wire`, `quad`, `circle`, `triangle`, `tripyr`, `squpyr`, `cone`, `billboard`, `mosaic`, `bind`, `alpha`.
 
 **Example:**
 
 ```
-resource 0 a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2i0
-resource 1 f6e5d4c3b2a1f6e5d4c3b2a1f6e5d4c3b2a1f6e5d4c3b2a1f6e5d4c3b2a1f6e5i0
+inscription poster a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2i0
+inscription statue f6e5d4c3b2a1f6e5d4c3b2a1f6e5d4c3b2a1f6e5d4c3b2a1f6e5d4c3b2a1f6e5i0
 ```
 
-Slot 0 and slot 1 now hold inscription references that you can use in `bind` commands throughout your script.
+You can now reference either inscription from any later statement by putting the name directly after the object keyword: `quad poster`, `model statue`, `billboard flag`, `mosaic tile`, `script subscene`.
+
+### Comments
+
+Lines starting with `#` (and `#` anywhere mid-line) are comments. The v0.0.13 compiler **preserves comments across the binary round-trip**: your onchain inscription carries the comment bytes, and any viewer re-decoding the script will see them. Because comments cost inscription bytes, keep them purposeful (author tag, intent, non-obvious hex color reminders).
+
+```
+# My first build: runestone avatar anchored at the center
+inscription avatar <hash>   # rigged glTF
+scale 5000 5000 5000 model avatar
+```
+
+### Hex literals
+
+Colors and pixel values use the `0xRRGGBB` form (`0x` prefix, 6 hex digits). A combined `0xRRGGBBAA` form (8 hex digits) sets both color and alpha in a single token.
+
+```
+color 0xFF8800 scale 10000 10000 10000 cube
+color 0xFF880080 sphere
+pixels 3 0xFF0000 0x00FF00 0x0000FF
+```
 
 ---
 
-## 6. Displaying Images (Quads)
+## 7. Displaying Images (Quads)
 
 A **quad** is a flat rectangular surface used to display an image inscription in 3D space — think of it as a custom billboard or poster.
 
-> **SVG support (v0.0.12):** SVG inscriptions (`svg+xml` content type) are now supported. Any SVG inscription can be displayed on quads, billboards, and mosaics — including collections like FTW Collective and love_messages.
+> **SVG and HTML support:** SVG inscriptions render natively on quads, billboards, and mosaics. HTML inscriptions render on billboards via an iframe overlay (not on quads, mosaics, or other shapes; see §10).
 
 ### Basic quad
 
 ```
-resource 0 <inscription_id_of_your_image>
-bind 0 scale 10000 10000 10000 quad
+inscription poster <inscription_id_of_your_image>
+scale 10000 10000 10000 quad poster
 ```
 
-This places a flat image in the world using the inscription registered in slot 0.
+This places a flat image in the world using the named `poster` resource.
 
 ### Positioning with translate and rotate
 
 You can control where the quad appears and how it's oriented:
 
 ```
-bind 0 scale 10000 10000 10000 translate 5000 10 5000 rotate 90 0 0 quad
+scale 10000 10000 10000 translate 5000 10 5000 rotate 90 0 0 quad poster
 ```
 
-- **`translate X Y Z`** — moves the object to the given coordinates.
+- **`translate X Y Z`**: moves the object to the given coordinates. Values are clamped to the range -10100 to 10100.
 
-- **`rotate Rx Ry Rz`** — rotates the object by the given degrees around each axis.
+- **`rotate Rx Ry Rz`**: rotates the object by the given degrees around each axis. Values are clamped to the range 0 to 360.
 
 **Tip:** If you can't find your quad, try large scale values first (like `10000 10000 10000`) and work your way down.
 
 ---
 
-## 7. Displaying 3D Models
+## 8. Displaying 3D Models
 
-Use the `model` keyword to display a 3D model inscription. Models must be in **GLTF format**.
+Use the `model` keyword to display a 3D model inscription. Models must be in **glTF format** (binary `.glb`). Draco-compressed meshes (KHR_draco_mesh_compression) are supported. Skeletal animation with crossfading is supported for rigged models.
 
 ### Basic model
 
 ```
-resource 0 <inscription_id_of_your_gltf_model>
-bind 0 scale 10000 10000 10000 model
+inscription statue <inscription_id_of_your_gltf_model>
+scale 10000 10000 10000 model statue
 ```
 
 Models need large scale values to be visible. Always start with `scale 10000 10000 10000` and adjust from there.
@@ -390,67 +541,49 @@ Models need large scale values to be visible. Always start with `scale 10000 100
 ### Full example with positioning
 
 ```
-resource 0 <inscription_id_of_your_gltf_model>
-scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 bind 0 solid model
+inscription statue <inscription_id_of_your_gltf_model>
+scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 model statue
 ```
-
-- **`solid`** — enables solid rendering (as opposed to wireframe). Add this keyword for opaque models.
-
-- **`wire`** — enables wireframe rendering. Use this instead of `solid` to display models or shapes as wireframe outlines.
 
 ### Control commands and object commands
 
-A script line consists of **control commands** followed by an **object command**. Control commands — `bind`, `scale`, `translate`, `rotate`, `sx`/`sy`/`sz`, `tx`/`ty`/`tz`, `rx`/`ry`/`rz`, `solid`, `wire`, and `color` — can appear in **any order** before the object command. The object command (`model`, `quad`, `mosaic`, `billboard`, `script`, `sphere`, `cube`, etc.) terminates the statement.
+A script line consists of **control commands** followed by an **object command**. Control commands (`scale X Y Z`, `translate X Y Z`, `rotate Rx Ry Rz`, `color 0xRRGGBB`) can appear in **any order** before the object command. Shapes also support `wire` and `alpha 0xBB` (see Section 9 for details); models do not: `model` accepts only `scale`, `translate`, `rotate`, and `color 0xRRGGBB` (6-digit only; the 8-digit `0xRRGGBBAA` combined form is rejected on models because they do not support alpha). The object command (`model`, `quad`, `script`, `sphere`, `cube`, etc.) terminates the statement and takes the inscription name as a direct argument (e.g., `quad poster`, `model statue`). `billboard <name>` and `mosaic <name>` are inscription-binding modifiers consumed by the `sunset` command rather than standalone object commands (see Section 10).
 
 A full example:
 
 ```
-scale X Y Z translate X Y Z rotate Rx Ry Rz bind <slot> solid model
+scale X Y Z translate X Y Z rotate Rx Ry Rz model <name>
 ```
 
 This is equivalent to:
 
 ```
-bind <slot> solid rotate Rx Ry Rz translate X Y Z scale X Y Z model
+rotate Rx Ry Rz translate X Y Z scale X Y Z model <name>
 ```
 
-Both produce the same result — the control commands are collected and the object command triggers rendering.
+Both produce the same result; the control commands are collected and the object command triggers rendering.
 
-### Per-axis shorthand transforms
+### Per-object alpha
 
-Instead of providing all three values with `scale`, `translate`, or `rotate`, you can set individual axes using shorthand tokens:
-
-| Shorthand | Equivalent |
-|---|---|
-| `sx <value>` | Scale X only |
-| `sy <value>` | Scale Y only |
-| `sz <value>` | Scale Z only |
-| `tx <value>` | Translate X only |
-| `ty <value>` | Translate Y only |
-| `tz <value>` | Translate Z only |
-| `rx <value>` | Rotate around X axis |
-| `ry <value>` | Rotate around Y axis |
-| `rz <value>` | Rotate around Z axis |
-
-**Example:**
+You can override the default fully-opaque alpha for shapes and quads with the `alpha` modifier, which takes a hex byte. You can also use the combined `0xRRGGBBAA` form (8 hex digits) to set both color and alpha in a single token:
 
 ```
-sy 5000 ry 45 bind 0 solid model
+alpha 0x80 color 0x00FF00 scale 5000 5000 5000 sphere
+color 0x00FF0080 scale 5000 5000 5000 sphere
 ```
 
-This scales the model on the Y axis only and rotates 45° around Y.
+Both lines produce the same result: a half-transparent green sphere. Combine `alpha` with `color` on primitives to make translucent decorations.
 
 ---
 
-## 8. Primitive Shapes
+## 9. Primitive Shapes
 
 You can place built-in geometric shapes without needing any inscription at all.
 
 ### Basic usage
 
 ```
-color ff0000
-scale 10000 10000 10000 sphere
+color 0xFF0000 scale 10000 10000 10000 sphere
 ```
 
 This creates a red sphere the size of a bitmap block.
@@ -461,122 +594,128 @@ This creates a red sphere the size of a bitmap block.
 
 **3D:** `tripyr` (triangular pyramid), `squpyr` (square pyramid), `cube`, `cone`, `sphere`
 
-`quad` is a flat rectangular plane. When used standalone with a `color` command, it renders as a colored surface. When bound to a resource slot containing an image inscription, it renders as a textured surface (see Section 6).
+`quad` is a flat rectangular plane. When used standalone with a `color` command, it renders as a colored surface. When bound to a named inscription (via `quad <name>`), it renders as a textured surface (see Section 7).
 
-### Solid and wireframe
+### Wireframe
 
-Each primitive can be rendered as **solid** (filled) or **wire** (wireframe outline), or both at the same time. This is useful for visualizing shapes during editing.
+Primitives render filled (solid) by default. The `wire` modifier renders the next shape as wireframe outlines. It applies only to shapes, not models. Filled rendering is the default for every shape, so no explicit `solid` keyword is needed; simply omit `wire`.
 
 ```
-tx 100000 tz 0 solid triangle tz 1000 wire triangle
+translate 1000 500 1000 triangle
+translate 1000 500 2000 wire triangle
 ```
 
-This draws a solid triangle at position X=100000, then a wireframe copy of the same triangle offset by 1000 on the Z axis.
+This draws a filled triangle at (1000, 500, 1000) and a wireframe copy offset by 1000 on Z.
 
 ### Setting color
 
-The `color` command sets the color (as a hex value without the `#`) for the **next** primitive shape in the script.
+The `color` modifier sets the color (as a `0xRRGGBB` hex literal) for a primitive shape or quad. It must appear on the same line as the object command it applies to. On textured quads (`quad <name>`) it tints the sampled image; on primitives it fills or outlines the geometry.
 
 ```
-color 00ff00
-scale 5000 5000 5000 cube
-color 0000ff
-scale 3000 3000 3000 translate 5000 5000 5000 sphere
-color ff00ff
-scale 4000 4000 4000 translate 2000 0 2000 squpyr
+color 0x00FF00 scale 5000 5000 5000 cube
+color 0x0000FF scale 3000 3000 3000 translate 5000 5000 5000 sphere
+color 0xFF00FF scale 4000 4000 4000 translate 2000 0 2000 squpyr
 ```
 
 This places a green cube, a blue sphere, and a magenta square pyramid at different positions.
 
 ### Displaying all primitives in a row
 
-Here's a script that showcases every primitive side by side, each as both solid and wireframe:
+Here's a script that places one of every primitive across the bitmap:
 
 ```
-BSS 0 0 12
-translate 0 0 0
-scale 100000 100000 100000
-tx 100000 tz 0 solid triangle tz 1000 wire triangle
-tx 200000 tz 0 solid quad tz 1000 wire quad
-tx 300000 tz 0 solid circle tz 1000 wire circle
-tx 400000 tz 0 solid cube tz 1000 wire cube
-tx 500000 tz 0 solid tripyr tz 1000 wire tripyr
-tx 600000 tz 0 solid squpyr tz 1000 wire squpyr
-tx 700000 tz 0 solid cone tz 1000 wire cone
-tx 800000 tz 0 solid sphere tz 1000 wire sphere
+BSS 0 0 13
+block 199452
+sunset 1
+color 0xff3030 scale 800 800 800 translate 1200 500 2000 cube
+color 0x30ff50 scale 800 800 800 translate 2800 500 2000 rotate 0 25 0 sphere
+color 0x3080ff scale 800 800 800 translate 4400 500 2000 cone
+color 0xffaa20 scale 800 800 800 translate 6000 500 2000 rotate 0 15 0 tripyr
+color 0xff40dd scale 800 800 800 translate 7600 500 2000 rotate 0 30 0 squpyr
+color 0x20dddd scale 800 800 800 translate 1200 500 3800 rotate 90 0 0 circle
 ```
 
-> **Known issue (v0.0.12):** The `color` command may unintentionally affect the bitmap tile color in addition to the shape. `color` is a control command that currently only affects primitive shapes — it has no relationship to the `bitmaps`/`pixels` painting commands. This bug is being investigated. Support for `color` on models is planned for a future version.
+> **Note:** A `color` on the same line as the `block` command (e.g., `color 0xFF0000 block 12345`) also sets the bitmap tile tint; this is by design and independent from the `bitmaps`/`pixels` painting commands, which set per-bitmap colors explicitly.
 
 ---
 
-## 9. Billboard & Mosaic
+## 10. Billboard & Mosaic
 
 ### Billboard
 
-If you own an OG BitmapSunset (0–99), you can replace the default sunset image on your billboard with a custom inscription:
+If you own an OG BitmapSunset (0–99), you can replace the default sunset image on your billboard with a custom inscription (image, SVG, or HTML):
 
 ```
-editSunset <your_sunset_number>
-resource 0 <inscription_id_of_image>
-bind 0 billboard
+inscription flag <inscription_id_of_image>
+billboard flag sunset <your_sunset_number>
 ```
 
 **Example:**
 
 ```
-editSunset 5
-resource 0 <inscription_id_of_image>
-bind 0 billboard
+inscription flag <inscription_id_of_image>
+billboard flag sunset 5
 ```
 
 This changes sunset billboard #5 to display your custom image.
 
+You can optionally add a `color` to fill the billboard with a solid color instead of (or before) an image:
+
+```
+color 0xFF0000 billboard flag sunset 5
+```
+
+This fills sunset billboard #5 with red and then overlays the `flag` image on top. If the image covers the full billboard, the color acts as a fallback; if the image has transparency, the color shows through.
+
+The `flag` inscription can be an **image** or **SVG** (rendered natively as a texture), or **any other inscription type** (HTML, recursive, etc.) which renders as a sandboxed iframe overlay. Iframes carry a performance cost (per-iframe memory, fetch budget gated by the **IFrame** quality setting); image/SVG is preferred when possible.
+
 > **Note:** Dedicated 2D billboard placement for sunsets 100–599 is planned for a future release. These billboards will be positioned on mirror cells of the map bordering neighboring blockchain landscapes (such as .dogemap and other .\*map protocols), complementary to but distinct from OG cubitmaps. Currently, only OG sunsets (0–99) have positioned billboards in the central map cell.
 
-> **Future evolution:** OG billboards (0–99) are planned to evolve into **cubitmaps** — giant floating 3D structures where holders can display images on all sides and build on top. These cubitmaps will feature parceling, enabling subdivided building within a sunset holder's domain, and could each host their own lobby area.
+> **Future evolution:** OG billboards (0–99) are planned to evolve into **cubitmaps**: giant floating 3D structures where holders can display images on all sides and build on top. These cubitmaps will feature parceling, enabling subdivided building within a sunset holder's domain, and could each host their own lobby area.
 
 ### Mosaic
 
 A mosaic draws an image flat on the ground at a specific map-space position, where coordinates correspond to bitmap numbers:
 
 ```
-resource 0 <inscription_id_of_image>
-bind 0 translate <X> 0 <Z> mosaic
+inscription tile <inscription_id_of_image>
+translate <X> 0 <Z> mosaic tile sunset <your_sunset_number>
 ```
 
 **Example:**
 
 ```
-resource 0 <inscription_id_of_image>
-bind 0 translate 500 0 300 mosaic
+inscription tile <inscription_id_of_image>
+translate 500 0 300 mosaic tile sunset 5
 ```
 
 This stamps the image onto the ground at bitmap position (500, 300) on the map. Mosaics are visible when looking down from altitude and serve as ground-level art or territorial markers. They're especially impactful in **flat** view mode (click the **flat** button in the toolbar to see them as a 2D map).
+
+> **Resource kind:** `mosaic` and shapes (including `quad`) accept **image** or **SVG** inscriptions only. Binding an HTML-only inscription to a mosaic or shape surfaces an error in the editor console. HTML inscriptions are allowed on `billboard` only, where they render in a sandboxed iframe overlay.
 
 > **Note:** The `mosaic` command is currently available to all bitmap owners and BitmapSunset holders. In a future release, mosaic will become a BitmapSunset-exclusive feature.
 
 ---
 
-## 10. Bitmap Painting
+## 11. Bitmap Painting
 
-The `bitmaps` and `pixels` commands are special painting and fetching commands that operate independently from the `color` control command. They let you color specific bitmaps on the map:
+The `bitmaps` and `pixels` commands are special painting and fetching commands that operate independently from the `color` control command. They let you color specific bitmaps anywhere on the map — not just your own — turning BitmapSunset into a shared, onchain pixel war played across the whole blockchain landscape:
 
 ```
 bitmaps <count> <bitmap_number_1> <bitmap_number_2> ...
 pixels <count> <hex_color_1> <hex_color_2> ...
 ```
 
-**Example** — color bitmap 12345 orange:
+**Example**: color bitmap 12345 orange:
 
 ```
 bitmaps 1 12345
-pixels 1 ff7f00
+pixels 1 0xFF7F00
 ```
 
 ### Coloring many bitmaps at once
 
-You can reference large numbers of bitmaps in a single script. The `bitmaps` command takes a count followed by that many bitmap numbers, and `pixels` takes a count followed by that many hex colors — one color per bitmap.
+You can reference large numbers of bitmaps in a single script. The `bitmaps` command takes a count followed by that many bitmap numbers, and `pixels` takes a count followed by that many `0xRRGGBB` colors, one color per bitmap.
 
 ```
 bitmaps 140
@@ -584,99 +723,71 @@ bitmaps 140
 82183 85183 86179 86180 86181 86182 86183 75182 75183 76180
 ...
 pixels 140
-57beff 57beff 57beff 57beff 57beff 57beff 57beff 57beff 57beff 57beff
+0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF 0x57BEFF
 ...
 ```
 
-This paints large areas of the map in a single color — useful for faction territory in Block War (see Section 11), or simply to make your corner of the blockchain visible from altitude.
+This paints large areas of the map in a single color — useful for faction territory or simply to make your corner of the blockchain visible from altitude.
 
-**Important:** Any bitmap referenced in the `bitmaps` command will also be queued for fetching after your script loads. This is the foundation of the **bootstrapping** system (see Section 15).
+### Cross-bitmap painting (the pixel war)
 
----
+The application renders **cross-bitmap commands from all loaded scripts**: any script can paint any bitmap, and every owner sees every other builder's contributions layered over their tile. Think of it as a public graffiti layer on top of the canonical world: players can enhance each other's builds, plant territorial markers, or wage pixel wars — all from their own bitmap's script.
 
-## 11. Block War
+You still inscribe your script as a child of your **own** bitmap; the difference is in **scope**. The `bitmaps`, `pixels`, and `mosaic` commands can target any bitmap on the map.
 
-### What is Block War?
-
-Block War is the default mode in the toolbar's **multiverse** dropdown and transforms BitmapSunset into a shared, competitive canvas. In Block War mode, the app renders cross-bitmap commands from all loaded scripts — meaning builders can visually affect bitmaps they do not own. Switching to Bitmap mode enforces property rights: each bitmap displays only its owner's rendering commands on its own tile.
-
-> **Note on naming:** The toolbar dropdown is labeled "multiverse" — this is a working name that controls Block War vs Bitmap rendering modes only. It is entirely distinct from the broader cross-chain multiverse architecture described in Section 4, which refers to the spatial tiling of multiple blockchain landscapes. A future release will rename this dropdown to eliminate the ambiguity and introduce a separate control for teleporting between blockchain landscapes.
-
-Think of it as a competitive layer on top of the standard world: players can enhance each other's builds, place "graffiti," or wage territorial pixel wars — all from their own bitmap's script.
-
-### How to switch modes
-
-In the top toolbar, find the **multiverse** dropdown. The app opens in **Block War** mode by default. Switch to **Bitmap** to see only owner-inscribed content.
-
-### How it works with scripts
-
-Block War uses the same script commands as normal building. You still inscribe your script as a child of **your own** bitmap — the difference is in **scope**. The `bitmaps`, `pixels`, and `mosaic` commands can target any bitmap on the map, not just your own.
-
-- **Block War mode (default):** Cross-bitmap commands from **all** loaded scripts become visible. Your `pixels` command can paint bitmaps you don't own, your `mosaic` command can stamp images on foreign ground, and your 3D structures can occupy contested territory.
-
-- **Bitmap mode:** Only the bitmap owner's rendering commands take effect on their tile. Cross-bitmap commands from other scripts are ignored.
-
-**Example** — color someone else's bitmap red from your own script:
+**Example**: color someone else's bitmap red from your own script:
 
 ```
-BSS 0 0 12
+BSS 0 0 13
 bitmaps 1 <target_bitmap_number>
-pixels 1 ff0000
+pixels 1 0xFF0000
 ```
 
-This colors the target bitmap red on the map — visible to everyone in Block War mode. Combined with `mosaic` (to stamp images on the ground) and primitive shapes, you can claim visual territory across the entire blockchain landscape.
+The target bitmap turns red on the map, visible to everyone. Combined with `mosaic` (to stamp images on the ground) and primitive shapes, you can claim visual territory across the entire blockchain landscape.
 
-### Block War strategies
+### Strategies
 
-- **Color the map:** Use `pixels` to paint bitmaps in your faction's color across large swaths of the map, visible to all Block War participants.
-
+- **Color the map:** Use `pixels` to paint bitmaps in your faction's color across large swaths of the map, visible from altitude.
 - **Stamp your mark:** Use `mosaic` to place logos, flags, or images on the ground plane of contested bitmaps.
-
-- **Build structures:** Place 3D models or primitives to create visible landmarks and territorial markers.
-
-- **Stack effects:** Multiple scripts from different builders can accumulate effects on a single bitmap, creating collaboratively or competitively layered scenes.
+- **Stack effects:** Multiple scripts from different builders accumulate color and mosaic effects on a single bitmap, creating collaboratively or competitively layered scenes.
 
 ### Important notes
 
-- Block War is the default mode when opening the app. Cross-bitmap effects are visible immediately.
-
-- Switching to Bitmap mode hides all cross-bitmap commands — only the bitmap owner's rendering commands are applied to their tile.
-
-- All Block War inscriptions are permanent. They persist on the blockchain indefinitely, creating an immutable record of territorial contests and collaborative builds.
+- Property rights at the **inscription** layer (only a bitmap's owner can inscribe a child script on it) are still enforced by the Ordinals protocol; cross-bitmap painting only changes what your viewer renders, not who can author.
+- Effects are visible the moment the referenced bitmaps are fetched. Any bitmap referenced in `bitmaps` will also be queued for fetching after your script loads — this is the foundation of the **bootstrapping** system (see Section 14).
+- All inscriptions are permanent and persist on the blockchain indefinitely, creating an immutable record of territorial contests and collaborative builds.
 
 ---
 
 ## 12. Referencing Other Scripts & Bitmaps
 
-One of BitmapSunset's most powerful features is the ability to reference external content — either a specific script inscription or another bitmap's entire world. This enables collaboration, code reuse, and efficient multi-bitmap builds without re-inscribing large scripts.
+Scripts can reference external content — either a specific script inscription or another bitmap's entire world. This avoids re-inscribing the same content across multiple bitmaps.
 
-### `script` — Reference a specific script inscription
+### `script`: Reference a specific script inscription
 
-Use `bind <slot> script` to load and execute another script inscription inside your own:
+Use `script <name>` to load and execute another script inscription inside your own:
 
 ```
-resource 3 <inscription_id_of_another_script>
-bind 3 script
+inscription subscene <inscription_id_of_another_script>
+script subscene
 ```
 
-**How it works:** The app fetches the inscription registered in slot 3 and executes it as if its content were inlined into your script. The referenced script runs with full transform support — you can scale, translate, and rotate it just like a model or quad.
+**How it works:** The app fetches the named inscription and executes it as if its content were inlined into your script. The referenced script runs at its authored transforms. To reposition a subscene, author its internal objects at the coordinates you want them, or wrap them in a model.
 
 **Use cases:**
 
 - Reuse a complex, expensive script across multiple bitmaps without re-inscribing it.
-
 - Let other people reference **your** script on their bitmaps — collaborative building.
-
 - Keep referencing an old script version even after you've inscribed an update on your bitmap (old inscriptions remain onchain and referenceable by their ID).
 
-**Example** — reference someone's script and position it:
+**Example**: reference another script and let it draw its own content:
 
 ```
-resource 3 <inscription_id_of_script>
-scale 5000 5000 5000 translate 2000 0 2000 bind 3 solid script
+inscription subscene <inscription_id_of_script>
+script subscene
 ```
 
-### `bitmap` — Clone another bitmap's world
+### `bitmap`: Clone another bitmap's world
 
 Instead of pointing to a specific inscription, you can reference an entire bitmap by its number:
 
@@ -684,13 +795,13 @@ Instead of pointing to a specific inscription, you can reference an entire bitma
 bitmap 444
 ```
 
-**How it works:** The app looks up bitmap 444, finds its latest child inscription (the most recent script), and loads that build. No resource slot or `bind` is needed — just the bitmap number.
+**How it works:** The app looks up bitmap 444, finds its latest child inscription (the most recent script), and loads that build. No `inscription` declaration or `bind` is needed, just the bitmap number.
 
 **Key differences from `script`:**
 
 - `bitmap` is a **live link**: if bitmap 444 gets a new inscription, every script referencing `bitmap 444` will automatically reflect the updated build.
 
-- `bitmap` does **not** support transforms (scale, translate, rotate are ignored). The referenced world loads at its original position and scale.
+- `bitmap` does **not** support modifiers; the parser rejects all modifiers on `bitmap`. The referenced world loads at its original position and scale.
 
 - `bitmap` takes a bitmap number directly, not an inscription ID.
 
@@ -698,66 +809,32 @@ bitmap 444
 
 - Deploy the same world to multiple bitmaps. Inscribe your main build on one bitmap, then use `bitmap <number>` on all others.
 
-- When you update your main bitmap, all clones update automatically — no need to re-inscribe on every bitmap.
+- When you update your main bitmap, all clones update automatically, no need to re-inscribe on every bitmap.
 
 - The most efficient way to manage a network of builds from a single source.
 
-**Example** — one main build, multiple clones:
+**Example**: one main build, multiple clones:
 
 ```
 # On bitmap 12345 (your main build):
-BSS 0 0 12
-resource 0 <inscription_id_of_model>
-scale 5000 5000 5000 bind 0 solid model
+BSS 0 0 13
+inscription statue <inscription_id_of_model>
+scale 5000 5000 5000 model statue
 ```
 
 ```
 # On any other bitmap (clone):
-BSS 0 0 12
+BSS 0 0 13
 bitmap 12345
 ```
 
 Now if you update bitmap 12345 with a new child inscription, every bitmap using `bitmap 12345` will reflect the change automatically.
 
----
-
-## 13. Using the Visual Editor
-
-The visual editor lets you manipulate objects with mouse-based gizmos instead of editing raw script text.
-
-1. Click the **edit** button in the top toolbar to open the Scripts Panel.
-
-2. The default script is pre-populated — you can modify it or clear it entirely.
-
-3. Use `editBitmap <number>` to navigate the camera to any bitmap on the map.
-
-4. Use the **gizmo toolbar icons** in the Scripts Panel title bar:
-
-   - **Translate** (move) — click the icon, then click your object and drag it to a new position.
-
-   - **Rotate** — click the icon, then grab the rotation gizmo rings to spin the object.
-
-   - **Scale** — click the icon, then drag the scale handles to resize.
-
-   - **+** (Duplicate) — creates a copy of the selected object.
-
-5. When you manipulate objects with the gizmos, the **script text updates automatically** to reflect your changes. Selected objects display an **orange wireframe outline** in the 3D view.
-
-6. You can also edit the script text directly — changes are reflected in real time in the 3D view.
-
-**Tips:**
-
-- Toggle the **edit** button off and on to reset the camera focus to your bitmap.
-
-- When the script panel is hidden, camera speed increases for faster map navigation.
-
-- When editing, camera speed slows down for precision work.
-
-- Open the **console** panel to see if your script compiled successfully. Green messages mean everything is OK; errors will show line and column numbers.
+> **Recursion limit:** Combined `script <name>` and `bitmap <N>` reference chains are capped at **8 levels deep**. Scripts that try to recurse deeper are rejected at boot, protecting viewers from fetch bombs and cyclic references.
 
 ---
 
-## 14. Exporting & Inscribing to a Bitmap
+## 13. Exporting & Inscribing to a Bitmap
 
 This is how you make your build permanent and visible to everyone onchain.
 
@@ -767,61 +844,128 @@ Write your script and verify it looks correct in the editor's 3D preview. Check 
 
 ### Step 2: Trim the script
 
-Remove any default resources, objects, or commands you're not using. Every byte costs sats to inscribe, so a leaner script means a cheaper inscription. Remove `editBitmap` and `editSunset` lines too — they're ignored onchain but still take up bytes.
+Remove any default `inscription` lines, objects, or commands you're not using. Every byte costs sats to inscribe, so a leaner script means a cheaper inscription. Keep the `block` and `sunset` lines; `block` carries the target bitmap and tile color; `sunset` carries the target sunset number, optional billboard color, and triggers any pending billboard / mosaic binds into the binary as separate objects. Comments are useful for documentation but they **do** cost bytes; keep them purposeful (author tag, non-obvious intent).
 
-### Step 3: Export the BMP
+### Step 3: Save the source or export the BMP
 
-Click the **💾 (floppy disk) icon** in the Scripts Panel toolbar. It saves a `.bmp` file to your computer.
+The script toolbar has two distinct buttons:
 
-The script gets compiled into a binary format for the BitmapSunset virtual machine. The BMP image encodes your entire script as colored pixels — this is the file you'll inscribe. The console will confirm with green success messages:
+| Button | Purpose |
+|---|---|
+| **save** | Downloads the editor text as a `.bss` source file (`bitmap_<N>.bss`). Use this for local backup, sharing editable scripts, or versioning outside the browser. |
+| **export** | Compiles the script, runs the full round-trip (text → binary → BMP → binary → text), and downloads the resulting `.bmp` (`bitmap_<N>.bmp`). This is the file you'll inscribe. Disabled when the tab has compile errors. |
 
-```
-Script text parsed successfully
-Script binary written successfully
-Script bitmap written successfully
-```
+Click **export**. The console confirms success with a single line (e.g., `compiled successfully in 12 ms, .bmp size: 3 ko`).
+
+The BMP encodes your entire script as colored pixels. On ordinals explorers, this means your inscription appears as a visible image, a recognizable visual signature for each onchain build.
 
 ### Step 4: Inscribe the BMP as a child of your bitmap
 
 1. Go to any inscription service that supports parent/child inscriptions.
-
 2. Upload the `.bmp` file.
-
 3. Set the **parent** to the **inscription ID of your bitmap** (this is the ordinal inscription ID, not the bitmap number).
-
 4. Inscribe it.
 
 Once confirmed on the blockchain, your build is permanently onchain. Anyone running BitmapSunset will see your creation when they visit your bitmap.
 
-### Complete example — a world with a 3D model, floor image, and avatar
+### Complete example: a world with a 3D model, floor image, and avatar
 
 ```
-BSS 0 0 12
-resource 0 <inscription_id_of_gltf_model>
-scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 bind 0 solid model
-resource 1 <inscription_id_of_floor_image>
-scale 10000 10000 10000 translate 5000 10 5000 rotate 90 0 0 bind 1 solid quad
-resource 2 <inscription_id_of_avatar_model>
-scale 8000 8000 8000 translate 5000 6000 5000 rotate 0 0 0 bind 2 solid model
+BSS 0 0 13
+inscription statue <inscription_id_of_gltf_model>
+inscription floor <inscription_id_of_floor_image>
+inscription avatar <inscription_id_of_avatar_model>
+scale 5000 5000 5000 translate 5000 2000 5000 rotate 2 45 0 model statue
+scale 10000 10000 10000 translate 5000 10 5000 rotate 90 0 0 quad floor
+scale 8000 8000 8000 translate 5000 6000 5000 rotate 0 0 0 model avatar
 bitmaps 1 12345
-pixels 1 ff7f00
+pixels 1 0xFF7F00
 ```
 
 This script places a 3D model, lays an image on the ground, adds an avatar model, and colors bitmap 12345 orange on the map.
 
+### Inscribing: cost & size tips
+
+- **Cheap**: primitives (`cube`, `sphere`, etc.) with a `color`: they carry no inscription ID, just an opcode + color.
+- **Moderate**: one or two named inscriptions + a few `model`/`quad` statements.
+- **Expensive per byte**: dense `pixels` / `bitmaps` lists, long inscription IDs, and comments you chose to keep.
+- **Keep your `block <N>` / `sunset <N>` lines; they drive editor placement.** The editor always emits them. Onchain, the parent inscription determines the target, but the editor needs these lines to preview your build. Only unused `inscription` declarations are safe to strip.
+- **Round-trip is deterministic**: the `.bmp` the editor exports is byte-identical to what the reader will parse, so a green console means the onchain script will render the same way.
+
+### Recipes: common workflows
+
+These are the short walk-throughs readers most often assemble from the sections above.
+
+**1. First build on your bitmap**
+
+```
+BSS 0 0 13
+inscription statue <inscription_id_of_gltf_model>
+block <your_bitmap_number>
+scale 5000 5000 5000 translate 5000 1000 5000 model statue
+```
+
+Preview by editing the `block` number, export, inscribe with parent = your bitmap's inscription ID. Keep `block <your_bitmap_number>`: the virtual machine uses the author's `block` value as the canonical target (falling back to the parent inscription only when no `block` is declared).
+
+**2. Bootstrap a bitmap from your OG sunset**
+
+```
+BSS 0 0 13
+inscription flag <billboard_image>
+billboard flag sunset <your_sunset_number>
+bitmaps 1 <your_bitmap_number>
+pixels 1 0xFF7F00
+```
+
+Inscribe as a child of your OG sunset inscription; the `bitmaps` entry queues your bitmap into Phase 1 loading.
+
+**3. Clone one build across many bitmaps**
+
+Inscribe your full build on one bitmap (say 12345), then inscribe this trivial child on every other bitmap you want to mirror it:
+
+```
+BSS 0 0 13
+bitmap 12345
+```
+
+When you update bitmap 12345, every clone reflects the change automatically, no re-inscription per bitmap.
+
+**4. Cross-bitmap graffiti raid**
+
+```
+BSS 0 0 13
+inscription logo <inscription_id_of_logo_svg>
+bitmaps 5 10000 20000 30000 40000 50000
+pixels 5 0xFF0000 0xFF0000 0xFF0000 0xFF0000 0xFF0000
+translate 10 0 10 mosaic logo sunset 0
+```
+
+Inscribed as a child of **your own** bitmap, this paints five foreign bitmaps red and stamps your logo on the ground. Visible to every viewer.
+
+**5. Update an existing build**
+
+Inscribe a new `.bmp` child on the same parent (bitmap or sunset). The newest child wins; the old inscription remains onchain and referenceable by ID if you or others want to fall back.
+
+**6. Mobile-only authoring**
+
+- Type or paste a script, use the `block <N>` line to preview, tap **export** to download a `.bmp`.
+- Drag tabs to reorder; double-tap a tab to rename.
+
+Painting (Shift/Ctrl modifiers) is desktop-only in v0.0.13; plan mobile sessions around script editing and exploration, and finish paint-heavy builds on a laptop.
+
 ---
 
-## 15. Bootstrapping
+## 14. Bootstrapping
 
 ### The Problem
 
-BitmapSunset displays over 900,000 bitmaps. When the app launches, it needs to decide which bitmaps to fetch first. There's no way to know which bitmaps have builds without checking all of them one by one.
+BitmapSunset displays every mined Bitcoin block as a bitmap. When the app launches, it needs to decide which bitmaps to fetch first. There's no way to know which bitmaps have builds without checking all of them one by one.
 
 ### The Solution: Bootstrapping
 
 OG BitmapSunset holders (0–99) can inscribe a script on their sunset that tells the app **which bitmaps to load first**. This controls the loading queue for every user’s browser.
 
-> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.13. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
+> **Note:** Bootstrap support for sunsets 100–599 is targeted for v0.0.14. Currently, only OG sunsets (0–99) participate in the bootstrap loading phase.
 
 ### Loading Order
 
@@ -829,11 +973,9 @@ The app fetches data in this order:
 
 1. **Phase 1:** OG BitmapSunset scripts (sunsets 0–99), ordered by sunset number.
 
-2. **Phase 2:** Bitmap border lands (bitmaps 0–999), as these occupy the visible edges of the initial viewport.
+2. **Phase 2:** Seed bitmaps: a hardcoded seed list is fetched alongside sunset-discovered bitmaps. Both sources feed the same bootstrap queue; additional bitmaps chain transitively via `bitmaps` commands in scripts.
 
-3. **Phase 3:** Sequentially from bitmap 1000 upward through the entire chain.
-
-If your bitmap number is high (e.g. 500000), it won’t load until the app works through hundreds of thousands of others — unless it’s been bootstrapped by an OG sunset holder.
+If your bitmap number isn’t in the seed list and isn’t bootstrapped by a sunset holder, users can still load it manually by navigating to it and double-clicking.
 
 ### How Bootstrapping Works
 
@@ -854,30 +996,24 @@ Here’s how to write and inscribe a bootstrapping script for an OG BitmapSunset
 **Step 1: Write the script**
 
 ```
-BSS 0 0 12
-editSunset <your_sunset_number>
-resource 0 <inscription_id_for_billboard_image>
-bind 0 billboard
-bind 0 translate 700 0 600 mosaic
+BSS 0 0 13
+inscription flag <inscription_id_for_billboard_image>
+billboard flag translate 700 0 600 mosaic flag sunset <your_sunset_number>
 bitmaps 1 <your_bitmap_number>
-pixels 1 ff7f00
+pixels 1 0xFF7F00
 ```
 
 **What each line does:**
 
-- `editSunset <number>` — targets your sunset billboard in the local editor (ignored onchain).
-
-- `bind 0 billboard` — displays the resource image on your sunset billboard in the 3D world.
-
-- `bind 0 translate 700 0 600 mosaic` — also draws the image flat on the ground at bitmap position (700, 600) on the map.
-
-- `bitmaps 1 <number>` — **this is the bootstrapping line.** It tells the app to load the specified bitmap when this sunset is fetched.
-
-- `pixels 1 ff7f00` — colors the bootstrapped bitmap orange on the map.
+- `billboard flag`: displays the named `flag` inscription on your sunset billboard.
+- `translate 700 0 600 mosaic flag`: also draws the image flat on the ground at bitmap position (700, 600) on the map.
+- `sunset <number>`: the sunset this script targets. The author-declared value drives the billboard/mosaic binds; the parent sunset inscription is used only as a fallback when no `sunset` is present.
+- `bitmaps 1 <number>`: **this is the bootstrapping line.** It tells the app to load the specified bitmap when this sunset is fetched.
+- `pixels 1 0xFF7F00`: colors the bootstrapped bitmap orange on the map.
 
 **Step 2: Export the BMP**
 
-Click the 💾 icon to save the `.bmp` file. Check the console for success messages.
+Click the **export** icon to compile and download the `.bmp` file. Check the console for success messages. Use **save** if you also want a `.bss` source backup.
 
 **Step 3: Inscribe as a child of your sunset**
 
@@ -897,10 +1033,10 @@ You can bootstrap several bitmaps from a single sunset:
 
 ```
 bitmaps 3 50000 150000 200000
-pixels 3 ff7f00 00ff00 0000ff
+pixels 3 0xFF7F00 0x00FF00 0x0000FF
 ```
 
-This loads three bitmaps at startup, each colored differently on the map. You can also lend bootstrap priority to other people’s bitmaps — a potential monetization or collaboration path.
+This loads three bitmaps at startup, each colored differently on the map. You can also lend bootstrap priority to other people’s bitmaps, a potential monetization or collaboration path.
 
 ### Chaining Bitmaps
 
@@ -913,6 +1049,8 @@ Bitmap 50000 → loads bitmap 150000, bitmap 200000
 
 This way, a single sunset can bootstrap an entire network of builds.
 
+> **Chain depth cap:** Transitive `bitmap <N>` and `script <name>` references are capped at **8 hops**. A sunset chain like Sunset → A → B → … that tries to recurse past the ninth hop will stop at the cap.
+
 ### Without a Sunset
 
 If you don’t own an OG BitmapSunset or a low-number bitmap, users can still view your build by:
@@ -921,21 +1059,17 @@ If you don’t own an OG BitmapSunset or a low-number bitmap, users can still vi
 
 2. Clicking the **fetch** button in the toolbar.
 
-3. Hovering the mouse cursor over your bitmap.
+3. Double-clicking on the bitmap.
 
 This manually triggers a download and display of your build. It’s just not automatic at launch.
 
-### Caching (planned)
+### Caching
 
-Currently, the app re-fetches bitmap data from the blockchain each session. A planned local cache will store fetched scripts and world data on your device, allowing the app to launch almost instantly from cached state. The bootstrapping sequence will then serve double duty: beyond initial discovery, it will drive continuous synchronization — comparing timestamps against cached data, re-fetching only updated scripts, and keeping the local world converging on the live state of the blockchain. Even once all bitmaps have been cached, a lightweight polling process will continue in the background — new builds appear, updated scripts replace old ones, and the cached world stays current.
-
-### Future loading enhancements (planned)
-
-Beyond caching, the roadmap includes **rune-based priority ranking** — leveraging the `/r/utxo` recursive endpoint to weight bitmap loading order by rune holdings — and user-configurable **streaming controls** for fetch frequency and resource consumption visibility. These features are described in more detail in the vibe paper’s development roadmap.
+The app maintains an **IndexedDB cache** for inscription content. Text inscriptions (scripts, bitmap-page JSON, blockheight) and binary blobs (images, glTF models, resolved SVG references) are stored on your device after their first fetch; subsequent sessions serve cached inscriptions instantly while still walking the bootstrap sequence to discover newly-inscribed builds. What's **not** cached is the per-session world state; the bootstrap queue and per-bitmap discovery still re-run on launch, just much faster because most inscriptions are already local.
 
 ---
 
-## 16. Updating Scripts
+## 15. Updating Scripts
 
 ### On a bitmap
 
@@ -943,56 +1077,33 @@ Inscribe a new `.bmp` child on the same bitmap. The app automatically loads the 
 
 ### On a sunset
 
-Same process — inscribe a new `.bmp` child on the same sunset. The newest child takes precedence.
-
-### Reinscription (planned)
-
-Parent-child inscriptions are the current update mechanism, but each update requires a new child inscription. Reinscription offers a lower-cost alternative by reusing the same satoshi.
-
-**How it will work:**
-
-1. Inscribe a child script on your bitmap that contains a `sat` keyword pointing to a specific satoshi number:
-
-```
-BSS <future_version>
-sat <sat_number>
-```
-
-2. The app fetches your bitmap's latest child, finds the `sat` pointer, and then looks up the latest reinscription on that satoshi via the `/r/sat/<sat_number>` recursive endpoint.
-
-3. To update your build, reinscribe a new `.bmp` on that same satoshi. The app will automatically resolve the latest reinscription — no new parent-child inscription needed.
-
-The `sat` keyword acts as a redirect: the child inscription is a lightweight pointer, and the actual build content lives on reinscriptions of the referenced satoshi. This enables significantly cheaper updates since reinscription avoids the overhead of creating new parent-child relationships.
+Same process: inscribe a new `.bmp` child on the same sunset. The newest child takes precedence.
 
 ### Backward compatibility
 
-Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` keyword instead of `resource`/`bind`/`quad`). These still render when fetched. However, if you're writing new scripts, always use `BSS 0 0 12` syntax. A parent script in `0 0 10` can call a child script in `0 0 12`, but the main/parent script should ideally be updated to `0 0 12` for full compatibility.
+Older onchain scripts (`BSS 0 0 9` through `BSS 0 0 12`) still render correctly; the current app keeps dedicated readers for each prior version. If you're writing new scripts, always use `BSS 0 0 13`.
 
 ### Version compatibility
 
 | From | To | Changes |
 |---|---|---|
-| v0.0.10 | v0.0.11 | `image` keyword replaced with `resource`/`bind`/`quad` pipeline |
-| v0.0.11 | v0.0.12 | Identical syntax — passthrough (all changes are app-level: SVG support, orbit camera, ban list, teleport, canvas window) |
-
-### v0.0.10 vs v0.0.11 syntax comparison
-
-| v0.0.10 | v0.0.11 equivalent |
-|---|---|
-| `image <W> <H> <inscription_id>` | `resource <slot> <inscription_id>` + `bind <slot> scale W H 1 quad` |
+| v0.0.9 | v0.0.10 | Identical script syntax; no script-level changes. |
+| v0.0.10 | v0.0.11 | Unified `image` command replaced with separate object commands (`quad`, `model`, `script`) and `billboard`/`mosaic` modifiers on `sunset`; resources remain index-based |
+| v0.0.11 | v0.0.12 | Identical script syntax; app-only changes (SVG support, orbit camera, ban list, teleport, canvas window) |
+| v0.0.12 | v0.0.13 | **Named inscriptions** (`inscription <name> <hash>` + `model <name>`/`quad <name>`/…) replace the v0.0.12 `resource <hash>` keyword and numeric-slot form; **`BLOCK` object type removed**: `block` is now exclusively the target command, not a drawable primitive; **9-byte binary header** with filesize for EOF validation; **comment opcodes** round-trip `#` comments through the binary; **`0x` hex prefix** is the canonical emit form for `color` and `pixels`; **`editBitmap` / `editSunset` keywords renamed** to `block` / `sunset`; editor **inscription-kind validation** rejects HTML inscriptions bound to `mosaic` or shapes (including `quad`). **Stricter parser:** unknown opcodes rejected, `solid` keyword removed (filled is the default), per-axis shorthand tokens removed (`sx`/`sy`/`sz`/`tx`/`ty`/`tz`/`rx`/`ry`/`rz`: use the three-component `scale`/`translate`/`rotate` forms instead), duplicate modifiers rejected, modifier ordering enforced in the binary encoding (scale→translate→rotate→wire→bind→color→alpha; the text parser accepts any order and normalizes), inscription declarations must precede shapes, canonical encoding enforced (most compact form required), modifier state resets between shapes, dangling modifiers rejected. |
 
 ---
 
-## 17. Scale Reference
+## 16. Scale Reference
 
 | Scale Value | Relative Size |
 |---|---|
-| `1 1 1` | Smallest possible object |
+| `1 1 1` | Smallest possible object (minimum) |
 | `100 100 100` | Human-sized (good for avatars) |
 | `1000 1000 1000` | Building-sized |
 | `10000 10000 10000` | Size of an entire bitmap block |
-| `50000 50000 50000` | Larger than a bitmap — will overlap neighbors |
-| `100000 100000 100000` | Covers multiple bitmaps (used for large primitive showcases) |
+| `50000 50000 50000` | Larger than a bitmap, will overlap neighbors |
+| `65535 65535 65535` | Maximum scale (covers multiple bitmaps) |
 
 ### Coordinate system
 
@@ -1002,13 +1113,15 @@ Scripts written for `BSS 0 0 10` (v0.0.10) use older syntax (e.g. the `image` ke
 
 - **Z** = depth axis
 
-**Note:** In the current version, objects can extend beyond your bitmap's boundaries. Proper clamping on the horizontal plane is planned for a future release. The vertical axis will remain unlimited — build as tall as you want.
+Scale values are clamped to the range **1–65535** per axis. Translate values are clamped to **-10100–10100**. Rotate values are clamped to **0–360** degrees.
+
+**Note:** In the current version, objects can extend beyond your bitmap's boundaries. Proper clamping on the horizontal plane is planned for a future release. The vertical axis will remain unlimited; build as tall as you want.
 
 ---
 
-## 18. Security & Safety
+## 17. Security & Safety
 
-BitmapSunset is a fully onchain application. It runs entirely in your browser and reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data — the same decentralized infrastructure that serves all ordinals applications.
+BitmapSunset is a fully onchain application. It runs entirely in your browser and reads data exclusively from the Bitcoin blockchain via ordinals recursive endpoints. While the application requires no servers of its own, it depends on ordinals content servers to deliver inscription data, the same decentralized infrastructure that serves all ordinals applications.
 
 ### BitmapSunset will never ask for:
 
@@ -1030,11 +1143,20 @@ BitmapSunset is a fully onchain application. It runs entirely in your browser an
 
 BitmapSunset includes multiple layers of content filtering to protect users from malicious or unwanted content:
 
-- **SVG sanitization:** All SVG inscriptions are processed through a DOMParser-based allowlist that permits only safe HTML/SVG tags and attributes. Dangerous protocols (`javascript:`, `data:text`) are blocked. Recursive SVG references are resolved with depth limits (max 3 levels), reference count limits (max 50), and size caps (2MB per reference).
-
-- **Ban list:** Users can ban specific block numbers and inscription hashes to prevent unwanted content from loading. Bans persist in browser localStorage and take effect immediately during fetch.
-
-- **Size caps:** Individual inscription blobs are capped at 50MB. GLTF models are limited to 64 chunks and 50MB total binary size.
+- **SVG sanitization:** SVG inscriptions are processed through a tag/attribute allowlist; unsafe URI protocols are blocked. Recursive SVG references are bounded by depth, count, and per-blob size limits.
+- **Ban list:** Users can ban content (block numbers, inscription hashes, images, scripts, models) from a dedicated window. Bans persist locally and take effect immediately.
+- **Auto-ban on failure:** Content that fails to decode or parse is automatically banned per-type so malformed inscriptions don't retry every session.
+- **Negative caching:** Persistent fetch failures are cached locally; transient errors are retried with backoff.
+- **Size caps:** Inscription blobs and glTF model buffers are bounded by hard size limits.
+- **Model hardening:** glTF parsing validates buffer bounds and MIME fields; a wall-clock deadline aborts pathological decode loops.
+- **Binary reader hardening:** Header fields, pixel-data bounds, and declared filesize are validated before decoding. Every rejection path is tagged and covered by tests.
+- **Resource-kind gate:** Object commands reject inscriptions whose content type isn't compatible (e.g., HTML on `mosaic`).
+- **Reference recursion cap:** `script <name>` and `bitmap <N>` reference chains are capped to prevent fetch bombs and cyclic references.
+- **Iframe sandbox:** HTML inscriptions render in a heavily restricted sandbox: no same-origin access, no credentials, no top-navigation, no device or media APIs, no referrer leak. Inscription IDs are validated before the iframe loads.
+- **Anti-phishing indicator:** When you interact with an inscription, every iframe gets a visible outline and an "external content" badge so a hostile child inscription can't impersonate the app UI.
+- **Strict CSP:** The app ships with a strict Content-Security-Policy that disallows inline scripts and locks down network/origin behavior.
+- **DOM write-surface audit:** All dynamic DOM is constructed via safe APIs, with build-time guards against unsafe patterns.
+- **Storage validators:** Every value read from local storage is type-checked; malformed entries are ignored rather than trusted.
 
 ### Best practices:
 
@@ -1046,7 +1168,7 @@ BitmapSunset includes multiple layers of content filtering to protect users from
 
 - If something feels suspicious, double-check via official channels.
 
-### $\color{red}{\textsf{DISCLAIMER}}$
+### DISCLAIMER
 
 - BitmapSunset is provided **"AS IS"** and **"AS AVAILABLE"** without warranties, guarantees, or support of any kind.
 
@@ -1060,7 +1182,7 @@ BitmapSunset includes multiple layers of content filtering to protect users from
 
 - While inscriptions are permanently stored on the Bitcoin blockchain, access to them depends on ordinals content servers and infrastructure outside the creators' control.
 
-- All inscriptions are permanent and irreversible — once data is inscribed, it cannot be modified or deleted.
+- All inscriptions are permanent and irreversible; once data is inscribed, it cannot be modified or deleted.
 
 - It is your responsibility to comply with any applicable laws and regulations in your jurisdiction.
 
@@ -1068,13 +1190,13 @@ BitmapSunset includes multiple layers of content filtering to protect users from
 
 ---
 
-## 19. Troubleshooting
+## 18. Troubleshooting
 
-### "ERROR L0 C0 invalid magic / invalid token / invalid version"
+### "line 1, col 1: invalid magic / invalid token / invalid version"
 
-- The `BSS 0 0 12` header must be the **very first line** of the script. Nothing before it — no blank lines, no spaces.
+- The `BSS 0 0 13` header must be the **very first line** of the script. Nothing before it; no blank lines, no spaces.
 
-- Make sure you're running app version 0.0.12 (check in settings — it should read `BitmapSunset 0012`).
+- Make sure you're running app version 0.0.13 (check in settings; it should read `BitmapSunset 0 0 13`).
 
 - If you copied the script from X/Twitter, check that no timestamp or extra text was accidentally pasted at the end.
 
@@ -1082,13 +1204,13 @@ BitmapSunset includes multiple layers of content filtering to protect users from
 
 - Start with `scale 10000 10000 10000`. Models often appear tiny at small scales.
 
-- It might be hidden inside another object — try increasing the scale dramatically to locate it.
+- It might be hidden inside another object; try increasing the scale dramatically to locate it.
 
-- Double-check that the inscription ID is correct and points to a valid GLTF model.
+- Double-check that the inscription ID is correct and points to a valid glTF model.
 
 ### Image not showing on quad
 
-- Make sure you used `quad` (not `model`) for image inscriptions. `model` is for GLTF 3D files only.
+- Make sure you used `quad` (not `model`) for image inscriptions. `model` is for glTF 3D files only.
 
 - Try `scale 10000 10000 10000` to make it large enough to find.
 
@@ -1096,15 +1218,15 @@ BitmapSunset includes multiple layers of content filtering to protect users from
 
 - Verify the inscription has `svg+xml` content type. Other XML formats are not supported.
 
-- The SVG may contain blocked content (e.g., `javascript:` URLs or `data:text` URIs). These are stripped by the sanitizer for security.
+- The SVG may contain blocked content (e.g., `javascript:` URLs or `data:` URIs). These are stripped by the sanitizer for security.
 
-- Check if the SVG references external resources that exceed the 2MB per-reference size limit or the recursive resolution depth limit (3 levels, 50 references max).
+- Check if the SVG references external resources that exceed the size or recursion limits.
 
 ### Camera too sensitive / spinning too fast
 
 - Adjust the **Look Speed** slider (0–100) in settings to reduce camera rotation sensitivity.
 
-- Reduce the **target FPS** to 30 in the app settings.
+- Reduce the **Max FPS** to 30 in the app settings.
 
 - Enable **hardware acceleration** in your browser settings.
 
@@ -1118,107 +1240,185 @@ BitmapSunset includes multiple layers of content filtering to protect users from
 
 - Bootstrapping controls the **order** of loading, not whether fetching is active.
 
-- Loading consistency may vary — this is a known issue being investigated.
+- Loading consistency may vary; this is a known issue being investigated.
 
 ### Models not visible on mirror maps
 
-- Known bug in v0.0.12. Models appear on the primary (A) mirror but may not render on other mirrors.
+- Known bug in v0.0.13. Models appear on the primary (A) mirror but may not render on other mirrors.
 
-- Using `editBitmap` teleports you to the A mirror where models are visible.
+- Editing `block <N>` teleports you to the A mirror where models are visible.
 
 - Fix is being investigated.
 
-### Block War scripts not appearing
+### Mosaic shows "requires image or svg" error
 
-- Check that the **multiverse** dropdown in the toolbar is still set to **Block War** (this is the default, but you may have switched to Bitmap mode).
+- The inscription you bound to `mosaic` is an HTML inscription. Swap it for an image or SVG, or move it to `billboard` (which accepts HTML via the iframe overlay).
 
-- Block War scripts are only rendered when Block War mode is active.
+### v0.0.13 binary rejected with filesize error
+
+- The `.bmp` you tried to load has an inconsistent filesize field in its binary header. Re-export from the editor rather than hand-editing the BMP.
 
 ### Console shows errors
 
-- Open the **console** panel (click **console** in the toolbar) to see the exact error line and column.
-
+- Check the **embedded console** below the code editor in the Scripts Panel for the exact error line and column.
+- **Click on an error message** to jump directly to the error location in the script.
 - Common causes: misspelled keywords, wrong number of arguments, missing inscription ID, extra whitespace before the `BSS` header.
-
 - Green messages = success. Red/error messages = something needs fixing.
 
-### Nothing happens when I click Export (💾)
+### Nothing happens when I click Export
 
-- Check the console panel for error messages. If the script failed to parse, the export will not produce a valid file.
-
-- Make sure the `BSS 0 0 12` header is present and correct.
+- The **export** button is disabled when the current tab has compile errors. Clear the errors first.
+- Check the embedded console for the exact failure line.
+- Make sure the `BSS 0 0 13` header is present and on the very first line.
 
 ### Content not loading (banned)
 
-- Check the **ban list** panel — you may have previously banned the block number or inscription hash. Remove the ban entry to restore loading.
+- Check the **ban list** panel; you may have previously banned the block number or inscription hash. Check all five tabs (universal, image, script, model, inscription). Remove the ban entry to restore loading. Images and scripts that fail to decode are auto-banned to their per-type tab.
+
+### Common error messages
+
+| Message (as shown in the console) | Usual cause |
+|---|---|
+| `invalid magic` / `invalid version` | The `BSS 0 0 13` header is missing, misspelled, or preceded by whitespace. |
+| `invalid token` | Unknown keyword. Check spelling and capitalization. |
+| `binary: binary offset out of range` | The v0.0.13 binary's declared filesize doesn't match the decoded stream. Re-export. |
+| `mosaic '<name>' requires image or svg (got iframed inscription)` | You bound an HTML inscription to `mosaic`. Use an image or SVG, or switch to `billboard`. |
+| `shape '<name>' requires image or svg (got iframed inscription)` | You bound an HTML inscription to a shape (`quad`, `cube`, etc.). Use an image or SVG, or switch to `billboard`. |
+| `invalid first argument to model` / `invalid first argument to quad` | The inscription name after `model` or `quad` was not declared with `inscription <name> <hash>`. |
+| `'<modifier>' not allowed on <command>` | A modifier was used on a command that doesn't accept it (e.g., `color` on `bitmap`, `wire` on `model`). |
+| `invalid bind` | The `billboard` or `mosaic` argument is not a valid inscription name. |
+| `invalid color` | The `color` argument is not a valid `0xRRGGBB` hex literal. |
+| `invalid block` | A bitmap number is out of the valid index range. |
+| bitmap/pixels count mismatch | The `<count>` prefix doesn't match the number of entries that follow. |
+
+### Performance tuning
+
+If the app runs slowly, the biggest performance levers live in **Settings** (press **R**) under **Performance**. All sliders use the 1–6 tier scale (Junk / Common / Uncommon / Rare / Epic / Legendary):
+
+| Lever | Effect |
+|---|---|
+| **Quality** | Composite preset. Drop to 4 (Rare) for a mobile-grade profile in one click. |
+| **Mirrors** | Number of concentric mirror rings around the root cell. Dropping from 6 to 2–3 recovers substantial frame time. |
+| **LOD** | Geometry level-of-detail tier for far cells. Lower tiers render distant cells as fewer faces. |
+| **SSAO** | Screen-space ambient occlusion resolution + sample count. Drop to 1 (Junk = off) if you don't need contact shadows. |
+| **IBL** | Image-based lighting cubemap / prefilter resolution. Lower tiers trade reflection sharpness for VRAM and bandwidth. |
+| **Atmosphere** | Sky + aerial raymarch resolution. Drop for a cheaper sky. Tier 6 also enables per-pixel aerial perspective; drop to 5 to skip it. |
+| **Render** | Overall render-target resolution scale. Halving this is a blunt but effective frame-rate knob. |
+| **Precision** | Depth-buffer precision tier. Drop to 3 or lower to skip per-pixel log-depth and gain some fragment-shader headroom (may introduce z-fighting on distant cells). |
+| **Texture** | Global mip-level cap for model and flag textures. Saves VRAM and bandwidth. |
+| **Models** (0–4096) | Caps the number of glTF models rendered simultaneously. Useful in dense districts. |
+| **IFrame** (1–6) | Caps HTML-inscription iframe fetches per tick. Junk = 0, Legendary = 100. Lower = less bandwidth, HTML billboards fill in slower. |
+| **Max FPS** | Cap to 30 if your device's thermal budget is the limiting factor. |
+
+On mobile (touch-detected), the app defaults to the **Rare (4)** tier across Atmosphere / IBL / SSAO / Render / Precision / LOD / Mirrors / Texture and a matching Models cap. Tune further from there.
 
 ---
 
-> **For the full development roadmap, technical architecture, and tokenomics, see the [BitmapSunset Vibe Paper](vibepaper.md).**
+> **For the full development roadmap, technical architecture, and collection mechanics, see the [BitmapSunset Vibe Paper](vibepaper.md).**
 
-## 20. Quick Reference Card
+## 19. Quick Reference Card
 
 ```
-BSS 0 0 12                          ← version header (always first line)
-editBitmap <number>                  ← teleport editor to bitmap (local only)
-editSunset <number>                  ← select sunset billboard (local only)
-resource <slot> <inscription_id>     ← register inscription to a slot
-bind <slot> scale X Y Z model        ← display 3D model
-bind <slot> scale X Y Z quad         ← display flat image
-bind <slot> billboard                ← display on sunset billboard
-bind <slot> translate X Y Z mosaic   ← draw on ground (X/Z = bitmap numbers on map)
-bind <slot> scale X Y Z translate X Y Z rotate Rx Ry Rz solid model
-                                     ← full example (control commands can be in any order before the object command)
-bind <slot> ... wire model           ← wireframe rendering mode
-sx|sy|sz <value>                     ← per-axis scale shorthand
-tx|ty|tz <value>                     ← per-axis translate shorthand
-rx|ry|rz <value>                     ← per-axis rotate shorthand
-solid                                ← enable solid (filled) rendering mode
-wire                                 ← enable wireframe rendering mode
-color <hex>                          ← set color for next primitive
-scale X Y Z triangle                 ← triangle primitive (2D)
-scale X Y Z quad                     ← flat quad primitive (2D, or textured with resource)
-scale X Y Z circle                   ← circle primitive (2D)
-scale X Y Z tripyr                   ← triangular pyramid primitive (3D)
-scale X Y Z squpyr                   ← square pyramid primitive (3D)
-scale X Y Z cube                     ← cube primitive (3D)
-scale X Y Z cone                     ← cone primitive (3D)
-scale X Y Z sphere                   ← sphere primitive (3D)
-bitmaps <count> <num1> <num2> ...    ← bootstrap / chain bitmaps
-pixels <count> <hex1> <hex2> ...     ← color bitmaps on the map
-bitmap <number>                      ← clone another bitmap's latest build (live link, no transforms)
-resource <slot> <script_id>          ← reference a specific script inscription
-bind <slot> script                   ← execute referenced script (supports transforms)
+BSS 0 0 13                              ← version header (always first line)
+# comment                                ← preserved through the binary (costs bytes)
+inscription <name> <inscription_id>      ← register inscription under a name (must come before any other command)
+block <number>                           ← build target bitmap (used in editor; onchain, the parent inscription is the target)
+sunset <number>                          ← target sunset for billboard / mosaic (valid: 0–99 in v0.0.13; used in editor; onchain, the parent inscription is the target)
+scale X Y Z model <name>                 ← display 3D model
+scale X Y Z quad <name>                  ← display flat image (image/SVG only)
+billboard <name> sunset <N>              ← display on sunset billboard (optional: prefix with color 0xRRGGBB)
+translate X Y Z mosaic <name> sunset <N> ← draw on ground (X/Z = bitmap numbers; image/SVG only)
+scale X Y Z translate X Y Z rotate Rx Ry Rz model <name>
+                                         ← full example (control commands can appear in any order before the object command)
+wire                                     ← wireframe mode (shapes only; inline modifier, same line as object)
+color 0xRRGGBB                           ← set color (inline modifier, same line as object)
+color 0xRRGGBBAA                         ← combined color + alpha (8 hex digits)
+alpha 0xBB                               ← override alpha for shape/quad (inline modifier, default 0xFF)
+scale X Y Z triangle                     ← triangle primitive (2D)
+scale X Y Z quad                         ← flat quad primitive (2D, or textured with inscription)
+scale X Y Z circle                       ← circle primitive (2D)
+scale X Y Z tripyr                       ← triangular pyramid primitive (3D)
+scale X Y Z squpyr                       ← square pyramid primitive (3D)
+scale X Y Z cube                         ← cube primitive (3D)
+scale X Y Z cone                         ← cone primitive (3D)
+scale X Y Z sphere                       ← sphere primitive (3D)
+bitmaps <count> <num1> <num2> ...        ← bootstrap / chain bitmaps
+pixels  <count> 0xRRGGBB 0xRRGGBB ...    ← color bitmaps on the map
+bitmap <number>                          ← clone another bitmap's latest build (live link, no transforms)
+inscription <name> <script_id>           ← reference a specific script inscription (same syntax)
+script <name>                            ← execute referenced script (no modifiers allowed)
 ```
 
 ### Toolbar Quick Reference
+
+Listed left-to-right in the actual topnav order:
 
 | Button | Purpose |
 |---|---|
 | **fetch** | Start/stop downloading onchain data |
 | **flat** | Toggle top-down 2D map view |
-| **background** | Change viewport background color |
-| **multiverse** | Switch Block War (default) / Bitmap rendering mode |
-| **shade 0/1/2** | Toggle render layers |
-| **canvas** | Toggle fullscreen / movable window |
-| **go [bitmap #]** | Teleport to a bitmap number |
-| **edit** | Open/close the script editor |
-| **settings** | Open camera, rendering, DMT options |
-| **console** | Show/hide compilation messages |
-| **help** | Open help overlay |
+| **script** | Open/close the script editor (shortcut: **G**) |
+| **teleport** | Open the Teleport window (shortcut: **T**) |
+| **ban** | Open the Ban List window |
+| **canvas** (icon) | Toggle fullscreen / movable window |
+| **help** | Open help overlay (shortcut: **H**) |
+| **settings** (icon) | Open Performance / Camera / Atmosphere / DMT / Network sliders (shortcut: **R**) |
+| **pin** (thumbtack) | Pin toolbar visible / auto-hide |
 
 ### Script Editor Quick Reference
 
-| Icon | Purpose |
+| Element | Purpose |
 |---|---|
-| **+** | Duplicate selected object |
-| **Gizmo tools** | Switch translate / rotate / scale mode |
-| **Pen** | Toggle text editing |
-| **color swatch** | Pick color for primitives |
-| **🗑** | Clear/reset script content |
-| **💾** | Export script as .bmp file |
-| **📋** | Copy/export script |
-| **❌** | Close editor |
+| **Tab bar** | Switch between scripts; double-click to rename; drag to reorder |
+| **+ (tab bar)** | Create new tab with the v0.0.13 starter template (when the `#` field is empty) |
+| **`#` (tab bar)** | Type a bitmap number + Enter to create a tab pre-loaded with that bitmap's onchain script and teleport the camera to it |
+| **Double-click bitmap** (desktop) | Fetch onchain script into a new tab (mouse-only; on mobile use the `#` input or Teleport) |
+| **+** (toolbar) | Duplicate selected object |
+| **delete** | Remove selected object from script |
+| **pen** (color picker) | Pick color for primitives |
+| **settings** (gear) | Open syntax highlighting palette |
+| **wrap** | Toggle word-wrap on the editor + syntax overlay |
+| **save** | Download `.bss` source |
+| **export** | Compile + download `.bmp` inscription artifact |
+| **recycle** | Reset to the starter template |
+| **trash** | Hide the current tab (with confirmation); same effect as **X**: the tab remains in the overflow dropdown. Known issue: should permanently delete but currently only hides |
+| **close** | Close the editor panel |
+| **Status bar** | Shows error count and caret position (Ln N, Col M) |
+| **Click error** | Jump cursor to error location in script |
+
+### Keyboard shortcuts (desktop)
+
+| Key | Action |
+|---|---|
+| **WASD / Arrows** | Move camera (free) or character (TPS) |
+| **Left-click drag** | Look around / orbit |
+| **Scroll wheel** | Speed (free) / player size (TPS) |
+| **Shift + wheel** | Camera distance (TPS) |
+| **Space** | Thrust upward (TPS) |
+| **E** | Toggle Free / TPS camera |
+| **C** | Toggle orbit mode |
+| **G** | Open/close the script editor |
+| **T** | Open the Teleport window |
+| **R** | Settings |
+| **H** | Help |
+| **B** | Debug window |
+| **F** | Toggle fullscreen |
+| **Escape** | Cancel active gizmo drag (reverts transforms) / blur focused input |
+| **Shift + left-click drag** | Paint bitmaps with the pen color (editor open) |
+| **Ctrl + left-click drag** | Erase paint from bitmaps (editor open) |
+| **Double-click bitmap** | Fetch its onchain script into a new tab (editor open) |
+
+### Mobile gestures
+
+| Gesture | Action |
+|---|---|
+| **Left-half drag** | On-screen joystick (WASD equivalent) |
+| **Right-half drag** | Look around |
+| **Two consecutive two-finger taps** (within 500 ms) | Toggle orbit mode (same as **C** on desktop) |
+| **Double-tap** | Toggle Free / TPS camera (same as **E** on desktop) |
+| **Pinch** | Zoom / adjust speed |
+
+To fetch an onchain script on mobile, use the Teleport window (**T**) or type a bitmap number into the `#` input on the script editor's tab bar. The desktop double-click-to-fetch gesture has no touch equivalent.
 
 ### Inscription Cheat Sheet
 
@@ -1227,5 +1427,32 @@ bind <slot> script                   ← execute referenced script (supports tra
 | Build on your bitmap | Inscription ID of your bitmap | Exported `.bmp` |
 | Bootstrap from your OG sunset | Inscription ID of your OG sunset (0–99) | Exported `.bmp` |
 | Update an existing build | Same parent as before (bitmap or sunset) | New `.bmp` (newest child wins) |
-| Update via reinscription (planned) | N/A — reinscribe on the sat referenced by a `sat` pointer child | New `.bmp` (latest reinscription wins) |
-| Block War (affect other bitmaps) | Inscription ID of your own bitmap | Exported `.bmp` (use cross-bitmap commands like `pixels`, `mosaic`) |
+| Cross-bitmap painting (affect other bitmaps) | Inscription ID of your own bitmap | Exported `.bmp` (use cross-bitmap commands like `pixels`, `mosaic`) |
+
+---
+
+## 20. Glossary
+
+| Term | Meaning |
+|---|---|
+| **bitmap** | A Bitcoin block claimed as an ordinal under the bitmap protocol. One bitmap = one tile in the 3D world. |
+| **sunset** | A BitmapSunset collection inscription (0–99 OG, 100–599 extended, 600+ expansion). |
+| **OG sunset** | BitmapSunset 0–99. Owns a billboard in the central map cell and carries bootstrapping authority. Future evolution: cubitmap. |
+| **billboard** | A vertical image surface positioned over a 100×100 bitmap patch. Currently placed for OG sunsets only. |
+| **mosaic** | A flat image stamped on the ground plane at map-space coordinates (image or SVG; not HTML). |
+| **cubitmap** *(planned)* | Giant floating 3D structure that OG billboards will evolve into, with parceling and building on all sides. |
+| **BSS / script** | BitmapSunset Script, the text source you write, compiled into binary and inscribed as a BMP. |
+| **inscription (keyword)** | The BSS declaration `inscription <name> <hash>` that registers an ordinal inscription under a short name for later use via `quad <name>`, `model <name>`, `billboard <name>`, etc. |
+| **bind** | Binary opcode that links a named inscription to an object. In text, use the direct-argument form instead (`model <name>`, `quad <name>`, etc.). |
+| **inscription** | Arbitrary data attached to a single satoshi on the Bitcoin blockchain via the Ordinals protocol. |
+| **parent / child** | Ordinals parent-child relationship. A BitmapSunset build script is inscribed as a child of a bitmap or sunset inscription. |
+| **recursive endpoint** | `/r/...` URL on an ordinals content server that lets inscriptions load each other's content at runtime. |
+| **Bitmap Boot** | Execution path for a script inscribed as a child of a bitmap. Parent sets the target tile. |
+| **Sunrise Boot** | Execution path for a script inscribed as a child of a sunset. Parent sets the billboard and bootstrap queue. |
+| **flat mode** | Top-down 2D view of the map, useful for seeing `pixels` / `mosaic` placement. |
+| **cross-bitmap painting** | The default cross-bitmap rendering model: every builder's cross-bitmap commands are visible to every viewer. An onchain pixel war played across the whole map. |
+| **bootstrapping** | OG-sunset-controlled priority loading. `bitmaps` commands inside a sunset script queue those bitmaps for Phase 1 loading. |
+| **multiverse architecture** | The cross-chain tiling framework where Bitcoin's root cell is surrounded by 8 reserved positions for additional blockchain landscapes. Architectural term only; no in-app toggle carries this name in v0.0.13. |
+| **round-trip** | The editor pipeline: source → binary → BMP → binary → source. A green console means the export is deterministic and onchain-safe. |
+| **OCI (On-Chain Index)** | On-chain index maintained by [@boppleton](https://x.com/boppleton), mapping bitmap numbers to satoshi IDs, covering ~942k bitmaps. |
+| **round-trip / fuzzer** | Editor-side and build-side validation layers that catch malformed inputs before they reach either the onchain BMP or the live VM. |
